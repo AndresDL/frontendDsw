@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class SpecialtyService {
+export class TreatmentService {
 
   readonly baseUrl = 'http://localhost:4200/api/'
   
   constructor(private http: HttpClient){}
   
-  getSpecialties(){
+  getTreatments(){
     
-    const url = this.baseUrl + 'specialty';
+    const url = this.baseUrl + 'treatment';
     
     return this.http.get<any>(url);
 
