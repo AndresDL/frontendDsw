@@ -13,6 +13,8 @@ import { SpecialtyComponent } from './specialty/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { TreatmentPriceComponent } from './treatment-price/treatment-price.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,11 +29,13 @@ import { TreatmentPriceComponent } from './treatment-price/treatment-price.compo
     SpecialtyComponent,
     FollowupTreatmentComponent,
     TreatmentComponent,
-    TreatmentPriceComponent
+    TreatmentPriceComponent,
+    LoginComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule,
   ],
   providers: [
     provideClientHydration()
