@@ -16,6 +16,7 @@ import { TreatmentPriceComponent } from './treatment-price/treatment-price.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +30,13 @@ import { LoginComponent } from './login/login.component';
     SpecialtyComponent,
     FollowupTreatmentComponent,
     TreatmentComponent,
+
     TreatmentPriceComponent,
     LoginComponent
     
+
+    TreatmentPriceComponent
+
   ],
   imports: [
     BrowserModule,
