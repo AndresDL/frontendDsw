@@ -13,9 +13,9 @@ import { SpecialtyComponent } from './specialty/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { TreatmentPriceComponent } from './treatment-price/treatment-price.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,20 +30,20 @@ import { LoginComponent } from './login/login.component';
     SpecialtyComponent,
     FollowupTreatmentComponent,
     TreatmentComponent,
-
     TreatmentPriceComponent,
-    LoginComponent
-    
-
-    TreatmentPriceComponent
-
+    LoginComponent,
+    TreatmentPriceComponent,
+  
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
+    
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent]
 })

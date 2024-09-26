@@ -1,1 +1,35 @@
-<p>specialty works!</p>
+
+<div class = "title">
+    <h1>CRUD SPECIALTY WORKS!!!!!!!!!!!!!!!</h1>
+</div>
+
+<div class = "container"> 
+    <div class = "row">
+        <ul class="list-group">
+            <li *ngFor ='let specialty of specialtyArray' 
+            class ="list-group-item  list-group-item-action"
+            (click)="openForEdit(specialty)"
+            [class.active]= "specialty == selectedSpecialty" >
+                <span class="badge bg-primary">{{specialty.id}}</span> 
+                {{specialty.name}} - 
+                {{specialty.doctors}} -
+                {{specialty.prices}} 
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="card-title">
+            Create a specialty
+        </div>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="selectedSpecialty.name" placeholder="Insert an name">
+        </div>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="selectedSpecialty.prices" placeholder="Insert a price">            
+        </div>
+        <button (click)="addOrEdit()">
+            Submit
+        </button>
+</div>
+
+

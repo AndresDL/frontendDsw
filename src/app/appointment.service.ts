@@ -17,3 +17,4 @@ export class AppointmentService {
     return this.http.get<any>(url);
   }
 
+}

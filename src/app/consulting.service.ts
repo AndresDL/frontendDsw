@@ -17,4 +17,4 @@ export class ConsultingService {
     return this.http.get<any>(url);
   }
 
-
+}
