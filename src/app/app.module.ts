@@ -12,7 +12,6 @@ import { TimeTableComponent } from './time-table/time-table.component';
 import { SpecialtyComponent } from './specialty/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
 import { TreatmentComponent } from './treatment/treatment.component';
-import { TreatmentPriceComponent } from './treatment-price/treatment-price.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { provideHttpClient } from '@angular/common/http';
@@ -30,9 +29,7 @@ import { provideHttpClient } from '@angular/common/http';
     SpecialtyComponent,
     FollowupTreatmentComponent,
     TreatmentComponent,
-    TreatmentPriceComponent,
     LoginComponent,
-    TreatmentPriceComponent,
   
   ],
   imports: [

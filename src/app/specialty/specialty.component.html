@@ -4,32 +4,31 @@
 </div>
 
 <div class = "container"> 
-    <div class = "row">
-        <ul class="list-group">
-            <li *ngFor ='let specialty of specialtyArray' 
-            class ="list-group-item  list-group-item-action"
-            (click)="openForEdit(specialty)"
-            [class.active]= "specialty == selectedSpecialty" >
-                <span class="badge bg-primary">{{specialty.id}}</span> 
-                {{specialty.name}} - 
-                {{specialty.doctors}} -
-                {{specialty.prices}} 
-            </li>
-        </ul>
-    </div>
-    <div class="card-body">
-        <div class="card-title">
-            Create a specialty
+    <form [formGroup]="specialtyForm" (ngSubmit)="newSpecialty()">
+        <div>Id for specialty will be automatically generetared</div>
+        <input formControlName="name" type="text" class="form-control" placeholder="Ingrese nombre de la espcialidad">
+        <input formControlName="price" type="number" class="form-control" placeholder="Ingrese precio de la especialidad">
+        <div>
+            <button>
+                Crear especialidad
+            </button>
         </div>
-        <div class="form-group">
-            <input type="text" [(ngModel)]="selectedSpecialty.name" placeholder="Insert an name">
-        </div>
-        <div class="form-group">
-            <input type="text" [(ngModel)]="selectedSpecialty.prices" placeholder="Insert a price">            
-        </div>
-        <button (click)="addOrEdit()">
-            Submit
-        </button>
+    </form>
+    <button class="btn btn-primary" (click)="getAllSpecialties()">
+        Get Specialties from bd
+    </button>
+    <ul>
+        <li *ngFor="let item of specialtyArray">
+            {{item.id}} -
+            {{item.name}} -
+            {{item.price}}
+            <button class="btn btn-primary" (click)="deleteSpecialty(item.id!)">
+                Delete specialty
+           </button>
+           
+           <button (click)="oneSpecialty(item.id!)">
+                Get Specialty
+           </button>
+        </li> 
+    </ul>
 </div>
-
-

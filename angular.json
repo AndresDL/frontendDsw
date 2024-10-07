@@ -27,6 +27,7 @@
             "outputPath": "dist/frontend-dsw",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "sourceMap": true,
             "polyfills": [
               "zone.js"
             ],

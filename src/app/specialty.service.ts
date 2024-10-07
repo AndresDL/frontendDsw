@@ -10,34 +10,34 @@ import { response } from 'express';
 })
 export class SpecialtyService {
 
-  readonly baseUrl = 'http://localhost:3000/api/specialties';
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
-  }
+  private baseUrl = 'http://localhost:3000/api/specialties/';
   
   constructor(private http: HttpClient){}
   
   getSpecialties(): Observable<Specialty[]>{
-    return this.http.get<Specialty[]>(this.baseUrl).pipe(map((response: any) => response.specialties));
+    return this.http.get<any>(this.baseUrl).pipe(map(response => {
+      return response.data;
+    }));
   }
 
+
   getSpecialty(id: number): Observable<Specialty> {
-    const url = `${this.baseUrl}?id=${id}`;
+    const url = `${this.baseUrl}id=${id}`;
+    console.log(url);
     return this.http.get<Specialty>(url);
   }
 
   addSpecialty(specialty: Specialty): Observable<Specialty> {
-    return this.http.post<Specialty>(this.baseUrl, specialty, this.httpOptions);
+    return this.http.post<Specialty>(this.baseUrl, specialty);
   }
 
   updateSpecialty(specialty: Specialty): Observable<Specialty> {
     const url = `${this.baseUrl}?id=${specialty.id}`;
-    return this.http.put<Specialty>(url, specialty, this.httpOptions);
+    return this.http.put<Specialty>(url, specialty);
   }
 
-  deleteSpecialty(id: number): Observable<{}> {
+  deleteSpecialty(id: number): Observable<Specialty>{
     const url = `${this.baseUrl}$id=${id}`;
-    return this.http.delete(url, this.httpOptions);
+    return this.http.delete<Specialty>(url);
   }
 }

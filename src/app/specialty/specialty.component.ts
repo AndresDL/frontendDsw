@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Specialty } from './specialty';
 import { SpecialtyService } from '../specialty.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { response } from 'express';
 
 @Component({
   selector: 'app-specialty',
@@ -9,47 +11,55 @@ import { SpecialtyService } from '../specialty.service';
 })
 export class SpecialtyComponent implements OnInit{
   specialtyArray: Specialty[] = [];
-  selectedSpecialty: Specialty = new Specialty();
-  list: string[] = ["Hola","Me","Llamo","Andres"];
-  
-  constructor(private specialtyService: SpecialtyService) {}
+  specialtyForm: FormGroup
+  item: any;
 
-
-  ngOnInit() {
-    this.specialtyService.getSpecialties();
+  constructor(
+    private specialtyService: SpecialtyService,
+    private form: FormBuilder
+  ) {
+    this.specialtyForm = this.form.group({
+      name: ['', [Validators.required, Validators.maxLength(22)]],
+      price: [null, Validators.required],
+    })
   }
 
-  getSpecialties() {
-    this.specialtyService.getSpecialties().subscribe((specialties) => {
-      this.specialtyArray = specialties;
+  ngOnInit() {
+    this.getAllSpecialties();
+  }
+
+  getAllSpecialties() {
+    this.specialtyService.getSpecialties().subscribe((specialty) => {
+      console.log('list of specialties:', specialty)
+      this.specialtyArray = specialty;
     });
   }
 
-  addOrEdit(){
-    if (this.selectedSpecialty.id === 0) {
-      this.specialtyService.addSpecialty(this.selectedSpecialty).subscribe(() => {
-        this.getSpecialties();
-        this.selectedSpecialty = new Specialty();
-      });
+  newSpecialty(){
+    const specialty: Specialty = {
+      id: 0,
+      name: this.specialtyForm.value.name,
+      price: this.specialtyForm.value.price,
     }
-    else{
-      this.specialtyService.updateSpecialty(this.selectedSpecialty).subscribe(() => {
-        this.getSpecialties();
-        this.selectedSpecialty = new Specialty();
-      }); 
-    }
+    this.specialtyService.addSpecialty(specialty).subscribe(() => {
+      console.log('Producto Agregado');
+    })
   }
 
-  openForEdit(specialty: Specialty) {
-    this.selectedSpecialty = specialty;
+  oneSpecialty(id: number){
+    this.specialtyService.getSpecialty(id).subscribe((specialty) => {
+      console.log(specialty)
+    })
   }
 
-  delete() {
-    if(confirm('Are you sure you want to delete it?')) {
-      this.specialtyService.deleteSpecialty(this.selectedSpecialty.id).subscribe(() => {
-        this.getSpecialties();
-        this.selectedSpecialty = new Specialty();
-      })
-    }
+  deleteSpecialty(id: number){
+    this.specialtyService.deleteSpecialty(id).subscribe((response)=>{
+      console.log("Specialty deleted", response);
+      this.getAllSpecialties();
+    }, 
+  (error) => console.error ("Error deleting", error));
   }
 }
+
+
+
