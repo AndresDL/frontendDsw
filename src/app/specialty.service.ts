@@ -20,9 +20,8 @@ export class SpecialtyService {
     }));
   }
 
-
   getSpecialty(id: number): Observable<Specialty> {
-    const url = `${this.baseUrl}id=${id}`;
+    const url = `${this.baseUrl}${id}`;
     console.log(url);
     return this.http.get<Specialty>(url);
   }
@@ -32,12 +31,12 @@ export class SpecialtyService {
   }
 
   updateSpecialty(specialty: Specialty): Observable<Specialty> {
-    const url = `${this.baseUrl}?id=${specialty.id}`;
+    const url = `${this.baseUrl}${specialty.id}`;
     return this.http.put<Specialty>(url, specialty);
   }
 
-  deleteSpecialty(id: number): Observable<Specialty>{
-    const url = `${this.baseUrl}$id=${id}`;
-    return this.http.delete<Specialty>(url);
+  deleteSpecialty(id: number): Observable<void>{
+    const url = `${this.baseUrl}${id}`;
+    return this.http.delete<void>(url);
   }
 }
