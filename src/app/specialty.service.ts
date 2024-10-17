@@ -22,17 +22,18 @@ export class SpecialtyService {
 
   getSpecialty(id: number): Observable<Specialty> {
     const url = `${this.baseUrl}${id}`;
-    console.log(url);
-    return this.http.get<Specialty>(url);
+    return this.http.get<any>(url).pipe(map(response => {
+      return response.data[0];
+    }));
   }
 
   addSpecialty(specialty: Specialty): Observable<Specialty> {
     return this.http.post<Specialty>(this.baseUrl, specialty);
   }
 
-  updateSpecialty(specialty: Specialty): Observable<Specialty> {
+  updateSpecialty(specialty: Specialty): Observable<void> {
     const url = `${this.baseUrl}${specialty.id}`;
-    return this.http.put<Specialty>(url, specialty);
+    return this.http.put<void>(url, specialty);
   }
 
   deleteSpecialty(id: number): Observable<void>{
