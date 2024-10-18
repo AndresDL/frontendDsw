@@ -1,0 +1,22 @@
+<div>
+    <div class = "title">
+        <h2>List of specialties</h2>
+        <button type="button" class="btn btn-primary" routerLink="/add">Add specialty</button>
+    </div>
+
+    <div class = "container"> 
+        <ul>
+            <li *ngFor="let item of specialtyArray">
+                {{item.id}} -
+                {{item.name}} -
+                {{item.price}}
+                <button class="btn btn-primary" (click)="deleteSpecialty(item.id!)">
+                    Delete specialty
+            </button>
+            <button routerLink="/edit/{{item.id}}">                    
+                Edit Specialty
+            </button>
+            </li> 
+        </ul>
+    </div>
+</div> 

@@ -8,12 +8,13 @@ import { ConsultingComponent } from './consulting/consulting.component';
 import { DoctorConsultingComponent } from './doctor-consulting/doctor-consulting.component';
 import { FollowUpComponent } from './follow-up/follow-up.component';
 import { TimeTableComponent } from './time-table/time-table.component';
-import { SpecialtyComponent } from './specialty/specialty.component';
+import { SpecialtyComponent } from './specialty-list/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { provideHttpClient } from '@angular/common/http';
+import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { provideHttpClient } from '@angular/common/http';
     FollowupTreatmentComponent,
     TreatmentComponent,
     LoginComponent,
-  
+    SpecialtyAddoreditComponent,
   ],
   imports: [
     BrowserModule,
