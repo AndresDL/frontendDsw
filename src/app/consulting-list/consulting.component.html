@@ -1,0 +1,22 @@
+<div>
+    <div class = "title">
+        <h2>List of consultings</h2>
+        <button type="button" class = "btn btn-primary" routerLink ="/addConsulting"> Add consulting </button>
+    </div>
+    
+    <div class ="container">
+        <ul>
+            <li *ngFor="let item of consultingArray">
+                {{item.street}} -
+                {{item.street_number}}
+                {{item.id}}
+                <button class ="btn btn-primary" (click)="deleteConsulting(item.id!)">
+                    Delete
+                </button>
+                <button routerLink="/editConsulting/{{item.id}}">
+                    Edit
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>

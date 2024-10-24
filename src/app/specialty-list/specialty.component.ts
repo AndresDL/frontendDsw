@@ -3,7 +3,6 @@ import { Specialty } from '../interfaces/specialty';
 import { SpecialtyService } from '../specialty.service';
 import { response } from 'express';
 
-
 @Component({
   selector: 'app-specialty',
   templateUrl: './specialty.component.html',
@@ -36,6 +35,7 @@ export class SpecialtyComponent implements OnInit{
     }, 
   (error) => console.error ("Error deleting", error));
   }
+  
 }
 
 

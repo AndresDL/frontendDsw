@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { UserComponent } from './user/user.component';
-import { ConsultingComponent } from './consulting/consulting.component';
+import { ConsultingComponent } from './consulting-list/consulting.component.js';
 import { DoctorConsultingComponent } from './doctor-consulting/doctor-consulting.component';
 import { FollowUpComponent } from './follow-up/follow-up.component';
 import { TimeTableComponent } from './time-table/time-table.component';
@@ -15,6 +15,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { provideHttpClient } from '@angular/common/http';
 import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
+import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component.js';
+import { Reactive } from '@angular/core/primitives/signals/index.js';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-add
     TreatmentComponent,
     LoginComponent,
     SpecialtyAddoreditComponent,
+    ConsultingAddoreditComponent,
   ],
   imports: [
     BrowserModule,

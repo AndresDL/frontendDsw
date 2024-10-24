@@ -1,0 +1,20 @@
+<div>
+    <div>
+        <h2>
+            {{operation}} consulting
+        </h2>
+    </div>
+    <form [formGroup]="consultingForm" (ngSubmit)="addConsulting()">
+        <input formControlName="street" type="text" class="form-control" placeholder="Ingrese la calle del consultorio">
+        <input formControlName="street_number" type="number" class="form-control" placeholder="Ingrese el numero de calle del consultorio">
+        <div>
+            <button routerLink="/">
+                Back
+            </button>
+            <button>
+                {{operation}} consulting
+            </button>
+            
+        </div>
+    </form>
+</div>
