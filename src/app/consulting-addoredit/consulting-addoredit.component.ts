@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Consulting } from '../interfaces/consulting';
-import { OnInit } from '@mikro-orm/core';
+import { OnInit } from '@angular/core';
 
 //Service 
 import { ConsultingService } from '../consulting.service';
@@ -34,7 +34,7 @@ export class ConsultingAddoreditComponent {
     console.log(this.id);
 
   }
-  ngOnInit():void{
+  ngOnInit(){
     if(this.id !=0){
       //edit
       this.operation = 'Edit';

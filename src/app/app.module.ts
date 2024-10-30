@@ -17,6 +17,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component.js';
 import { Reactive } from '@angular/core/primitives/signals/index.js';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { Reactive } from '@angular/core/primitives/signals/index.js';
     LoginComponent,
     SpecialtyAddoreditComponent,
     ConsultingAddoreditComponent,
+    SignInComponent,
+    DashboardComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
