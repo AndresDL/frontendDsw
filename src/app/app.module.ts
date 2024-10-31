@@ -1,7 +1,12 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { provideHttpClient } from '@angular/common/http';
+import { Reactive } from '@angular/core/primitives/signals/index.js';
+
+//Components
+import { LoginComponent } from './login/login.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { UserComponent } from './user/user.component';
 import { ConsultingComponent } from './consulting-list/consulting.component.js';
@@ -11,16 +16,18 @@ import { TimeTableComponent } from './time-table/time-table.component';
 import { SpecialtyComponent } from './specialty-list/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
 import { TreatmentComponent } from './treatment-list/treatment-list.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { provideHttpClient } from '@angular/common/http';
 import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component.js';
 import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
-import { Reactive } from '@angular/core/primitives/signals/index.js';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavbarComponent } from './navbar/navbar.component';
+
+//Modules
+import { NgModule } from '@angular/core';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -37,17 +44,24 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     SpecialtyAddoreditComponent,
     ConsultingAddoreditComponent,
+    NavbarComponent,
+    DashboardComponent,
+    TreatmentAddoreditComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
     
   ],
   providers: [
     provideClientHydration(),
     provideHttpClient(),
+    provideToastr(),
   ],
   bootstrap: [AppComponent]
 })
