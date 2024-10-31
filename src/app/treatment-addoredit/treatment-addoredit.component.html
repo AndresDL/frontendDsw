@@ -1,0 +1,20 @@
+<div>
+    <div>
+        <h2>
+            {{operation}} treatment
+        </h2>
+    </div>
+    <form [formGroup]="treatmentForm" (ngSubmit)="addTreatment()">
+        <input formControlName="name" type="text" class="form-control" placeholder="Ingrese nombre del tratamiento">
+        <input formControlName="price" type="number" class="form-control" placeholder="Ingrese precio del tratamiento">
+        <div>
+            <button routerLink="/">
+                Back
+            </button>
+            <button>
+                {{operation}} treatment
+            </button>
+            
+        </div>
+    </form>
+</div>

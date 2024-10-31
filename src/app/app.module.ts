@@ -10,12 +10,13 @@ import { FollowUpComponent } from './follow-up/follow-up.component';
 import { TimeTableComponent } from './time-table/time-table.component';
 import { SpecialtyComponent } from './specialty-list/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
-import { TreatmentComponent } from './treatment/treatment.component';
+import { TreatmentComponent } from './treatment-list/treatment-list.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { provideHttpClient } from '@angular/common/http';
 import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component.js';
+import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
 import { Reactive } from '@angular/core/primitives/signals/index.js';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -36,9 +37,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     SpecialtyAddoreditComponent,
     ConsultingAddoreditComponent,
-    SignInComponent,
-    DashboardComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,
