@@ -9,12 +9,14 @@ import { SpecialtyComponent } from './specialty-list/specialty.component.js';
 import { LoginComponent } from './login/login.component.js';
 import { SignInComponent } from './sign-in/sign-in.component.js';
 import { DashboardComponent } from './dashboard/dashboard.component.js';
+import { authGuard } from './utilities/auth.guard.js';
+
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'signIn', component: SignInComponent},
-  {path: 'home', component: DashboardComponent},
+  {path: 'home', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'addSpecialty', component: SpecialtyAddoreditComponent},
   {path: 'editSpecialty/:id', component: SpecialtyAddoreditComponent},
   {path: 'addConsulting', component: ConsultingAddoreditComponent},
