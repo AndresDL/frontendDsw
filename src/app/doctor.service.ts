@@ -8,6 +8,9 @@ import { Doctor } from './interfaces/doctor.js';
   providedIn: 'root'
 })
 export class DoctorService {
+  signIn(user: Doctor) {
+    throw new Error('Method not implemented.');
+  }
   readonly baseUrl = 'http://localhost4200/doctors'
 
   constructor(private http: HttpClient) { }
