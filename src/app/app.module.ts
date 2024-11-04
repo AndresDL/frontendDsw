@@ -10,7 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { UserComponent } from './user/user.component';
 import { ConsultingComponent } from './consulting-list/consulting.component.js';
-import { DoctorConsultingComponent } from './doctor-consulting/doctor-consulting.component';
+import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component';
 import { FollowUpComponent } from './follow-up/follow-up.component';
 import { TimeTableComponent } from './time-table/time-table.component';
 import { SpecialtyComponent } from './specialty-list/specialty.component';
@@ -20,6 +20,7 @@ import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-add
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component.js';
 import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
 
+
 //Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
@@ -27,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component';
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
     DashboardComponent,
     TreatmentAddoreditComponent,
     SignInComponent,
+    DoctorSignInComponent,
   ],
   imports: [
     BrowserModule,
