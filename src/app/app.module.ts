@@ -8,7 +8,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppointmentComponent } from './appointment/appointment.component';
-import { UserComponent } from './user/user.component';
 import { ConsultingComponent } from './consulting-list/consulting.component.js';
 import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component';
 import { FollowUpComponent } from './follow-up/follow-up.component';
@@ -35,7 +34,6 @@ import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component
   declarations: [
     AppComponent,
     AppointmentComponent,
-    UserComponent,
     ConsultingComponent,
     DoctorConsultingComponent,
     FollowUpComponent,

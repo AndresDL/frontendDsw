@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 //Reactive forms
@@ -8,6 +8,7 @@ import { matchpass } from '../validators/matchpass.validator';
 import { User } from '../interfaces/user';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -16,8 +17,10 @@ import { Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })
-export class SignInComponent {
+export class SignInComponent{
   registerForm: FormGroup;
+  loading: boolean = false;
+  userArray: User[] = [];
 
   constructor(
     private form: FormBuilder,
@@ -51,14 +54,18 @@ export class SignInComponent {
       cod_user: 1,
     }
     console.log(user)
-    this.registerService.signIn(user).subscribe(data => {
-      console.log('User registered');
-      this.toastr.success(`User ${this.registerForm.value.firstName}${this.registerForm.value.lastName}
-         registered`,'The user has been registered');
-      this.router.navigate(['/login']);
-      
+    this.loading = true;
+    this.registerService.signIn(user).subscribe({
+      next: (v) => {
+        this.loading = false;
+        this.toastr.success(`User ${this.registerForm.value.firstName}${this.registerForm.value.lastName}
+          registered`,'The user has been registered');
+        this.router.navigate(['/login']); 
+      },
+      error: (e: HttpErrorResponse) => {
+        this.loading = false;
+        this.toastr.error('Someone with that DNI is already registered', 'Error');
+      }
     })
   }
-  
-
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './enviroments/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 //Interface
 import { User } from './interfaces/user';
@@ -12,13 +12,29 @@ import { User } from './interfaces/user';
 })
 export class UserService {
   private myAppUrl: string;
-  private myApiUrl= "api/users/"
+  private myApiUrl: string;
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint
+    this.myApiUrl = environment.endpointuser
   }
-
+  
+  //Getall
+  getUsers(): Observable<User[]>{
+    const url = `${this.myAppUrl}${this.myApiUrl}`;
+    return this.http.get<any>(url).pipe(map(response => {
+      return response.data;
+    }));
+  }
+  
+  //Createuser
   signIn(user: User): Observable<any>{
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, user);
+  }
+
+  //Getuser
+  login(user: User): Observable<string>{
+    const url = `${this.myAppUrl}${this.myApiUrl}/login`;
+    return this.http.post<string>(url, user);
   }
 }
