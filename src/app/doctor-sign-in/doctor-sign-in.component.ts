@@ -13,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-doctor-sign-in',
   templateUrl: './doctor-sign-in.component.html',
   styleUrl: './doctor-sign-in.component.scss'
 })

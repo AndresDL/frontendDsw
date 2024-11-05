@@ -18,7 +18,8 @@ import { TreatmentComponent } from './treatment-list/treatment-list.component';
 import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component.js';
 import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
-import { DoctorSingInComponent } from './doctor-sing-in/doctor-sing-in.component.js';
+
+
 //Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
@@ -26,7 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
-
+import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
     DashboardComponent,
     TreatmentAddoreditComponent,
     SignInComponent,
+    DoctorSignInComponent,
   ],
   imports: [
     BrowserModule,

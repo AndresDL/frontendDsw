@@ -1,1 +1,24 @@
-<p>doctor-sign-in works!</p>
+
+<div class="wrapper">     
+    <div *ngIf="!loading" class="body">
+      <img class="icon" src="../../assets/img/hospital.png" alt="img login">
+      <h1>Register User</h1>
+      <form [formGroup]="registerForm" novalidate>
+        <input formControlName="tuition_number" type="text" class="form-control mb-1" placeholder="Enter tuition_number">
+        <input formControlName="age" type="number" class="form-control mb-1" placeholder="Enter age">
+        <input formControlName="firstName" type="text" class="form-control mb-1" placeholder="Enter first name">
+        <input formControlName="lastName" type="text" class="form-control mb-1" placeholder="Enter last name">
+        <input formControlName="email" type="email" class="form-control mb-1" placeholder="Enter a email adress">
+        <input formControlName="password" type="password" class="form-control mb-1" placeholder="Enter password">
+        <input formControlName="repassword" type="password" class="form-control mb-1" placeholder="Repeat password">
+        <span *ngIf="registerForm.errors?.['passwordmatcherror']" class="">Passwords do not match</span>
+        <div class="d-grid gap-2 mt-2">
+            <button [disabled]="registerForm.invalid" (click)="addDoctor()" type="button" class="btn btn-primary btn-lg">Accept</button>
+        </div>
+        </form>
+        <a href="" routerLink="/login">Back</a>
+    </div>   
+    <div *ngIf="loading" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
