@@ -6,6 +6,6 @@ export class Doctor {
     password: string = "";
     age: number = 0;
     tuition_number: number = 0;
-  specialty: any;
-    //specialty: 
+    specialty: any;
+    
 }

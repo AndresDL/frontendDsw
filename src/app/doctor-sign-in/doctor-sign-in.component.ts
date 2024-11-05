@@ -17,7 +17,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './doctor-sign-in.component.html',
   styleUrl: './doctor-sign-in.component.scss'
 })
-export class SignInComponent{
+export class DoctorSignInComponent{
   registerForm: FormGroup;
   loading: boolean = false;
   userArray: Doctor[] = [];

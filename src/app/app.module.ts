@@ -28,6 +28,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component';
+import { DoctorListComponent } from './doctor-list/doctor-list.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component
     TreatmentAddoreditComponent,
     SignInComponent,
     DoctorSignInComponent,
+    DoctorListComponent,
   ],
   imports: [
     BrowserModule,
