@@ -61,12 +61,12 @@ export class ConsultingAddoreditComponent {
       //edit
       consulting.id = this.id
       this.consultingService.updateConsulting(consulting).subscribe(()=>{
-        this.router.navigate(['/']);
+        this.router.navigate(['/home/consultingList']);
       })
     } else{
       //add
       this.consultingService.addConsulting(consulting).subscribe(()=>{
-        this.router.navigate(['/']);
+        this.router.navigate(['/home/consultingList']);
       })
     }
   }

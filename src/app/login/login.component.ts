@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../interfaces/user';
 import { UserService } from '../user.service';
@@ -26,7 +25,7 @@ export class LoginComponent {
   login(){
     //Validate data entry
     if(this.dni == '' || this.password == ''){
-      this.toastr.error('Both fields must be completed','Error');
+      this.toastr.error('Ambos campos deben ser completados','Error');
       return 
     }
     //Create user
@@ -36,9 +35,8 @@ export class LoginComponent {
     }
     this.loading = true;
     this.loginService.login(user).subscribe({
-      next: (token) => {
+      next: ({token}) => {
         localStorage.setItem('token', token);
-        console.log(token);
         this.router.navigate(['/home']);
       },
       error: (e: HttpErrorResponse) => {
@@ -46,7 +44,7 @@ export class LoginComponent {
         if (e.error.message){
           this.toastr.error(e.error.message,'Error');
         } else {
-          this.toastr.error('Something unexpected happened','Error');
+          this.toastr.error('Paso algo inesperado, contacta un admin!','Error');
         }
       }
     })

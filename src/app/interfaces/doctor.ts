@@ -7,5 +7,4 @@ export class Doctor {
     age: number = 0;
     tuition_number: number = 0;
     specialty: any;
-    
 }

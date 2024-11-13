@@ -18,7 +18,7 @@ export class UserService {
     this.myAppUrl = environment.endpoint
     this.myApiUrl = environment.endpointuser
   }
-  
+
   //Getall
   getUsers(): Observable<User[]>{
     const url = `${this.myAppUrl}${this.myApiUrl}`;
@@ -33,8 +33,8 @@ export class UserService {
   }
 
   //Getuser
-  login(user: User): Observable<string>{
+  login(user: User) {
     const url = `${this.myAppUrl}${this.myApiUrl}/login`;
-    return this.http.post<string>(url, user);
+    return this.http.post<{token: string}>(url, user);
   }
 }

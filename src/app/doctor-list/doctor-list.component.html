@@ -1,1 +1,23 @@
-<p>doctor-list works!</p>
+
+<div class = "title">
+    <h2>Lista de doctores</h2>
+    <div class="alert alert-primary w-25 p-3 mt-3 " role="alert">
+        Trabajo en progreso, gracias por esperar!
+    </div>
+</div>
+<div>
+    <ul>
+        <li *ngFor="let item of doctorArray">
+            {{item.tuition_number}} -
+            {{item.firstName}} -
+            {{item.lastName}} es
+            {{item.specialty.name}}
+            <button class ="btn btn-danger" (click)="deleteDoctor(item.id!)">
+                Eliminar
+            </button>
+        </li>
+    </ul>
+    <a href="" routerLink="/home">Pagina anterior</a>
+</div>
+
+

@@ -9,6 +9,8 @@ import { Doctor } from '../interfaces/doctor';
 import { DoctorService } from '../doctor.service'; 
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Specialty } from '../interfaces/specialty';
+import { SpecialtyService } from '../specialty.service';
 
 
 
@@ -17,16 +19,18 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './doctor-sign-in.component.html',
   styleUrl: './doctor-sign-in.component.scss'
 })
-export class DoctorSignInComponent{
+export class DoctorSignInComponent implements OnInit{
+  id!: number;
   registerForm: FormGroup;
   loading: boolean = false;
   userArray: Doctor[] = [];
+  
 
   constructor(
     private form: FormBuilder,
     private toastr: ToastrService,
     private registerService: DoctorService,
-    private router: Router
+    private router: Router,
   ){
     this.registerForm = this.form.group({
       firstName: [null,[Validators.required,Validators.maxLength(20)]],
@@ -35,37 +39,47 @@ export class DoctorSignInComponent{
       password: [null,[Validators.required]],
       repassword: [null,[Validators.required]],
       age: [null,[Validators.required]],
-      tuition_number: [null,[Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
+      tuition_number: [null,[Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
+      specialty: [null,[Validators.required]],
     },
     {
       validators: matchpass
     })
   }
 
+  ngOnInit(): void {
+    this.getDoctors()
+  }
+
+  getDoctors(){
+    this.registerService.getDoctors().subscribe((doctors) => {
+      this.userArray = doctors;
+    });
+  }
+
   addDoctor(){
-    console.log(this.registerForm.value);
-    const doctor: Doctor = {
-      tuition_number: this.registerForm.value.tuition_number,
-      firstName: this.registerForm.value.firstName,
-      lastName: this.registerForm.value.lastName,
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password,
-      age: this.registerForm.value.age,
-      specialty: undefined
+  const doctor: Doctor = {
+    tuition_number: this.registerForm.value.tuition_number,
+    firstName: this.registerForm.value.firstName,
+    lastName: this.registerForm.value.lastName,
+    email: this.registerForm.value.email,
+    password: this.registerForm.value.password,
+    age: this.registerForm.value.age,
+    specialty: this.registerForm.value.specialty,
+  }
+  console.log(doctor)
+  this.loading = true;
+  this.registerService.signIn(doctor).subscribe({
+    next: (v) => {
+      this.loading = false;
+      this.toastr.success(`El doctor ${this.registerForm.value.firstName} ${this.registerForm.value.lastName}
+        ha sido registrado`,'Doctor registrado');
+      this.router.navigate(['/login']); 
+    },
+    error: (e: HttpErrorResponse) => {
+      this.loading = false;
+      this.toastr.error('Alguien ya se ha registrado con esa matricula', 'Error');
     }
-    console.log(doctor)
-    this.loading = true;
-    this.registerService.signIn(doctor).subscribe({
-      next: (v) => {
-        this.loading = false;
-        this.toastr.success(`Doctor ${this.registerForm.value.firstName}${this.registerForm.value.lastName}
-          registered`,'The doctor has been registered');
-        this.router.navigate(['/login']); 
-      },
-      error: (e: HttpErrorResponse) => {
-        this.loading = false;
-        this.toastr.error('Someone with that tuition number is already registered', 'Error');
-      }
-    })
+  })
   }
 }

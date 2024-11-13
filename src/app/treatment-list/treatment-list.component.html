@@ -1,23 +1,25 @@
-<p>treatment works!</p>
-<div>
-    <div class = "title">
-        <h2>List of specialties</h2>
-        <button type="button" class="btn btn-primary" routerLink="/addTreatment">Add treatment</button>
-    </div>
 
-    <div class = "container"> 
-        <ul>
-            <li *ngFor="let item of treatmentArray">
-                {{item.id}} -
-                {{item.name}} -
-                {{item.price}}
-                <button class="btn btn-primary" routerLink="" (click)="deleteTreatment(item.id!)">
-                    Delete 
-            </button>
-            <button routerLink="/editTreatment/{{item.id}}">                    
-                Edit 
-            </button>
-            </li> 
-        </ul>
+<div class = "title">
+    <h2>Lista de tratamientos</h2>
+    <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/home/addTreatment">Add treatment</button>
+    <div class="alert alert-primary w-25 p-3 mt-3 " role="alert">
+        Trabajo en progreso, gracias por esperar!
     </div>
-</div> 
+</div>
+
+<div> 
+    <ul>
+        <li *ngFor="let item of treatmentArray">
+            {{item.name}} -
+            {{item.description}} -
+            {{item.price}}
+            <button class="btn btn-danger" (click)="deleteTreatment(item.id!)">
+                Eliminar 
+        </button>
+        <button routerLink="/home/editTreatment/{{item.id}}">                    
+            Editar 
+        </button>
+        </li> 
+    </ul>
+    <a href="" routerLink="/home">Pagina anterior</a>
+</div>

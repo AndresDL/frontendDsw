@@ -1,7 +1,7 @@
 <div>
     <div class = "title">
-        <h2>List of consultings</h2>
-        <button type="button" class = "btn btn-primary" routerLink ="/addConsulting"> Add consulting </button>
+        <h2>Lista de consultorios</h2>
+        <button type="button" class = "btn btn-primary" routerLink ="/home/addConsulting"> Agregar consultorio </button>
     </div>
     
     <div class ="container">
@@ -9,14 +9,16 @@
             <li *ngFor="let item of consultingArray">
                 {{item.street}} -
                 {{item.street_number}}
-                {{item.id}}
                 <button class ="btn btn-primary" (click)="deleteConsulting(item.id!)">
-                    Delete
+                    Eliminar
                 </button>
-                <button routerLink="/editConsulting/{{item.id}}">
-                    Edit
+                <button routerLink="/home/editConsulting/{{item.id}}">
+                    Editar
                 </button>
             </li>
         </ul>
+        <button routerLink="/home">
+            Pagina anterior
+        </button>
     </div>
 </div>

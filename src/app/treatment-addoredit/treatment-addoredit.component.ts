@@ -27,11 +27,10 @@ export class TreatmentAddoreditComponent {
   ){
     this.treatmentForm = this.form.group({
       name: ['', [Validators.required, Validators.maxLength(22)]],
+      description: ['',[Validators.required]],
       price: [null, Validators.required],
     })
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
-    console.log(this.id);
-
   }
 
   ngOnInit(): void{
@@ -44,8 +43,10 @@ export class TreatmentAddoreditComponent {
 
   getTreatment(id: number){
     this.treatmentService.getTreatment(id).subscribe((treatment: Treatment) => {
+    console.log(treatment);
     this.treatmentForm.setValue({
       name: treatment.name,
+      description: treatment.description,
       price: treatment.price,
     })
     })
@@ -55,19 +56,20 @@ export class TreatmentAddoreditComponent {
   addTreatment(){
     const treatment: Treatment = {
       name: this.treatmentForm.value.name,
+      description: this.treatmentForm.value.description,
       price: this.treatmentForm.value.price,
     }
     if(this.id !== 0){
       //edit
      treatment.id = this.id
      this.treatmentService.updateTreatment(treatment).subscribe(() =>{
-      this.router.navigate(['/']);
+      this.router.navigate(['/home/treatmentList']);
      })
 
     } else {
       //add
       this.treatmentService.addTreatment(treatment).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home/treatmentList']);
       })
     }
   }

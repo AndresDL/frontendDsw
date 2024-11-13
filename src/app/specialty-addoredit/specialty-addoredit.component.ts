@@ -30,7 +30,6 @@ export class SpecialtyAddoreditComponent {
       price: [null, Validators.required],
     })
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
-    console.log(this.id);
 
   }
 
@@ -61,13 +60,13 @@ export class SpecialtyAddoreditComponent {
       //edit
      specialty.id = this.id
      this.specialtyService.updateSpecialty(specialty).subscribe(() =>{
-      this.router.navigate(['/']);
+      this.router.navigate(['/home/specialtyList']);
      })
 
     } else {
       //add
       this.specialtyService.addSpecialty(specialty).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home/specialtyList']);
       })
     }
   }

@@ -21,13 +21,10 @@ export class TreatmentComponent implements OnInit{
   }
 
   getAllTreatments() {
-    this.treatmentService.getTreatments().subscribe((treatment) => {
-      console.log('list of treatments:', treatment)
-      this.treatmentArray = treatment;
+    this.treatmentService.getTreatments().subscribe((treatments) => {
+      this.treatmentArray = treatments;
     });
   }
-
-
 
   deleteTreatment(id: number){
     this.treatmentService.deleteTreatment(id).subscribe((response)=>{

@@ -1,22 +1,24 @@
-<div>
-    <div class = "title">
-        <h2>List of specialties</h2>
-        <button type="button" class="btn btn-primary" routerLink="/addSpecialty">Add specialty</button>
-    </div>
 
-    <div class = "container"> 
-        <ul>
-            <li *ngFor="let item of specialtyArray">
-                {{item.id}} -
-                {{item.name}} -
-                {{item.price}}
-                <button class="btn btn-primary" routerLink="" (click)="deleteSpecialty(item.id!)">
-                    Delete 
+<div class = "title">
+    <h2>Lista de especialidades</h2>
+    <button type="button" class="btn btn-success" routerLink="/home/addSpecialty">Add specialty</button>
+    <button routerLink="/home">Pagina anterior</button>
+</div>
+
+<div class="wrapper"> 
+    <ul>
+        <li *ngFor="let item of specialtyArray">
+            {{item.id}} -
+            {{item.name}} -
+            {{item.price}}
+        <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-danger" (click)="deleteSpecialty(item.id!)">
+                Eliminar
             </button>
-            <button routerLink="/editSpecialty/{{item.id}}">                    
-                Edit 
+            <button class="btn btn-primary" routerLink="/home/editSpecialty/{{item.id}}">                    
+                Editar 
             </button>
-            </li> 
-        </ul>
-    </div>
-</div> 
+        </div>
+        </li> 
+    </ul>
+</div>

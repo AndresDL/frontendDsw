@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 
 //Reactive forms
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StrongPasswordRegx } from '../interfaces/strongpass';
+import { StrongPasswordRegx } from '../interfaces/strongpass'; //Contra segura 
 import { matchpass } from '../validators/matchpass.validator';
 import { User } from '../interfaces/user';
 import { UserService } from '../user.service';

@@ -23,7 +23,7 @@ export class TreatmentService {
   getTreatment(id: number): Observable<Treatment> {
     const url = `${this.baseUrl}${id}`;
     return this.http.get<any>(url).pipe(map(response => {
-      return response.data[0];
+      return response.data;
     }));
   }
 
