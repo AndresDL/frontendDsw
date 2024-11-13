@@ -50,8 +50,8 @@ export class SignInComponent{
       lastName: this.registerForm.value.lastName,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      age: this.registerForm.value.age,
-      cod_user: 1,
+      age: Number.parseInt(this.registerForm.value.age),
+      codUser: 1,
     }
     console.log(user)
     this.loading = true;

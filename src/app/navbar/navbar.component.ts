@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class NavbarComponent implements OnInit {
-  cod_user!: number;
+  codUser!: number;
   loading: boolean = false;
   
   constructor(
@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   ){}
 
   ngOnInit(): void {;
-    this.cod_user = this.decodeService.decodeToken();
+    this.codUser = this.decodeService.decodeToken();
   }
   
   logOut(){

@@ -6,5 +6,5 @@ export class User {
     email?: string = "";
     password: string = "";
     age?: number = 0;
-    cod_user?: number = 0;
+    codUser?: number = 0;
 }
