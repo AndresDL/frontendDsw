@@ -1,25 +1,31 @@
-
-<div class = "title">
-    <h2>Lista de tratamientos</h2>
-    <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/home/addTreatment">Add treatment</button>
-    <div class="alert alert-primary w-25 p-3 mt-3 " role="alert">
-        Trabajo en progreso, gracias por esperar!
+<div class = "container mt-2 text-center">
+    <div>
+        <h2>Lista de tratamientos</h2>
+        <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+        <button type="button" class="btn btn-success ms-2" routerLink="/home/addTreatment">Agregar tratamiento</button>
     </div>
-</div>
 
-<div> 
-    <ul>
-        <li *ngFor="let item of treatmentArray">
-            {{item.name}} -
-            {{item.description}} -
-            {{item.price}}
-            <button class="btn btn-danger" (click)="deleteTreatment(item.id!)">
-                Eliminar 
-        </button>
-        <button routerLink="/home/editTreatment/{{item.id}}">                    
-            Editar 
-        </button>
-        </li> 
-    </ul>
-    <a href="" routerLink="/home">Pagina anterior</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of treatmentArray">
+                <td>{{item.id}} </td>
+                <td>{{item.name}}</td> 
+                <td>{{item.description}}</td> 
+                <td>{{item.price}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="deleteTreatment(item.id!)">Eliminar</button>  
+                    <button type="button" class="btn btn-info ms-2" routerLink="/home/editTreatment/{{item.id}}"> Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
