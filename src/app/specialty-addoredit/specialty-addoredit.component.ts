@@ -70,11 +70,4 @@ export class SpecialtyAddoreditComponent {
       })
     }
   }
-
-
-
- 
-
-
-
 }

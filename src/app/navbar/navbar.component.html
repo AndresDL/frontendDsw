@@ -1,10 +1,17 @@
-
-<nav *ngIf="codUser == 1" class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
-    <button class="btn btn-outline-success" type="button" (click)="logOut()">Log out</button>
+<div *ngIf="codUser == 1">
+  <nav  class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Home</a>
+      <button class="btn btn-outline-success" type="button" (click)="logOut()">Log out</button>
+    </div>
+  </nav>
+   <div class="wrapper">
+    <div class="d-grid gap-2">
+      <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/doconsList">Sacar turno</button>
+    </div>
   </div>
-</nav>
+</div>
+
 <div *ngIf="codUser == 0">
   <nav  class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -18,6 +25,7 @@
       <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="consultingList">Administrar consultorios</button>
       <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="treatmentList">Administrar Tratamientos</button>
       <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="doctorList">Administrar doctores</button>
+      <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/doconsList">Administrar doctores en consultorios</button>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import {provideHttpClient, withInterceptors } from '@angular/common/http';
 import { Reactive } from '@angular/core/primitives/signals/index.js';
 
 //Components
@@ -30,6 +30,7 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { addTokenInterceptor } from './utilities/add-token.interceptor';
+import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { addTokenInterceptor } from './utilities/add-token.interceptor';
     SignInComponent,
     DoctorSignInComponent,
     DoctorListComponent,
+    DoctorConsultingAddoreditComponent,
   ],
   imports: [
     BrowserModule,

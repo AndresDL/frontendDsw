@@ -15,6 +15,8 @@ import { TreatmentComponent } from './treatment-list/treatment-list.component.js
 import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
 import { adminguardGuard } from './utilities/adminguard.guard.js';
 import { DoctorListComponent } from './doctor-list/doctor-list.component.js';
+import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component.js';
+import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component.js';
 
 
 const routes: Routes = [
@@ -33,9 +35,11 @@ const routes: Routes = [
     {path: 'treatmentList', component: TreatmentComponent},//Admin
     {path: 'addTreatment', component: TreatmentAddoreditComponent},//Admin
     {path: 'editTreatment/:id', component: TreatmentAddoreditComponent},//Admin
-    {path:'doctorList', component: DoctorListComponent},//admin
+    {path: 'doctorList', component: DoctorListComponent},//admin
+    {path: 'addDocons', component: DoctorConsultingAddoreditComponent},
+    {path: 'editDocons/:id', component: DoctorConsultingAddoreditComponent},
   ]},
-  
+  {path: 'doconsList', component: DoctorConsultingComponent},
   //wildcard (dejar siempre a lo ultimo esta ruta)
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];

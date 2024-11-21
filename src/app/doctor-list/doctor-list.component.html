@@ -19,7 +19,7 @@
                 <td>{{item.id}} </td>
                 <td>{{item.firstName}}</td> 
                 <td>{{item.lastName}}</td>
-                <td>{{item.specialty}}</td>
+                <td>{{item.specialty.name}}</td>
                 <td>
                     <button type="button" class="btn btn-danger" (click)="deleteDoctor(item.id!)">Eliminar</button>  
                     <button type="button" class="btn btn-info ms-2" routerLink="/home/editDoctor/{{item.id}}"> Editar</button>

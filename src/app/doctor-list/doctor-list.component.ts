@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../interfaces/doctor';
 import { DoctorService } from '../doctor.service';
+import { DecodingService } from '../decoding.service';
 
 @Component({
   selector: 'app-doctor-list',
@@ -23,6 +24,7 @@ export class DoctorListComponent implements OnInit{
   getDoctors(){
     this.doctorService.getDoctors().subscribe((doctors) => {
       this.doctorArray = doctors;
+      console.log(this.doctorArray);
     });
   }
 

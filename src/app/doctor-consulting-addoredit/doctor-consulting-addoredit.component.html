@@ -1,0 +1,17 @@
+<div class="container mt-2 text-center col-md-6">
+    <div>
+        <h2>
+            Agregar instancia
+        </h2>
+    </div>
+    <form [formGroup]="doconsForm" (ngSubmit)="addDoctor_consulting()">
+        <input formControlName="doctor" type="text" class="form-control mb-3" placeholder="Ingrese id del doctor">
+        <input formControlName="consulting" type="text" class="form-control mb-3" placeholder="Ingrese id del consultorio">
+        <div>
+            <button class="btn btn-secondary"  routerLink="/home/doconsList">
+                Pagina anterior
+            </button>
+            <button class="btn btn-success ms-2">Agregar</button>
+        </div>
+    </form>
+</div>
