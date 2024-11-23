@@ -9,20 +9,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './navbar.component.scss'
 })
 
-export class NavbarComponent implements OnInit {
-  codUser!: number;
+export class NavbarComponent {
   loading: boolean = false;
   
   constructor(
-    private decodeService: DecodingService,
     private router: Router,
-    private toastr: ToastrService,
   ){}
 
-  ngOnInit(): void {;
-    this.codUser = this.decodeService.decodeToken();
-  }
-  
   logOut(){
     this.loading = true;
     localStorage.removeItem('token');

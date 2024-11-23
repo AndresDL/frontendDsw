@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AppointmentComponent } from './appointment/appointment.component';
 import { ConsultingComponent } from './consulting-list/consulting.component.js';
 import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component';
 import { FollowUpComponent } from './follow-up/follow-up.component';
@@ -18,6 +17,7 @@ import { TreatmentComponent } from './treatment-list/treatment-list.component';
 import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component.js';
 import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
+import { AppointmentComponent } from './appointment-list/appointment.component';
 
 
 //Modules
