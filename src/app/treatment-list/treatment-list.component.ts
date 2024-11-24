@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Treatment } from '../interfaces/treatment';
-import { TreatmentService } from '../treatment.service';
+import { TreatmentService } from '../servicies/treatment.service';
 import { response } from 'express';
 
 @Component({

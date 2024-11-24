@@ -5,6 +5,7 @@
     <table class = "table">
         <thead>
             <tr>
+                <th scope="col"> ID </th>
                 <th scope="col"> Calle </th>
                 <th scope="col"> Numero</th>
                 <th scope="col"> Acciones </th>
@@ -13,6 +14,7 @@
         </thead>
         <tbody>
             <tr *ngFor= "let item of consultingArray">
+                <td>{{item.id}}</td>
                 <td>{{item.street}}</td>
                 <td>{{item.street_number}}</td>
                 <td>

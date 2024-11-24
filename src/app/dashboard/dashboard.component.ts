@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DecodingService } from '../decoding.service';
+import { DecodingService } from '../servicies/decoding.service';
 
 @Component({
   selector: 'app-dashboard',

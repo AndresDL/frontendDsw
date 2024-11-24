@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Treatment } from './interfaces/treatment.js';
+import { Treatment } from '../interfaces/treatment.js';
 import { response } from 'express';
 
 

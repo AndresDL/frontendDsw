@@ -3,7 +3,7 @@
 <div *ngIf="codUser == 1"> <!--User-->
     <div class="wrapper">
       <div class="d-grid gap-2">
-        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/doconsList">Sacar turno</button>
+        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/specialtyList">Sacar turno</button>
       </div>
     </div>
 </div>
@@ -11,7 +11,7 @@
 <div *ngIf="codUser == 0"> <!--Admin-->
     <div class="wrapper">
       <div class="d-grid gap-2">
-        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="specialtyList">Administrar especialidades</button>
+        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/specialtyList">Administrar especialidades</button>
         <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="consultingList">Administrar consultorios</button>
         <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="treatmentList">Administrar Tratamientos</button>
         <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="doctorList">Administrar doctores</button>

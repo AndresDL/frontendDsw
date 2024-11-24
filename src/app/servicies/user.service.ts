@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './enviroments/environment';
+import { environment } from '../enviroments/environment';
 import { map, Observable } from 'rxjs';
 
 //Interface
-import { User } from './interfaces/user';
+import { User } from '../interfaces/user';
 
 
 @Injectable({

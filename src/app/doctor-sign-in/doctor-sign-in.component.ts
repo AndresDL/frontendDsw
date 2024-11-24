@@ -6,11 +6,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StrongPasswordRegx } from '../interfaces/strongpass';
 import { matchpass } from '../validators/matchpass.validator';
 import { Doctor } from '../interfaces/doctor';
-import { DoctorService } from '../doctor.service'; 
+import { DoctorService } from '../servicies/doctor.service'; 
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Specialty } from '../interfaces/specialty';
-import { SpecialtyService } from '../specialty.service';
+
 
 
 

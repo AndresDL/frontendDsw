@@ -3,7 +3,7 @@ import { Treatment } from '../interfaces/treatment';
 import { OnInit } from '@angular/core';
 
 //Service
-import { TreatmentService } from '../treatment.service';
+import { TreatmentService } from '../servicies/treatment.service';
 
 //Misc
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

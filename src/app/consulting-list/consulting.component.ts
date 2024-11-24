@@ -1,6 +1,6 @@
 import { Component, importProvidersFrom, OnInit } from '@angular/core';
 import { Consulting } from '../interfaces/consulting.js';
-import { ConsultingService } from '../consulting.service.js';
+import { ConsultingService } from '../servicies/consulting.service.js';
 import { response } from 'express';
 
 @Component({

@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Route, Router } from '@angular/router';
-import { DecodingService } from '../decoding.service';
+import { DecodingService } from '../servicies/decoding.service';
 import { ToastrService } from 'ngx-toastr';
 
 

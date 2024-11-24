@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Specialty } from './interfaces/specialty';
+import { Specialty } from '../interfaces/specialty';
 import { response } from 'express';
 
 

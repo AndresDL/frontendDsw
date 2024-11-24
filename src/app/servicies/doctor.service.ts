@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Doctor } from './interfaces/doctor.js';
-import { environment } from './enviroments/environment.js';
+import { Doctor } from '../interfaces/doctor.js';
+import { environment } from '../enviroments/environment.js';
 
 
 @Injectable({

@@ -1,15 +1,12 @@
-hola manola
-<div *ngIf="codUser == 0" class = "container mt-2 text-center">
+<div class = "container mt-2 text-center">
     <div>
         <h2>Lista de instancias laborales</h2>
-        <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+        <button type="button" class="btn btn-secondary" routerLink="/specialtyList">Pagina anterior</button>
         <button type="button" class="btn btn-success ms-2" routerLink="/home/addDocons">Agregar instancia</button>
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Vigencia</th>
                 <th scope="col">Doctor</th>
                 <th scope="col">Especialidad</th>
                 <th scope="col">Calle</th>
@@ -26,12 +23,9 @@ hola manola
                 <td>{{item.consulting.street}}</td>
                 <td>{{item.consulting.street_number}}</td>
                 <td>
-                    <button type="button" class="btn btn-danger" (click)="deleteDoctor_consulting(item.id!)">Eliminar</button>  
                     <button type="button" class="btn btn-info ms-2" routerLink="/home/doconsEdit{{item.id}}"> Editar</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-
-

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { DoctorConsulting } from '../interfaces/doctor-consultings';
 import { DoctorConsultingService } from '../servicies/doctor-consulting.service';
 import { Router } from '@angular/router';
-import { DecodingService } from '../decoding.service';
-import { SpecialtyService } from '../specialty.service';
+import { DecodingService } from '../servicies/decoding.service';
+import { SpecialtyService } from '../servicies/specialty.service';
 
 @Component({
   selector: 'app-doctor-consulting',

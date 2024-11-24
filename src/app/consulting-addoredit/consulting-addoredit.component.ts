@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Consulting } from '../interfaces/consulting';
-import { OnInit } from '@angular/core';
+
 
 //Service 
-import { ConsultingService } from '../consulting.service';
+import { ConsultingService } from '../servicies/consulting.service';
 
 //Misc
 

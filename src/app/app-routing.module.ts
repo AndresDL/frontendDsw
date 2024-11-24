@@ -17,6 +17,7 @@ import { adminguardGuard } from './utilities/adminguard.guard.js';
 import { DoctorListComponent } from './doctor-list/doctor-list.component.js';
 import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component.js';
 import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component.js';
+import { AppointmentAddComponent } from './appointment-add/appointment-add.component.js';
 
 
 const routes: Routes = [
@@ -26,7 +27,6 @@ const routes: Routes = [
   {path: 'DocsignIn', component: DoctorSignInComponent},
   {path: 'home', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'home', canActivate:[adminguardGuard], children: [
-    {path: 'specialtyList', component: SpecialtyComponent},//admin
     {path: 'addSpecialty', component: SpecialtyAddoreditComponent},//admin
     {path: 'editSpecialty/:id', component: SpecialtyAddoreditComponent},//Admin
     {path: 'consultingList', component: ConsultingComponent},//admin
@@ -39,9 +39,11 @@ const routes: Routes = [
     {path: 'addDocons', component: DoctorConsultingAddoreditComponent},
     {path: 'editDocons/:id', component: DoctorConsultingAddoreditComponent},
   ]},
-  {path: 'doconsList', component: DoctorConsultingComponent},
+  {path: 'specialtyList', component: SpecialtyComponent},//Admin&User
+  {path: 'doconsList', component: DoctorConsultingComponent},//Admin&User
+  {path: 'addAppointment/:name', component:AppointmentAddComponent},//User
   //wildcard (dejar siempre a lo ultimo esta ruta)
-  {path: '**', redirectTo: '', pathMatch: 'full'},
+  //{path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({

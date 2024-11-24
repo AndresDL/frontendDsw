@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DecodingService } from '../decoding.service';
+import { DecodingService } from '../servicies/decoding.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

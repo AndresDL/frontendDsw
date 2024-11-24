@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Specialty } from '../interfaces/specialty';
-import { SpecialtyService } from '../specialty.service';
+import { SpecialtyService } from '../servicies/specialty.service';
 import { Router } from '@angular/router';
 import { response } from 'express';
+import { DecodingService } from '../servicies/decoding.service';
 
 @Component({
   selector: 'app-specialty',
@@ -12,13 +13,16 @@ import { response } from 'express';
 export class SpecialtyComponent implements OnInit{
   specialtyArray: Specialty[] = [];
   item: any;
+  codUser!: number;
 
   constructor(
     private specialtyService: SpecialtyService,
+    private decodeService: DecodingService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
+    this.codUser = this.decodeService.decodeToken()
     this.getAllSpecialties()
   }
 

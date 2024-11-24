@@ -3,7 +3,7 @@ import { Specialty } from '../interfaces/specialty';
 import { OnInit } from '@angular/core';
 
 //Service
-import { SpecialtyService } from '../specialty.service';
+import { SpecialtyService } from '../servicies/specialty.service';
 
 //Misc
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -60,13 +60,13 @@ export class SpecialtyAddoreditComponent {
       //edit
      specialty.id = this.id
      this.specialtyService.updateSpecialty(specialty).subscribe(() =>{
-      this.router.navigate(['/home/specialtyList']);
+      this.router.navigate(['/specialtyList']);
      })
 
     } else {
       //add
       this.specialtyService.addSpecialty(specialty).subscribe(() => {
-        this.router.navigate(['/home/specialtyList']);
+        this.router.navigate(['/specialtyList']);
       })
     }
   }
