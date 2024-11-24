@@ -33,6 +33,14 @@ export class DoctorConsultingService {
     }));
   }
 
+  //GetFiltered
+  getfilteredDoctor_consultings(name: string): Observable<DoctorConsulting[]>{
+    const url = `${this.myAppUrl}${this.myApiUrl}/search/${name}`;
+    return this.http.get<any>(url).pipe(map(response => {
+      return response.data;
+    }));
+  }
+
   //add
   addDoctor_consulting(doctor_consulting: DoctorConsulting): Observable<DoctorConsulting> {
     const url =`${this.myAppUrl}${this.myApiUrl}` 
@@ -50,4 +58,9 @@ export class DoctorConsultingService {
     const url = `${this.myAppUrl}${this.myApiUrl}${id}`;
     return this.http.delete<void>(url);
   }
+
+
+
+  
 }
+
