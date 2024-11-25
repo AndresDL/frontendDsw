@@ -2,7 +2,7 @@
 
 <div *ngIf="user.codUser === 1"> <!--User-->
    <!-- Cartel de bienvenida centrado -->
-   <div class="container mt-4">
+    <div class="container mt-5 pt-4">
     <div class="alert alert-light d-flex align-items-center" role="alert">
       <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
       <div class="ms-3">
@@ -44,10 +44,6 @@
     </div>
   </div>
 </div>
-
-  
-
-  
 </div>
 
 
@@ -56,14 +52,64 @@
   
 
 <div *ngIf="user.codUser === 0"> <!--Admin-->
-    <div class="wrapper">
-      <div class="d-grid gap-2">
-        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/specialtyList">Administrar especialidades</button>
-        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="consultingList">Administrar consultorios</button>
-        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="treatmentList">Administrar Tratamientos</button>
-        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="doctorList">Administrar doctores</button>
-        <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/doconsList">Administrar doctores en consultorios</button>
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <!-- Card 1: Administrar especialidades -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Administrar especialidades</h5>
+            <p class="card-text">Gestiona las especialidades disponibles en el sistema.</p>
+            <a href="#" class="btn btn-success" routerLink="/specialtyList">Ver especialidades</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 2: Administrar consultorios -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Administrar consultorios</h5>
+            <p class="card-text">Administra los consultorios disponibles para los turnos.</p>
+            <a href="#" class="btn btn-success" routerLink="/consultingList">Ver consultorios</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 3: Administrar tratamientos -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Administrar Tratamientos</h5>
+            <p class="card-text">Gestiona los tratamientos que ofrece el sistema.</p>
+            <a href="#" class="btn btn-success" routerLink="/treatmentList">Ver tratamientos</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 4: Administrar doctores -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Administrar doctores</h5>
+            <p class="card-text">Agrega, edita o elimina doctores del sistema.</p>
+            <a href="#" class="btn btn-success" routerLink="/doctorList">Ver doctores</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 5: Administrar doctores en consultorios -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Administrar doctores en consultorios</h5>
+            <p class="card-text">Asocia doctores con los consultorios correspondientes.</p>
+            <a href="#" class="btn btn-success" routerLink="/doconsList">Ir a seccion</a>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+  
 </div>
 

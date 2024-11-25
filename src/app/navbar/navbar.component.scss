@@ -1,0 +1,26 @@
+.hover-underline {
+    position: relative;
+    text-decoration: none; 
+  }
+
+  .hover-underline span {
+    position: relative;
+  }
+
+  .hover-underline span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px; 
+    background-color: #ffffff; 
+    transition: width 0.3s ease-in-out; 
+  }
+
+  .hover-underline:hover span::after {
+    width: 100%; 
+  }
+  
+
+
