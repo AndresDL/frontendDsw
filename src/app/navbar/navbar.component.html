@@ -1,20 +1,42 @@
-
-<nav  class="navbar bg-success navbar-expand-lg bg-body-success">
+<nav class="navbar" style="background-color: #005880;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
-    <button class="btn btn-danger" type="button" (click)="logOut()">Log out</button>
-  </div>
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Dropdown button
+    <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+      <span class="navbar-toggler-icon"></span> <!-- Icono de tres líneas -->
     </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-    </ul>
+    <a class="navbar-brand ms-3 fw-bold" href="#">Mi Sitio</a>
   </div>
 </nav>
 
-
-
+<!-- Menú desplegable -->
+<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel" style="background-color: #005880;">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="offcanvasMenuLabel">Menú</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Información del usuario -->
+    <div class="mb-4">
+      <h6 class="fw-bold">Bienvenido</h6>
+      <p class="mb-0 fs-5"><strong>Nombre del Usuario</strong></p>
+      <small class="text-light fst-italic">Tipo de Usuario</small>
+    </div>
+    <hr class="border border-light">
+    <!-- Opciones del menú -->
+    <nav>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-3">
+          <a href="#" class="nav-link text-light fs-5">Inicio</a>
+        </li>
+        <li class="nav-item mb-3">
+          <a href="#" class="nav-link text-light fs-5">Mi Perfil</a>
+        </li>
+        <li class="nav-item mb-3">
+          <a href="#" class="nav-link text-light fs-5">Mis Turnos</a>
+        </li>
+        <li class="nav-item mb-3">
+          <a href="#" class="nav-link text-light fs-5 fw-bold">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
