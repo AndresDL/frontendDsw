@@ -18,7 +18,9 @@
     <div class="mb-4">
       <h6 class="fw-bold">Bienvenido</h6>
       <p class="mb-0 fs-5"><strong>Nombre del Usuario</strong></p>
-      <small class="text-light fst-italic">Tipo de Usuario</small>
+      <small *ngIf="user.codUser === 1" class="text-light fst-italic">Tipo de Usuario: Paciente</small>
+      <small *ngIf="user.codUser === 0" class="text-light fst-italic">Tipo de Usuario: Administrador</small>
+      
     </div>
     <hr class="border border-light">
     <!-- Opciones del menú -->

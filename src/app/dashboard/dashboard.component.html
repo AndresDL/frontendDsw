@@ -6,8 +6,8 @@
     <div class="alert alert-light d-flex align-items-center" role="alert">
       <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
       <div class="ms-3">
-        <h5 class="mb-0">¡Hola Usuario!</h5>
-        <p class="mb-0">Que tengas un gran día. Seguí cuidando tu salud con tu Portal Paciente</p>
+        <h5 class="mb-0"> Hola {{user.firstName}} {{user.lastName}}!</h5>
+        <p class="mb-0">Que tengas un gran día. Seguí cuidando tu salud con tu Portal Paciente.</p>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
           <div class="text-center">
             <img src="assets\img\calendario.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Ver Todos los Turnos">
           </div>
-          <a href="#" class="btn btn-success">Ver Turnos</a>
+          <a href="#" class="btn btn-success" routerLink="/appointmentList">Ver Turnos</a>
         </div>
       </div>
     </div>

@@ -18,6 +18,7 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component.js';
 import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component.js';
 import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component.js';
 import { AppointmentAddComponent } from './appointment-add/appointment-add.component.js';
+import { AppointmentComponent } from './appointment-list/appointment.component.js';
 
 
 const routes: Routes = [
@@ -27,18 +28,19 @@ const routes: Routes = [
   {path: 'DocsignIn', component: DoctorSignInComponent},
   {path: 'home', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'home', canActivate:[adminguardGuard], children: [
-    {path: 'addSpecialty', component: SpecialtyAddoreditComponent},//admin
+    {path: 'addSpecialty', component: SpecialtyAddoreditComponent},//Admin
     {path: 'editSpecialty/:id', component: SpecialtyAddoreditComponent},//Admin
-    {path: 'consultingList', component: ConsultingComponent},//admin
+    {path: 'consultingList', component: ConsultingComponent},//Admin
     {path: 'addConsulting', component: ConsultingAddoreditComponent},//Admin
     {path: 'editConsulting/:id', component: ConsultingAddoreditComponent},//Admin
     {path: 'treatmentList', component: TreatmentComponent},//Admin
     {path: 'addTreatment', component: TreatmentAddoreditComponent},//Admin
     {path: 'editTreatment/:id', component: TreatmentAddoreditComponent},//Admin
-    {path: 'doctorList', component: DoctorListComponent},//admin
-    {path: 'addDocons', component: DoctorConsultingAddoreditComponent},
-    {path: 'editDocons/:id', component: DoctorConsultingAddoreditComponent},
+    {path: 'doctorList', component: DoctorListComponent},//Admin
+    {path: 'addDocons', component: DoctorConsultingAddoreditComponent},//Admin
+    {path: 'editDocons/:id', component: DoctorConsultingAddoreditComponent},//Admin
   ]},
+  {path: 'appointmentList', component: AppointmentComponent},//User
   {path: 'specialtyList', component: SpecialtyComponent},//Admin&User
   {path: 'doconsList', component: DoctorConsultingComponent},//Admin&User
   {path: 'doconsList/:name', component: DoctorConsultingComponent},//User
