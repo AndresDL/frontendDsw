@@ -29,7 +29,9 @@ export class UserService {
   
   //Createuser
   signIn(user: User): Observable<any>{
-    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, user);
+    const url = `${this.myAppUrl}${this.myApiUrl}`
+    console.log(url)
+    return this.http.post(url, user);
   }
 
   //Getuser

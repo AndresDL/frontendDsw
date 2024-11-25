@@ -1,4 +1,4 @@
-<div *ngIf="codUser === 0" class = "container mt-2 text-center">
+<div *ngIf="user.codUser === 0" class = "container mt-2 text-center">
     <div>
         <h2>Lista de especialidades</h2>
         <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
@@ -28,7 +28,7 @@
     </table>
 </div>
 
-<div *ngIf="codUser === 1" class = "container mt-2 text-center">
+<div *ngIf="user.codUser === 1" class = "container mt-2 text-center">
     <div>
         <h2>Que tipo de doctor estas buscando?</h2>
         <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
@@ -46,7 +46,7 @@
                 <td>{{item.name}}</td> 
                 <td>{{item.price}}</td>
                 <td>
-                    <button type="button" class="btn btn-info ms-2" routerLink="/addAppointment/{{item.name}}">Buscar</button>
+                    <button type="button" class="btn btn-info ms-2" routerLink="/doconsList/{{item.name}}">Buscar</button>
                 </td>
             </tr>
         </tbody>

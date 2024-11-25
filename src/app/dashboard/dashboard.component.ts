@@ -8,7 +8,7 @@ import { DecodingService } from '../servicies/decoding.service';
 })
 export class DashboardComponent implements OnInit {
 
-  codUser: number = 0;
+  user: any;
   
 
   constructor(
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.codUser = this.decodeService.decodeToken()
+    this.user = this.decodeService.decodeToken()
   }
 
 }

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../enviroments/environment';
-import { response } from 'express';
 import { Observable, map } from 'rxjs';
 import { DoctorConsulting } from '../interfaces/doctor-consultings';
 
@@ -27,7 +26,7 @@ export class DoctorConsultingService {
 
   //getone
   getDoctor_consulting(id: number): Observable<DoctorConsulting> {
-    const url = `${this.myAppUrl}${this.myApiUrl}${id}`;
+    const url = `${this.myAppUrl}${this.myApiUrl}/${id}`;
     return this.http.get<any>(url).pipe(map(response => {
       return response.data[0];
     }));

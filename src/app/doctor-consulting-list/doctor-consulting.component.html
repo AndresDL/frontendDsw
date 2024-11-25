@@ -1,5 +1,4 @@
-hola manola
-<div *ngIf="codUser == 0" class = "container mt-2 text-center">
+<div *ngIf="user.codUser == 0" class = "container mt-2 text-center">
     <div>
         <h2>Lista de instancias laborales</h2>
         <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
@@ -28,6 +27,35 @@ hola manola
                 <td>
                     <button type="button" class="btn btn-danger" (click)="deleteDoctor_consulting(item.id!)">Eliminar</button>  
                     <button type="button" class="btn btn-info ms-2" routerLink="/home/doconsEdit{{item.id}}"> Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="user.codUser === 1" class = "container mt-2 text-center">
+    <div>
+        <h2>En que consultorio queres atenderte?</h2>
+        <button type="button" class="btn btn-secondary" routerLink="/specialtyList">Pagina anterior</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Doctor</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Calle</th>
+                <th scope="col">Numero de calle</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of doconsArray">
+                <td>{{item.doctor.firstName}} {{item.doctor.lastName}}</td> 
+                <td>{{item.doctor.specialty.name}}</td>
+                <td>{{item.consulting.street}}</td>
+                <td>{{item.consulting.street_number}}</td>
+                <td>
+                    <button type="button" class="btn btn-info ms-2" routerLink="/addAppointment/{{item.id}}">Reservar turno</button>
                 </td>
             </tr>
         </tbody>

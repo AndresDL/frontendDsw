@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../enviroments/environment';
 import { Appointment } from '../interfaces/appointment';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,19 @@ export class AppointmentService {
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint
-    this.myApiUrl = environment.endpointuser
+    this.myApiUrl = environment.endpointappo
   }
 
-  addAppointment(appointment: Appointment): Observable<Appointment> {
+  //Getall
+  getAppointments(){
     const url = `${this.myAppUrl}${this.myApiUrl}`
-    return this.http.post<Appointment>(url,appointment);
+    return this.http.get<any>(url).pipe(map(response => {
+      return response.data;
+    }));
   }
 
-  
-
+  crearAppointment(appointment: Appointment): Observable<any>{
+    const url = `${this.myAppUrl}${this.myApiUrl}`
+    return this.http.post(url,appointment)
+  }
 }

@@ -41,7 +41,8 @@ const routes: Routes = [
   ]},
   {path: 'specialtyList', component: SpecialtyComponent},//Admin&User
   {path: 'doconsList', component: DoctorConsultingComponent},//Admin&User
-  {path: 'addAppointment/:name', component:AppointmentAddComponent},//User
+  {path: 'doconsList/:name', component: DoctorConsultingComponent},//User
+  {path: 'addAppointment/:id', component:AppointmentAddComponent},//User
   //wildcard (dejar siempre a lo ultimo esta ruta)
   //{path: '**', redirectTo: '', pathMatch: 'full'},
 ];

@@ -13,7 +13,7 @@ import { DecodingService } from '../servicies/decoding.service';
 export class SpecialtyComponent implements OnInit{
   specialtyArray: Specialty[] = [];
   item: any;
-  codUser!: number;
+  user: any;
 
   constructor(
     private specialtyService: SpecialtyService,
@@ -22,7 +22,7 @@ export class SpecialtyComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.codUser = this.decodeService.decodeToken()
+    this.user = this.decodeService.decodeToken()
     this.getAllSpecialties()
   }
 

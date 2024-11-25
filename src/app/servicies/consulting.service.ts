@@ -13,8 +13,7 @@ export class ConsultingService {
   
   constructor (private http: HttpClient) {}
   
-  getConsultings(){
-    
+  getConsultings(){ 
     return this.http.get<any>(this.baseUrl).pipe(map(response => {
       return response.data
     }));

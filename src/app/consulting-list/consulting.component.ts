@@ -22,7 +22,7 @@ export class ConsultingComponent implements OnInit {
   }
 
   getAllConsultings (){
-    this.consultingService.getConsultings().subscribe((consulting)=> {
+    this.consultingService.getConsultings().subscribe((consulting) => {
       this.consultingArray = consulting;
     });
   }

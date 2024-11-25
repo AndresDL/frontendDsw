@@ -25,7 +25,7 @@ export class DecodingService {
     //Valido si la token es nula
     if(this.token){
       this.decodedToken = this.getDecodedAccessToken(this.token);
-      return this.decodedToken.codUser; 
+      return this.decodedToken; 
     };
     return null;
   }

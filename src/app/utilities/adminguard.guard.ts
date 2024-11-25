@@ -9,7 +9,8 @@ export const adminguardGuard: CanActivateFn = (route, state) => {
   const toastr: ToastrService = inject(ToastrService)
   const router: Router = inject(Router);
   const decodeService: DecodingService = inject(DecodingService)
-  if(decodeService.decodeToken() != 0){
+  
+  if(decodeService.decodeToken().codUser != 0){
     toastr.error('Usted no esta permitido a ver estos contenidos','Error')
     router.navigate(['/home'])
     

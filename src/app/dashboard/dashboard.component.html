@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div *ngIf="codUser == 1"> <!--User-->
+<div *ngIf="user.codUser == 1"> <!--User-->
     <div class="wrapper">
       <div class="row">
         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div *ngIf="codUser == 0"> <!--Admin-->
+<div *ngIf="user.codUser == 0"> <!--Admin-->
     <div class="wrapper">
       <div class="d-grid gap-2">
         <button type="button" class="btn btn-primary btn-lg mb-2" routerLink="/specialtyList">Administrar especialidades</button>

@@ -1,31 +1,38 @@
-<div class = "container mt-2 text-center">
-    <div>
-        <h2>Lista de instancias laborales</h2>
-        <button type="button" class="btn btn-secondary" routerLink="/specialtyList">Pagina anterior</button>
-        <button type="button" class="btn btn-success ms-2" routerLink="/home/addDocons">Agregar instancia</button>
+<div class="wrapper" style="background-color: var(--bs-success-bg-subtle);">
+    <div *ngIf="item" class="border rounded p-1" style="background-color: var(--bs-light-bg-subtle);">
+        <form [formGroup]="appointmentForm" class="row g-3">
+            <div class="col-md-4 ms-2">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input class="form-control" type="text" value="{{item.doctor.firstName}} {{item.doctor.lastName}}" aria-label="readonly input example" readonly>
+            </div>
+            <div class="col-md-5">
+                <label for="inputPassword4" class="form-label">Especialidad</label>
+                <input class="form-control" type="text" value="{{item.doctor.specialty.name}}" aria-label="readonly input example" readonly>
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Dirección</label>
+                <input class="form-control" type="text" value="{{item.consulting.street}} {{item.consulting.street_number}}" aria-label="readonly input example" readonly>
+            </div>
+            <div class="col-12">
+                <label for="inputAddress2" class="form-label">DNI</label>
+                <input class="form-control" type="text" value="{{user.dni}}" aria-label="readonly input example" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Nombre paciente</label>
+                <input class="form-control" type="text" value="KIMEY PREGUNTARLE" aria-label="readonly input example" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Fecha</label>
+                <input formControlName="appoDate" class="form-control" type="date">
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Horario</label>
+                <input formControlName="appoTime" class="form-control" type="time">
+            </div>
+            <button type="button" (click)="createAppointment()" class="btn btn-primary btn-lg">Reservar</button>
+        </form>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Doctor</th>
-                <th scope="col">Especialidad</th>
-                <th scope="col">Calle</th>
-                <th scope="col">Numero de calle</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of doconsArray">
-                <td>{{item.id}} </td>
-                <td>{{item.vigency}}</td> 
-                <td>{{item.doctor.firstName}} {{item.doctor.lastName}}</td> 
-                <td>{{item.doctor.specialty.name}}</td>
-                <td>{{item.consulting.street}}</td>
-                <td>{{item.consulting.street_number}}</td>
-                <td>
-                    <button type="button" class="btn btn-info ms-2" routerLink="/home/doconsEdit{{item.id}}">Editar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    
 </div>
+<button (click)="createAppointment()">afdasdfdaf</button>
+

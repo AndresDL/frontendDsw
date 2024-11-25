@@ -18,6 +18,7 @@ import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-add
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component';
 import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
 import { AppointmentComponent } from './appointment-list/appointment.component';
+import { AppointmentAddComponent } from './appointment-add/appointment-add.component';
 
 
 //Modules
@@ -31,15 +32,21 @@ import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { addTokenInterceptor } from './utilities/add-token.interceptor';
 import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component';
-import { AppointmentAddComponent } from './appointment-add/appointment-add.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AppointmentComponent,
+    AppointmentAddComponent,
     ConsultingComponent,
+    ConsultingAddoreditComponent,
+    DashboardComponent,
+    DoctorListComponent,
+    DoctorSignInComponent,
     DoctorConsultingComponent,
+    DoctorConsultingAddoreditComponent,
     FollowUpComponent,
     TimeTableComponent,
     SpecialtyComponent,
@@ -47,15 +54,10 @@ import { AppointmentAddComponent } from './appointment-add/appointment-add.compo
     TreatmentComponent,
     LoginComponent,
     SpecialtyAddoreditComponent,
-    ConsultingAddoreditComponent,
     NavbarComponent,
-    DashboardComponent,
     TreatmentAddoreditComponent,
     SignInComponent,
-    DoctorSignInComponent,
-    DoctorListComponent,
-    DoctorConsultingAddoreditComponent,
-    AppointmentAddComponent,
+    
   ],
   imports: [
     BrowserModule,
