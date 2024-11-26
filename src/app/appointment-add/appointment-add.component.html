@@ -2,7 +2,7 @@
     <div *ngIf="item" class="border rounded p-1" style="background-color: var(--bs-light-bg-subtle);">
         <form [formGroup]="appointmentForm" class="row g-3">
             <div class="col-md-4 ms-2">
-                <label for="inputEmail4" class="form-label">Email</label>
+                <label for="inputEmail4" class="form-label">Nombre doctor</label>
                 <input class="form-control" type="text" value="{{item.doctor.firstName}} {{item.doctor.lastName}}" aria-label="readonly input example" readonly>
             </div>
             <div class="col-md-5">
@@ -14,12 +14,8 @@
                 <input class="form-control" type="text" value="{{item.consulting.street}} {{item.consulting.street_number}}" aria-label="readonly input example" readonly>
             </div>
             <div class="col-12">
-                <label for="inputAddress2" class="form-label">DNI</label>
+                <label for="inputAddress2" class="form-label">DNI paciente</label>
                 <input class="form-control" type="text" value="{{user.dni}}" aria-label="readonly input example" readonly>
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">Nombre paciente</label>
-                <input class="form-control" type="text" value="KIMEY PREGUNTARLE" aria-label="readonly input example" readonly>
             </div>
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">Fecha</label>
@@ -29,11 +25,33 @@
                 <label for="inputCity" class="form-label">Horario</label>
                 <input formControlName="appoTime" class="form-control" type="time">
             </div>
-            <button type="button" (click)="createAppointment()" class="btn btn-primary btn-lg">Reservar</button>
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Reservar
+            </button>
             <button type="button"  class="btn btn-primary btn-lg" routerLink="/specialtyList">Pagina anterior</button>
         </form>
     </div>
     
 </div>
-<button (click)="createAppointment()">afdasdfdaf</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere crear este turno?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="createAppointment()" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+  
+
 

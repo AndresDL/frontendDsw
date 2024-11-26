@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 //Reactive forms
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StrongPasswordRegx } from '../interfaces/strongpass';
+import { FormBuilder, FormGroup, Validators, ɵNgSelectMultipleOption } from '@angular/forms';
 import { matchpass } from '../validators/matchpass.validator';
 import { Doctor } from '../interfaces/doctor';
 import { DoctorService } from '../servicies/doctor.service'; 
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SpecialtyService } from '../servicies/specialty.service';
+import { Specialty } from '../interfaces/specialty';
 
 
 
@@ -23,12 +24,16 @@ export class DoctorSignInComponent implements OnInit{
   registerForm: FormGroup;
   loading: boolean = false;
   userArray: Doctor[] = [];
+  specialtyArray: Specialty[] = []
+  item: any;
+  doctor!: Doctor;
   
 
   constructor(
     private form: FormBuilder,
     private toastr: ToastrService,
     private registerService: DoctorService,
+    private specialtyService: SpecialtyService,
     private router: Router,
   ){
     this.registerForm = this.form.group({
@@ -48,6 +53,7 @@ export class DoctorSignInComponent implements OnInit{
 
   ngOnInit(): void {
     this.getDoctors()
+    this.getSpecialties()
   }
 
   getDoctors(){
@@ -56,14 +62,21 @@ export class DoctorSignInComponent implements OnInit{
     });
   }
 
+  getSpecialties(){
+    this.specialtyService.getSpecialties().subscribe((specialty) => {
+      this.specialtyArray = specialty;
+      console.log(this.specialtyArray);
+    });
+  }
+
   addDoctor(){
   const doctor: Doctor = {
-    tuition_number: this.registerForm.value.tuition_number,
+    tuition_number: Number.parseInt(this.registerForm.value.tuition_number),
     firstName: this.registerForm.value.firstName,
     lastName: this.registerForm.value.lastName,
     email: this.registerForm.value.email,
     password: this.registerForm.value.password,
-    age: this.registerForm.value.age,
+    age: Number.parseInt(this.registerForm.value.age),
     specialty: this.registerForm.value.specialty,
   }
   console.log(doctor)

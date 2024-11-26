@@ -1,1 +1,25 @@
-hola manola
+<div *ngIf="user.codUser === 1" class = "container mt-2 text-center">
+    <div>
+        <h2>Que tipo de doctor estas buscando?</h2>
+        <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of appointmentArray">
+                <td>{{item.appoDate | slice:0:10}}</td> 
+                <td>{{item.appoTime}}</td>
+                <td>{{item.doctor_consulting.doctor.tuition_number}}</td>
+                <td>
+                    <button type="button" class="btn btn-info ms-2">Buscar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

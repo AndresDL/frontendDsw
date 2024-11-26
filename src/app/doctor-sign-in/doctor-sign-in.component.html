@@ -3,14 +3,21 @@
       <img class="icon" src="../../assets/img/hospital.png" alt="img login">
       <h1>Registrar doctor</h1>
       <form [formGroup]="registerForm" novalidate>
-        <input formControlName="tuition_number" type="number" class="form-control mb-1" placeholder="Ingrese su matricula">
-        <input formControlName="age" type="number" class="form-control mb-1" placeholder="Ingrese su edad">
+        <input formControlName="tuition_number" type="text" class="form-control mb-1" placeholder="Ingrese su matricula">
+        <input formControlName="age" type="text" class="form-control mb-1" placeholder="Ingrese su edad">
         <input formControlName="firstName" type="text" class="form-control mb-1" placeholder="Ingrese su nombre">
         <input formControlName="lastName" type="text" class="form-control mb-1" placeholder="Ingrese su apellido">
         <input formControlName="email" type="email" class="form-control mb-1" placeholder="Ingrese su email">
         <input formControlName="password" type="password" class="form-control mb-1" placeholder="Ingrese su contraseña">
         <input formControlName="repassword" type="password" class="form-control mb-1" placeholder="Repita su contraseña">
-        <input formControlName="specialty" type="number" class="form-control mb-1" placeholder="Ingrese id de especialidad">
+        <div class="container mt-4">
+            <div class="mb-3">
+              <select formControlName="specialty" class="form-select" id="customSelect">
+                <option hidden>Selecciona tu especialidad</option>
+                <option *ngFor="let item of specialtyArray" [value]="item.id">{{item.name}}</option>
+              </select>
+            </div>
+        </div>
         <span *ngIf="registerForm.errors?.['passwordmatcherror']" class="">Las contraseñas no son iguales</span>
         <div class="d-grid gap-2 mt-2">
             <button [disabled]="registerForm.invalid" (click)="addDoctor()" type="button" class="btn btn-primary btn-lg">Aceptar</button>

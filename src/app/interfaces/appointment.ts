@@ -2,10 +2,10 @@ import { Time } from "@angular/common";
 
 export class Appointment  {
     id?: number = 0;
-    appoDate!: Date;
-    appoTime!: Time;
+    appoDate!: string;
+    appoTime!: string;
     assisted!: boolean;
-    doctor_consulting!: number;
-    patient!: number;
+    doctor_consulting!: any;
+    patient!: any;
 
 }

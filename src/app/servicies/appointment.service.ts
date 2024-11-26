@@ -30,4 +30,19 @@ export class AppointmentService {
     const url = `${this.myAppUrl}${this.myApiUrl}`
     return this.http.post(url,appointment)
   }
+
+  //GetFilteredbyUserDNI
+  getfilteredAppointments(dni: string): Observable<Appointment[]>{
+    const url = `${this.myAppUrl}${this.myApiUrl}/search/${dni}`;
+    return this.http.get<any>(url).pipe(map(response => {
+      return response.data;
+    }));
+  }
+
+  //Delete
+  deleteAppointment(id: number): Observable<void>{
+    const url = `${this.myAppUrl}${this.myApiUrl}${id}`
+    return this.http.delete<void>(url);
+  }
+ 
 }

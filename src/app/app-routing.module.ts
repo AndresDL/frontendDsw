@@ -46,7 +46,7 @@ const routes: Routes = [
   {path: 'doconsList/:name', component: DoctorConsultingComponent},//User
   {path: 'addAppointment/:id', component:AppointmentAddComponent},//User
   //wildcard (dejar siempre a lo ultimo esta ruta)
-  //{path: '**', redirectTo: '', pathMatch: 'full'},
+  {path: '**', redirectTo: 'login', pathMatch: 'full'},
 ];
 
 @NgModule({
