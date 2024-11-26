@@ -75,7 +75,5 @@ export class AppointmentAddComponent implements OnInit {
       this.router.navigate(['/home']);
     });
   }
- 
-
   
 }

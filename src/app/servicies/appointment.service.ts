@@ -41,7 +41,7 @@ export class AppointmentService {
 
   //Delete
   deleteAppointment(id: number): Observable<void>{
-    const url = `${this.myAppUrl}${this.myApiUrl}${id}`
+    const url = `${this.myAppUrl}${this.myApiUrl}${id}`;
     return this.http.delete<void>(url);
   }
  

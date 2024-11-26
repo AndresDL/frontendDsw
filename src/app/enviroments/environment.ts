@@ -4,5 +4,5 @@ export const environment = {
     endpointuser: 'api/users',
     endpointdoctor: 'api/doctors/',
     endpointdocons: 'api/doctor_consultings',
-    endpointappo: 'api/appointments',
+    endpointappo: 'api/appointments/',
 };
