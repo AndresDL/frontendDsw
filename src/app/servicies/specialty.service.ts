@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Specialty } from '../interfaces/specialty';
-import { response } from 'express';
+import { environment } from '../enviroments/environment';
+
 
 
 @Injectable({
@@ -10,34 +11,41 @@ import { response } from 'express';
 })
 export class SpecialtyService {
 
-  private baseUrl = 'http://localhost:3000/api/specialties/';
-  
-  constructor(private http: HttpClient){}
+  private myAppUrl: string;
+  private myApiUrl: string;
+
+  constructor(private http: HttpClient){
+
+    this.myAppUrl = environment.endpoint
+    this.myApiUrl = environment.endpointspecialty
+  }
   
   getSpecialties(): Observable<Specialty[]>{
-    return this.http.get<any>(this.baseUrl).pipe(map(response => {
+    const url = `${this.myAppUrl}${this.myApiUrl}`
+    return this.http.get<any>(url).pipe(map(response => {
       return response.data;
     }));
   }
 
   getSpecialty(id: number): Observable<Specialty> {
-    const url = `${this.baseUrl}${id}`;
+    const url = `${this.myAppUrl}${this.myApiUrl}${id}`;
     return this.http.get<any>(url).pipe(map(response => {
       return response.data[0];
     }));
   }
 
   addSpecialty(specialty: Specialty): Observable<Specialty> {
-    return this.http.post<Specialty>(this.baseUrl, specialty);
+    const url = `${this.myAppUrl}${this.myApiUrl}`
+    return this.http.post<Specialty>(url, specialty);
   }
 
   updateSpecialty(specialty: Specialty): Observable<void> {
-    const url = `${this.baseUrl}${specialty.id}`;
+    const url = `${this.myAppUrl}${this.myApiUrl}${specialty.id}`;
     return this.http.put<void>(url, specialty);
   }
 
   deleteSpecialty(id: number): Observable<void>{
-    const url = `${this.baseUrl}${id}`;
+    const url = `${this.myAppUrl}${this.myApiUrl}${id}`;
     return this.http.delete<void>(url);
   }
 }

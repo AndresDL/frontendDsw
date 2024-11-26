@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+//WORK IN PROGRESS
 export class FollowupTreatmentService {
   
   readonly baseUrl = 'http://localhost:4200/api'

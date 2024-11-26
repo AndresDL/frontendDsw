@@ -49,9 +49,7 @@ export class AppointmentComponent implements OnInit{
   }
 
   assingId(id: number){
-    console.log(id)
     this.id = id;
-    console.log(this.id)
   }
 
 }

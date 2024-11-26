@@ -43,12 +43,15 @@
       </div>
     </div>
 
-    <div class="row justify-content-center mt-3">
+    <div *ngIf="this.earliestDate != null" class="row justify-content-center mt-3">
       <div class="col-12 col-md-12">
         <div class="card shadow-sm text-right">
           <div class="card-body">
             <h5 class="card-title">Próximo Turno</h5>
-            <p class="card-text">Tu próximo turno es el <strong>15 de diciembre de 2024</strong>.</p>
+            <p class="card-text">Tu próximo turno es el 
+              <strong>{{this.earliestDate| date: 'dd' : 'UTC' }}</strong> de 
+              <strong>{{this.earliestDate| date: 'MMMM' : 'UTC' : 'es' }}</strong> a las
+              <strong>{{this.earliestTime}}</strong>.</p>
           </div>
         </div>
       </div>
@@ -57,10 +60,6 @@
 </div>
 </div>
 
-
-  
-
-  
 
 <div *ngIf="user.codUser === 0"> <!--Admin-->
   <div class="container mt-4">
@@ -122,6 +121,5 @@
       </div>
     </div>
   </div>
-  
 </div>
 

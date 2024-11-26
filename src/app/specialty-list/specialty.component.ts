@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Specialty } from '../interfaces/specialty';
 import { SpecialtyService } from '../servicies/specialty.service';
 import { Router } from '@angular/router';
-import { response } from 'express';
 import { DecodingService } from '../servicies/decoding.service';
 
 @Component({
@@ -24,6 +23,7 @@ export class SpecialtyComponent implements OnInit{
   ngOnInit(): void {
     this.user = this.decodeService.decodeToken()
     this.getAllSpecialties()
+    console.log(this.specialtyArray)
   }
 
   getAllSpecialties() {

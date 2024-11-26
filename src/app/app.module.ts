@@ -32,8 +32,10 @@ import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { addTokenInterceptor } from './utilities/add-token.interceptor';
 import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component';
+import localeEs from '@angular/common/locales/es'
+import { registerLocaleData } from '@angular/common';
 
-
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [

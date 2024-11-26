@@ -11,6 +11,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class UserService {
+  
   private myAppUrl: string;
   private myApiUrl: string;
 
