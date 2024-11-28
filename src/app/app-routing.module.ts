@@ -19,11 +19,12 @@ import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consu
 import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component.js';
 import { AppointmentAddComponent } from './appointment-add/appointment-add.component.js';
 import { AppointmentComponent } from './appointment-list/appointment.component.js';
+import { logAuthGuard } from './utilities/log-auth.guard.js';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [logAuthGuard]},
   {path: 'signIn', component: SignInComponent},
   {path: 'DocsignIn', component: DoctorSignInComponent},
   {path: 'home', component: DashboardComponent, canActivate: [authGuard]},
