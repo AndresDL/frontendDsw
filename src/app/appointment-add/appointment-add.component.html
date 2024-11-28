@@ -1,40 +1,89 @@
-<div class="wrapper" style="background-color: var(--bs-success-bg-subtle);">
-    <div *ngIf="item" class="border rounded p-1" style="background-color: var(--bs-light-bg-subtle);">
-        <form [formGroup]="appointmentForm" class="row g-3">
-            <div class="col-md-4 ms-2">
-                <label for="inputEmail4" class="form-label">Nombre doctor</label>
-                <input class="form-control" type="text" value="{{item.doctor.firstName}} {{item.doctor.lastName}}" aria-label="readonly input example" readonly>
-            </div>
-            <div class="col-md-5">
-                <label for="inputPassword4" class="form-label">Especialidad</label>
-                <input class="form-control" type="text" value="{{item.doctor.specialty.name}}" aria-label="readonly input example" readonly>
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Dirección</label>
-                <input class="form-control" type="text" value="{{item.consulting.street}} {{item.consulting.street_number}}" aria-label="readonly input example" readonly>
-            </div>
-            <div class="col-12">
-                <label for="inputAddress2" class="form-label">DNI paciente</label>
-                <input class="form-control" type="text" value="{{user.dni}}" aria-label="readonly input example" readonly>
+<app-navbar></app-navbar>
+<div class="wrapper d-flex flex-column justify-content-center align-items-center vh-100 p-4" style="background-color: hsl(217, 76%, 97%);">
+    <div class="text-center mb-4">
+        <h1 class="display-7 fw-bold text-primary">Reservar nuevo turno</h1>
+    </div>
+
+    <div 
+        *ngIf="item" 
+        class="border rounded shadow-sm p-4" 
+        style="background-color: var(--bs-light-bg-subtle); width: 100%; max-width: 800px;">
+        <form [formGroup]="appointmentForm" class="row g-4">
+            <div class="col-md-6">
+                <label for="doctorName" class="form-label fw-bold">Nombre del Doctor</label>
+                <input 
+                    id="doctorName" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{item.doctor.firstName}} {{item.doctor.lastName}}" 
+                    aria-label="readonly input example" 
+                    readonly>
             </div>
             <div class="col-md-6">
-                <label for="inputCity" class="form-label">Fecha</label>
-                <input formControlName="appoDate" class="form-control" type="date">
+                <label for="specialty" class="form-label fw-bold">Especialidad</label>
+                <input 
+                    id="specialty" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{item.doctor.specialty.name}}" 
+                    aria-label="readonly input example" 
+                    readonly>
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label fw-bold">Dirección</label>
+                <input 
+                    id="address" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{item.consulting.street}} {{item.consulting.street_number}}" 
+                    aria-label="readonly input example" 
+                    readonly>
             </div>
             <div class="col-md-6">
-                <label for="inputCity" class="form-label">Horario</label>
-                <input formControlName="appoTime" class="form-control" type="time">
+                <label for="dni" class="form-label fw-bold">DNI del Paciente</label>
+                <input 
+                    id="dni" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{user.dni}}" 
+                    aria-label="readonly input example" 
+                    readonly>
             </div>
-            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Reservar
-            </button>
-            <button type="button"  class="btn btn-primary btn-lg" routerLink="/specialtyList">Pagina anterior</button>
+            <div class="col-md-6">
+                <label for="appoDate" class="form-label fw-bold">Fecha</label>
+                <input 
+                    id="appoDate" 
+                    formControlName="appoDate" 
+                    class="form-control" 
+                    type="date">
+            </div>
+            <div class="col-md-6">
+                <label for="appoTime" class="form-label fw-bold">Horario</label>
+                <input 
+                    id="appoTime" 
+                    formControlName="appoTime" 
+                    class="form-control" 
+                    type="time">
+            </div>
+            <div class="col-12 text-center mt-3">
+                <button 
+                    type="button"  
+                    class="btn btn-secondary btn-lg me-2" 
+                    routerLink="/specialtyList">
+                    Página Anterior
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-success btn-lg me-2" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#staticBackdrop">
+                    Reservar
+                </button>
+            </div>
         </form>
     </div>
-    
 </div>
-
-<!-- Modal -->
+  
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -46,8 +95,8 @@
             Esta seguro que quiere crear este turno?
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" (click)="createAppointment()" data-bs-dismiss="modal">Aceptar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-success" (click)="createAppointment()" data-bs-dismiss="modal">Aceptar</button>
         </div>
         </div>
     </div>

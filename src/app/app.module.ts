@@ -35,6 +35,7 @@ import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredi
 import localeEs from '@angular/common/locales/es'
 import { registerLocaleData } from '@angular/common';
 
+
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -59,6 +60,7 @@ registerLocaleData(localeEs);
     NavbarComponent,
     TreatmentAddoreditComponent,
     SignInComponent,
+    
     
   ],
   imports: [
