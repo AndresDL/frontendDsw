@@ -52,20 +52,12 @@ export class DoctorSignInComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getDoctors()
     this.getSpecialties()
-  }
-
-  getDoctors(){
-    this.registerService.getDoctors().subscribe((doctors) => {
-      this.userArray = doctors;
-    });
   }
 
   getSpecialties(){
     this.specialtyService.getSpecialties().subscribe((specialty) => {
       this.specialtyArray = specialty;
-      console.log(this.specialtyArray);
     });
   }
 
@@ -93,5 +85,9 @@ export class DoctorSignInComponent implements OnInit{
       this.toastr.error('Alguien ya se ha registrado con esa matricula', 'Error');
     }
   })
+  }
+
+  showLoading(){
+    this.loading = true;
   }
 }

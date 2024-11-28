@@ -19,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ConsultingAddoreditComponent {
   consultingForm: FormGroup;
   id: number;
-  operation: string = 'Add';
+  operation: string = 'Agregar ';
   
   constructor(
     private consultingService: ConsultingService,
@@ -39,7 +39,7 @@ export class ConsultingAddoreditComponent {
   ngOnInit(){
     if(this.id !=0){
       //edit
-      this.operation = 'Edit';
+      this.operation = 'Editar ';
       this.getConsulting(this.id);
     }
   }

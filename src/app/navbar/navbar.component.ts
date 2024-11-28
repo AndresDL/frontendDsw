@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart} from '@angular/router';
 import { DecodingService } from '../servicies/decoding.service';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,14 @@ export class NavbarComponent implements OnInit{
     private router: Router,
     private decodingService: DecodingService,
     private toastr: ToastrService,
-  ){}
+    
+  ){
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart){
+        this.ngOnInit()
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.user = this.decodingService.decodeToken();
@@ -31,6 +39,5 @@ export class NavbarComponent implements OnInit{
   
   workInProgress(){
     this.toastr.error('Trabajo en proceso', 'No se puede acceder')
-    this.router.navigate(['/home'])
   }
 }

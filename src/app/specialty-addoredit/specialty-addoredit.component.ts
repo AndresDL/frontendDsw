@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Specialty } from '../interfaces/specialty';
-import { OnInit } from '@angular/core';
 
 //Service
 import { SpecialtyService } from '../servicies/specialty.service';
@@ -17,7 +16,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 export class SpecialtyAddoreditComponent {
   specialtyForm: FormGroup;
   id: number;
-  operation: string = 'Add ';
+  operation: string = 'Agregar ';
 
   constructor(
     private specialtyService: SpecialtyService,
@@ -36,7 +35,7 @@ export class SpecialtyAddoreditComponent {
   ngOnInit(): void{
     if(this.id != 0){
       //edit
-      this.operation = 'Edit ';
+      this.operation = 'Editar ';
       this.getSpecialty(this.id);
     }
   }

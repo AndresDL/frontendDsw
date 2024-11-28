@@ -17,7 +17,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 export class TreatmentAddoreditComponent {
   treatmentForm: FormGroup;
   id: number;
-  operation: string = 'Add ';
+  operation: string = 'Agregar ';
 
   constructor(
     private treatmentService: TreatmentService,
@@ -36,7 +36,7 @@ export class TreatmentAddoreditComponent {
   ngOnInit(): void{
     if(this.id != 0){
       //edit
-      this.operation = 'Edit ';
+      this.operation = 'Editar ';
       this.getTreatment(this.id);
     }
   }

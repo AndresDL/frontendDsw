@@ -1,7 +1,7 @@
 
 <div class="container mt-2 text-center col-md-6">
     <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
-        <h4 class="alert-heading">Agregar nuevo tratamiento</h4>
+        <h4 class="alert-heading">{{operation}} tratamiento</h4>
         <p>Complete los siguientes campos con los datos solicitados.</p>
     </div>
     <form [formGroup]="treatmentForm" (ngSubmit)="addTreatment()">
@@ -12,7 +12,7 @@
             <button class="btn btn-secondary"  routerLink="/home/treatmentList">
                 Pagina anterior
             </button>
-            <button class="btn btn-success ms-2">Agregar tratamiento</button>
+            <button class="btn btn-success ms-2">Aceptar</button>
         </div>
     </form>
 </div>

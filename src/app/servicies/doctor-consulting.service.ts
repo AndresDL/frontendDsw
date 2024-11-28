@@ -48,7 +48,7 @@ export class DoctorConsultingService {
 
   //update
   updateDoctor_consulting(doctor_consulting: DoctorConsulting): Observable<void> {
-    const url = `${this.myAppUrl}${this.myApiUrl}${doctor_consulting.id}`;
+    const url = `${this.myAppUrl}${this.myApiUrl}/${doctor_consulting.id}`;
     return this.http.put<void>(url, doctor_consulting);
   }
 

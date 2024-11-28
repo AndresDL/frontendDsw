@@ -39,7 +39,6 @@ export class LoginComponent {
         this.router.navigate(['/home']);
       },
       error: (e: HttpErrorResponse) => {
-        this.loading = false;
         if (e.error.message) {
           this.toastr.error(e.error.message, 'Error');
         } else {
@@ -48,7 +47,12 @@ export class LoginComponent {
             'Error'
           );
         }
+        this.loading = false;
       },
     });
+  }
+
+  showLoading(){
+    this.loading = true;
   }
 }
