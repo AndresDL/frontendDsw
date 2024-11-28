@@ -9,6 +9,7 @@ import { ConsultingService } from '../servicies/consulting.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-consulting-addoredit',
@@ -25,6 +26,7 @@ export class ConsultingAddoreditComponent {
     private form: FormBuilder,
     private aRouter: ActivatedRoute,
     private router: Router,
+    private toastr: ToastrService,
   ) {
     this.consultingForm = this.form.group({
       street: ['', [Validators.required, Validators.maxLength(22)]],
@@ -67,6 +69,8 @@ export class ConsultingAddoreditComponent {
       //add
       this.consultingService.addConsulting(consulting).subscribe(()=>{
         this.router.navigate(['/home/consultingList']);
+        this.toastr.success(`El conusltorio en ${this.consultingForm.value.street} 
+          ${this.consultingForm.value.street_number} ha sido agregado`,'Consultorio agregado' )
       })
     }
   }

@@ -6,7 +6,9 @@
     <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
       <span class="navbar-toggler-icon"></span> 
     </button>
-    <a class="navbar-brand ms-3 fw-bold" href="#">Mi Sitio</a>
+    <a class="navbar-brand ms-3 fw-bold" href="/home">
+      <img src="assets/img/logoHosp.png" alt="logoHome" class="logo-small">
+    </a>  
   </div>
 </nav>
 
@@ -27,21 +29,20 @@
     <nav>
       <ul class="nav flex-column">
         <li class="nav-item mb-3">
-          <a href="#" class="nav-link text-dark fs-5 fw-bold hover-underline">
+          <a href="/home" class="nav-link text-dark fs-5 fw-bold hover-underline">
             <i class="bi bi-house me-2"></i>
             <span>Inicio</span>
           </a>
         </li>
-        <li class="nav-item mb-3">
-          <a href="#" class="nav-link text-dark fs-5 fw-bold hover-underline">
-            <i class="bi bi-person me-2"></i>
-            <span>Mi Perfil</span>
+        <li class="nav-item mb-3" (click)="workInProgress()">
+          <a href="#" class="nav-link text-dark fs-5 fw-bold hover-underline" >
+            <i class="bi bi-person me-2" ></i>
+            <span >Mi Perfil</span>
           </a>
         </li>
         <li *ngIf="user.codUser === 1" class="nav-item mb-3">
-          <a href="#" class="nav-link text-dark fs-5 fw-bold hover-underline">
-            <i class="bi bi-calendar-check me-2"></i>
-            <span>Mis Turnos</span>
+          <a href="#" class="nav-link text-dark fs-5 fw-bold hover-underline" routerLink="/appointmentList">
+            <i class="bi bi-calendar-check me-2" ></i><span >Mis Turnos</span>
           </a>
         </li>
         <li class="nav-item mb-3">

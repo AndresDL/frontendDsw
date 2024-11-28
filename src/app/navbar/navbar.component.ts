@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit{
   constructor(
     private router: Router,
     private decodingService: DecodingService,
+    private toastr: ToastrService,
   ){}
 
   ngOnInit(): void {
@@ -26,5 +27,10 @@ export class NavbarComponent implements OnInit{
     this.loading = true;
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+  
+  workInProgress(){
+    this.toastr.error('Trabajo en proceso', 'No se puede acceder')
+    this.router.navigate(['/home'])
   }
 }

@@ -3,6 +3,7 @@ import { DecodingService } from '../servicies/decoding.service';
 import { Appointment } from '../interfaces/appointment';
 import { AppointmentService } from '../servicies/appointment.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   earliestDate!: string
   user: any;
   appointmentArray: Appointment[] = [];
+
 
   constructor(
     private appointmentService: AppointmentService,
@@ -57,5 +59,7 @@ export class DashboardComponent implements OnInit {
     }
     this.earliestTime = `${hours}:${minutes} ${modifier}`
   }
+
+  
 
 }

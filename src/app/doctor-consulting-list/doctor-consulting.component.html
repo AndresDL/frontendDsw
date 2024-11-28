@@ -1,7 +1,8 @@
-<app-navbar></app-navbar>
+
 <div *ngIf="user.codUser === 0" class = "container mt-2 text-center">
-    <div>
-        <h2>Lista de instancias laborales</h2>
+    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
+        <h4 class="alert-heading">Lista de doctores en consultorios</h4>
+        <p>Usted puede agregar, editar o eliminar docotores en consultorios.</p>
     </div>
     <div class="table-responsive mt-3 mb-5">
         <table class="table table-striped table-hover">
@@ -37,12 +38,14 @@
 </div>
 
 <div *ngIf="user.codUser === 1" class = "container mt-2 text-center">
-    <div>
-        <h2>En que consultorio queres atenderte?</h2>        
+    <div class="alert alert-info text-center w-75 mx-auto" role="alert">
+        <h4 class="alert-heading">Seleccione un consultorio</h4>
+        <p>Para continuar, elija un consultorio para esta especialidad de la lista.</p>
     </div>
-    <table class="table">
+    <div class="table-responsive mt-3 mb-5">
+        <table class="table table-striped table-hover">
         <thead>
-            <tr>
+            <tr class="table-primary">
                 <th scope="col">Doctor</th>
                 <th scope="col">Especialidad</th>
                 <th scope="col">Calle</th>
@@ -57,8 +60,11 @@
                 <td>{{item.consulting.street}}</td>
                 <td>{{item.consulting.street_number}}</td>
                 <td>
-                    <button type="button" class="btn btn-info ms-2" routerLink="/addAppointment/{{item.id}}">Reservar turno</button>
+                    <button type="button" class="btn btn-success ms-2" routerLink="/addAppointment/{{item.id}}">
+                        <i class="bi bi-calendar-check"></i> Reservar turno
+                    </button>
                 </td>
+                
             </tr>
         </tbody>
     </table>

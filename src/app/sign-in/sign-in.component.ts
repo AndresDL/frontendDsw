@@ -58,13 +58,13 @@ export class SignInComponent{
     this.registerService.signIn(user).subscribe({
       next: (v) => {
         this.loading = false;
-        this.toastr.success(`User ${this.registerForm.value.firstName}${this.registerForm.value.lastName}
-          registered`,'The user has been registered');
+        this.toastr.success(`Usuario ${this.registerForm.value.firstName}${this.registerForm.value.lastName}
+          registrado`,'El usuario ha sido registrado');
         this.router.navigate(['/login']); 
       },
       error: (e: HttpErrorResponse) => {
         this.loading = false;
-        this.toastr.error('Someone with that DNI is already registered', 'Error');
+        this.toastr.error('Alguien con ese DNI ya esta registrado', 'Error');
       }
     })
   }

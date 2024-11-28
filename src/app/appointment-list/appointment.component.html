@@ -1,9 +1,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<app-navbar></app-navbar>
 <div *ngIf="user.codUser === 1" class = "container mt-2 text-center">
-    <div>
-        <h2>Lista de turnos reservados</h2>
+    <div class="alert alert-primary d-flex justify-content-center align-items-center w-75 mx-auto" role="alert">
+        <i class="bi bi-info-circle-fill flex-shrink-0 me-2" style="font-size: 1.2rem;" aria-label="Info"></i>
+        <div>
+            <strong>Turnos Reservados</strong>
+        </div>
     </div>
+    
     <div class="table-responsive mt-3 mb-5">
         <table class="table table-striped table-hover">
             <thead>
@@ -19,10 +22,10 @@
                     <td>{{item.appoTime}}</td>
                     <td>
                     <i class="bi bi-trash text-danger cursor-pointer" (click)="assingId(item.id!)" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop" style="font-size: 1.5rem;">
+                        data-bs-target="#staticBackdrop" style="font-size: 1.4rem;">
                     </i>
                     <i class="bi bi-info-circle text-dark cursor-pointer ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        (click)="openDetailModal(item)" style="font-size: 1.5rem;">
+                        (click)="openDetailModal(item)" style="font-size: 1.4rem;">
                     </i>
                     </td>                                       
                 </tr>
