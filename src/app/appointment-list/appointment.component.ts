@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Appointment } from '../interfaces/appointment';
 import { AppointmentService } from '../servicies/appointment.service';
 import { DecodingService } from '../servicies/decoding.service';
-import { REMOVE_STYLES_ON_COMPONENT_DESTROY } from '@angular/platform-browser';
-import { response } from 'express';
-import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-appointment',
@@ -22,6 +20,7 @@ export class AppointmentComponent implements OnInit{
   constructor(
      private appointmentService: AppointmentService,
      private decodingService: DecodingService,
+     private toastr: ToastrService,
   ){}
 
   ngOnInit(): void {
@@ -36,14 +35,13 @@ export class AppointmentComponent implements OnInit{
   getUserAppointments(){
     this.appointmentService.getfilteredAppointments(this.user.dni).subscribe(appointment => {
       this.appointmentArray = appointment;
-      console.log(this.appointmentArray);
     })
   }
 
   deleteAppointment(id: number){
     this.appointmentService.deleteAppointment(id).subscribe((response)=>{
       this.getUserAppointments();
-      console.log('hola')
+      this.toastr.success('Su turno ha sido elminado exitosamente','Turno eliminado');
     },
   (error)=> console.error ("Error deleting", error));
   }

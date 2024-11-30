@@ -43,7 +43,6 @@ export class SignInComponent{
   }
 
   addUser(){
-    console.log(this.registerForm.value);
     const user: User = {
       dni: this.registerForm.value.dni,
       firstName: this.registerForm.value.firstName,
@@ -53,12 +52,11 @@ export class SignInComponent{
       age: Number.parseInt(this.registerForm.value.age),
       codUser: 1,
     }
-    console.log(user)
     this.loading = true;
     this.registerService.signIn(user).subscribe({
       next: (v) => {
         this.loading = false;
-        this.toastr.success(`Usuario ${this.registerForm.value.firstName}${this.registerForm.value.lastName}
+        this.toastr.success(`Usuario ${this.registerForm.value.firstName} ${this.registerForm.value.lastName}
           registrado`,'El usuario ha sido registrado');
         this.router.navigate(['/login']); 
       },

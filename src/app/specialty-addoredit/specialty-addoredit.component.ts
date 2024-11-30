@@ -26,7 +26,6 @@ export class SpecialtyAddoreditComponent {
   ){
     this.specialtyForm = this.form.group({
       name: ['', [Validators.required, Validators.maxLength(22)]],
-      price: [null, Validators.required],
     })
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
 
@@ -44,7 +43,6 @@ export class SpecialtyAddoreditComponent {
     this.specialtyService.getSpecialty(id).subscribe((specialty: Specialty) => {
     this.specialtyForm.setValue({
       name: specialty.name,
-      price: specialty.price,
     })
     })
   }
@@ -53,7 +51,6 @@ export class SpecialtyAddoreditComponent {
   addSpecialty(){
     const specialty: Specialty = {
       name: this.specialtyForm.value.name,
-      price: this.specialtyForm.value.price,
     }
     if(this.id !== 0){
       //edit

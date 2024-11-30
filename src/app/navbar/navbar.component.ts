@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, ActivatedRoute} from '@angular/router';
+import { Router, NavigationStart} from '@angular/router';
 import { DecodingService } from '../servicies/decoding.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit{
     private router: Router,
     private decodingService: DecodingService,
     private toastr: ToastrService,
-    private aRoute: ActivatedRoute,
   ){
     router.events.forEach((event) => {
       if(event instanceof NavigationStart){

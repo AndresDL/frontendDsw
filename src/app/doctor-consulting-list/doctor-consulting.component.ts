@@ -37,7 +37,6 @@ export class DoctorConsultingComponent {
   getAllDoctor_consulting() {
     this.doconsService.getDoctor_consultings().subscribe((doctor_consulting) => {
       this.doconsArray = doctor_consulting;
-      console.log(this.doconsArray)
     });
   }
 

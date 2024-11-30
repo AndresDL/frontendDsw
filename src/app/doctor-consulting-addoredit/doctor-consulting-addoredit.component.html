@@ -4,14 +4,14 @@
         <h4 class="alert-heading">{{operation}} consultorio y doctor</h4>
         <p>Complete los siguientes campos con los datos solicitados.</p>
     </div>
-    <form [formGroup]="doconsForm" (ngSubmit)="addDoctor_consulting()">
+    <form [formGroup]="doconsForm">
         <input formControlName="doctor" type="text" class="form-control mb-3" placeholder="Ingrese id del doctor">
         <input formControlName="consulting" type="text" class="form-control mb-3" placeholder="Ingrese id del consultorio">
         <div>
             <button class="btn btn-secondary"  routerLink="/doconsList">
                 Pagina anterior
             </button>
-            <button class="btn btn-success ms-2" routerLink="/doconsList">Aceptar</button>
+            <button class="btn btn-success ms-2" routerLink="/doconsList" (click)="addDoctor_consulting()">Aceptar</button>
         </div>
     </form>
 </div>

@@ -21,10 +21,10 @@
                     <td>{{item.appoDate | slice:0:10}}</td> 
                     <td>{{item.appoTime}}</td>
                     <td>
-                    <i class="bi bi-trash text-danger cursor-pointer" (click)="assingId(item.id!)" data-bs-toggle="modal"
+                    <i type="button" class="bi bi-trash text-danger cursor-pointer" (click)="assingId(item.id!)" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop" style="font-size: 1.4rem;">
                     </i>
-                    <i class="bi bi-info-circle text-dark cursor-pointer ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <i type="button" class="bi bi-info-circle text-dark cursor-pointer ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         (click)="openDetailModal(item)" style="font-size: 1.4rem;">
                     </i>
                     </td>                                       

@@ -23,7 +23,6 @@ export class SpecialtyComponent implements OnInit{
   ngOnInit(): void {
     this.user = this.decodeService.decodeToken()
     this.getAllSpecialties()
-    console.log(this.specialtyArray)
   }
 
   getAllSpecialties() {

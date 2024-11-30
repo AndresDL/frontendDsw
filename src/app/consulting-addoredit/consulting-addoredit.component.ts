@@ -33,9 +33,8 @@ export class ConsultingAddoreditComponent {
       street_number: [null, Validators.required],
     })
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
-    console.log(this.id);
-
   }
+  
   ngOnInit(){
     if(this.id !=0){
       //edit
@@ -46,7 +45,6 @@ export class ConsultingAddoreditComponent {
 
   getConsulting(id:number){
     this.consultingService.getConsulting(id).subscribe((consulting: Consulting)=> {
-      console.log(consulting);
       this.consultingForm.setValue({
         street: consulting.street,
         street_number: consulting.street_number,

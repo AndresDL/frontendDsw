@@ -44,20 +44,17 @@ export class AppointmentAddComponent implements OnInit {
     this.getAppointments();
     this.getDoctor_consulting(this.doconsId);
     this.user = this.decodeService.decodeToken();
-    console.log(this.user);
   }
 
   getDoctor_consulting(id: number){
     this.doconsService.getDoctor_consulting(id).subscribe((doctor_consulting: DoctorConsulting) => {
       this.item = doctor_consulting;
-      console.log(this.item);
     })
   }
 
   getAppointments(){
     this.appointmentService.getAppointments().subscribe((appointment) => {
       this.appointmentArray = appointment;
-      console.log(this.appointmentArray);
     })
   }
 

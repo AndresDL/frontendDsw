@@ -27,7 +27,6 @@ export class DoctorListComponent implements OnInit{
   getDoctors(){
     this.doctorService.getDoctors().subscribe((doctors) => {
       this.doctorArray = doctors;
-      console.log(this.doctorArray);
     });
   }
 

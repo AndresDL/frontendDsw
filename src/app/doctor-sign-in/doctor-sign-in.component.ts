@@ -71,7 +71,6 @@ export class DoctorSignInComponent implements OnInit{
     age: Number.parseInt(this.registerForm.value.age),
     specialty: this.registerForm.value.specialty,
   }
-  console.log(doctor)
   this.loading = true;
   this.registerService.signIn(doctor).subscribe({
     next: (v) => {
