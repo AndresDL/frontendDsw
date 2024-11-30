@@ -1,0 +1,16 @@
+
+<div class="container mt-2 text-center col-md-6">
+    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
+        <h4 class="alert-heading">{{operation}} especialidad</h4>
+        <p>Complete los siguientes campos con los datos solicitados.</p>
+    </div>
+    <form [formGroup]="specialtyForm" (ngSubmit)="addSpecialty()">
+        <input formControlName="name" type="text" class="form-control mb-3" placeholder="Ingrese la especialidad">
+        <div>
+            <button class="btn btn-secondary"  routerLink="/specialtyList">
+                Pagina anterior
+            </button>
+            <button  class="btn btn-success ms-2">Aceptar</button>
+        </div>
+    </form>
+</div>
