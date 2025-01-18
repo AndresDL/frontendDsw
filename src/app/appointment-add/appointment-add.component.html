@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-6">
                 <label for="appoDate" class="form-label fw-bold">Fecha</label>
-                <input 
+                <input (change)="showtext()"
                     id="appoDate" 
                     formControlName="appoDate" 
                     class="form-control" 
@@ -59,11 +59,10 @@
             </div>
             <div class="col-md-6">
                 <label for="appoTime" class="form-label fw-bold">Horario</label>
-                <input 
-                    id="appoTime" 
-                    formControlName="appoTime" 
-                    class="form-control" 
-                    type="time">
+                <select formControlName="appoTime" class="form-select" id="customSelect">
+                    <option value="" disabled selected>Seleccione un horario</option>
+                    <option *ngFor="let item of timefilteredArray" [value]="item">{{item}}</option>
+                </select>    
             </div>
             <div class="col-12 text-end mt-3">
                 <button 

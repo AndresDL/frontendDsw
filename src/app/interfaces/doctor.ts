@@ -1,10 +1,12 @@
 export class Doctor {
     id?: number = 0;
-    firstName: string = "";
-    lastName: string = "";
-    email: string = "";
+    firstName?: string = "";
+    lastName?: string = "";
+    email?: string = "";
     password: string = "";
-    age: number = 0;
+    age?: number = 0;
     tuition_number: number = 0;
-    specialty: any;
+    codUser?: number;
+    vigency?: boolean;
+    specialty?: any;
 }

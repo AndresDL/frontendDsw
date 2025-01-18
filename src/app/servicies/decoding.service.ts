@@ -21,7 +21,7 @@ export class DecodingService {
 
   decodeToken()
   {
-    this.token = localStorage.getItem('token');
+    this.token = sessionStorage.getItem('token');
     //Valido si la token es nula
     if(this.token){
       this.decodedToken = this.getDecodedAccessToken(this.token);

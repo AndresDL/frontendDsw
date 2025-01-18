@@ -55,7 +55,8 @@ export class ConsultingAddoreditComponent {
   addConsulting(){
     const consulting: Consulting = {
       street: this.consultingForm.value.street,
-      street_number: this.consultingForm.value.street_number,
+      street_number: Number.parseInt(this.consultingForm.value.street_number),
+      vigency: true,
     }
     if(this.id!==0){
       //edit

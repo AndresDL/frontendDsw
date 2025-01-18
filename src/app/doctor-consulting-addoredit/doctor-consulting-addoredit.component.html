@@ -5,8 +5,18 @@
         <p>Complete los siguientes campos con los datos solicitados.</p>
     </div>
     <form [formGroup]="doconsForm">
-        <input formControlName="doctor" type="text" class="form-control mb-3" placeholder="Ingrese id del doctor">
-        <input formControlName="consulting" type="text" class="form-control mb-3" placeholder="Ingrese id del consultorio">
+        <div class="mb-3">
+            <select formControlName="doctor" class="form-select" id="customSelect">
+                <option value="" disabled selected>Seleccione al doctor</option>
+                <option *ngFor="let item of doctorArray" [value]="item.id">{{item.firstName}} {{item.lastName}}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select formControlName="consulting" class="form-select" id="customSelect">
+                <option value="" disabled selected>Seleccione el consultorio</option>
+                <option *ngFor="let item of consultingArray" [value]="item.id">{{item.street}} {{item.street_number}}</option>
+            </select>
+        </div>
         <div>
             <button class="btn btn-secondary"  routerLink="/doconsList">
                 Pagina anterior

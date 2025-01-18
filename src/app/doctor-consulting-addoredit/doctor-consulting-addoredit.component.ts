@@ -4,6 +4,11 @@ import { DoctorConsultingService } from '../servicies/doctor-consulting.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { DoctorConsulting } from '../interfaces/doctor-consultings';
 import { ToastrService } from 'ngx-toastr';
+import { DoctorService } from '../servicies/doctor.service';
+import { ConsultingService } from '../servicies/consulting.service';
+import { Doctor } from '../interfaces/doctor';
+import { Consulting } from '../interfaces/consulting';
+
 
 
 @Component({
@@ -13,11 +18,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DoctorConsultingAddoreditComponent {
   doconsForm: FormGroup;
+  doctorArray: Doctor [] = [];
+  consultingArray: Consulting [] = [];
   id: number;
   operation: string = 'Agregar ';
 
   constructor(
     private doconsService: DoctorConsultingService,
+    private doctorService: DoctorService,
+    private consultingService: ConsultingService,
     private form: FormBuilder,
     private aRouter: ActivatedRoute,
     private router: Router,
@@ -32,11 +41,25 @@ export class DoctorConsultingAddoreditComponent {
   }
 
   ngOnInit(): void{
+    this.getAllDoctors();
+    this.getAllConsultings();
     if(this.id != 0){
       //edit
       this.operation = 'Editar ';
       this.getDoctor_consulting(this.id);
     }
+  }
+
+  getAllDoctors(){
+    this.doctorService.getDoctors().subscribe((doctor) => {
+      this.doctorArray = doctor;
+    });
+  }
+
+  getAllConsultings(){
+    this.consultingService.getConsultings().subscribe((consulting) => {
+      this.consultingArray = consulting;
+    });
   }
 
   getDoctor_consulting(id: number){
@@ -58,6 +81,7 @@ export class DoctorConsultingAddoreditComponent {
       //edit
      doctor_consulting.id = this.id
      this.doconsService.updateDoctor_consulting(doctor_consulting).subscribe(() =>{
+      this.toastr.success('La instancia ha sido editada exitosamente','Instancia editada')
       this.router.navigate(['/home']);
      })
 

@@ -6,7 +6,7 @@
     </div>
     <form [formGroup]="consultingForm" (ngSubmit)="addConsulting()">
         <input formControlName="street" type="text" class="form-control mb-3" placeholder="Ingrese la calle del consultorio">
-        <input formControlName="street_number" type="number" class="form-control mb-3" placeholder="Ingrese el numero de calle del consultorio">
+        <input formControlName="street_number" type="text" class="form-control mb-3" placeholder="Ingrese el numero de calle del consultorio">
         <div>
             <button class="btn btn-secondary"  routerLink="/home/consultingList">
                 Pagina anterior

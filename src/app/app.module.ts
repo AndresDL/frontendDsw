@@ -10,7 +10,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ConsultingComponent } from './consulting-list/consulting.component.js';
 import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component';
 import { FollowUpComponent } from './follow-up/follow-up.component';
-import { TimeTableComponent } from './time-table/time-table.component';
 import { SpecialtyComponent } from './specialty-list/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
 import { TreatmentComponent } from './treatment-list/treatment-list.component';
@@ -51,7 +50,6 @@ registerLocaleData(localeEs);
     DoctorConsultingComponent,
     DoctorConsultingAddoreditComponent,
     FollowUpComponent,
-    TimeTableComponent,
     SpecialtyComponent,
     FollowupTreatmentComponent,
     TreatmentComponent,

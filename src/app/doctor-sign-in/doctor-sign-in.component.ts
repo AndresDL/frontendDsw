@@ -70,6 +70,8 @@ export class DoctorSignInComponent implements OnInit{
     password: this.registerForm.value.password,
     age: Number.parseInt(this.registerForm.value.age),
     specialty: this.registerForm.value.specialty,
+    vigency: true,
+    codUser: 2
   }
   this.loading = true;
   this.registerService.signIn(doctor).subscribe({

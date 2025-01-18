@@ -35,7 +35,7 @@ export class LoginComponent {
     this.loading = true;
     this.loginService.login(user).subscribe({
       next: ({ token }) => {
-        localStorage.setItem('token', token);
+        sessionStorage.setItem('token', token);
         this.router.navigate(['/home']);
       },
       error: (e: HttpErrorResponse) => {

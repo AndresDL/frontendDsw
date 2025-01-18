@@ -1,6 +1,6 @@
 export class DoctorConsulting {
     id?: number = 0;
-    vigency?: boolean = false;
+    vigency?: boolean;
     doctor: any;
     consulting: any;
 }

@@ -51,6 +51,7 @@ export class SpecialtyAddoreditComponent {
   addSpecialty(){
     const specialty: Specialty = {
       name: this.specialtyForm.value.name,
+      vigency: true,
     }
     if(this.id !== 0){
       //edit

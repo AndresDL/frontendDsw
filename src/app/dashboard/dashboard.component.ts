@@ -59,7 +59,4 @@ export class DashboardComponent implements OnInit {
     }
     this.earliestTime = `${hours}:${minutes} ${modifier}`
   }
-
-  
-
 }

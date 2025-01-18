@@ -1,5 +1,50 @@
+<div *ngIf="!verif"> <!--User-->
+    <!-- Cartel de bienvenida centrado -->
+    <div class="container mt-5 pt-4">
+     <div class="alert alert-light d-flex align-items-center" role="alert">
+       <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
+       <div class="ms-3">
+         <h5 class="mb-0"> Hola!</h5>
+         <p class="mb-0">Que tipo de usuario sos?</p>
+       </div>
+     </div>
+   </div>
+ 
+   <!-- Contenedor de las cards con simetría respecto al cartel -->
+ <div class="container mt-4">
+   <div class="row justify-content-center">
+     <!-- Card 1: Solicitar Turno -->
+     <div class="col-12 col-md-6 mb-3">
+       <div class="card shadow-sm">
+         <div class="card-body">
+           <h5 class="card-title">Soy Paciente</h5>
+           <p class="card-text">Registrate como usuario Paciente</p>
+           <div class="text-center">
+             <img src="assets\img\images.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Solicitar Turno">
+           </div>
+           <button class="btn btn btn-success" (click)="gotoUserSignin()">Continuar</button>
+         </div>
+       </div>
+     </div>
+ 
+     <!-- Card 2: Ver Todos los Turnos -->
+     <div class="col-12 col-md-6 mb-3">
+       <div class="card shadow-sm">
+         <div class="card-body">
+           <h5 class="card-title">Soy Doctor</h5>
+           <p class="card-text">Registrate como usuario Doctor</p>
+           <div class="text-center">
+             <img src="assets\img\calendario.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Ver Todos los Turnos">
+           </div>
+           <a href="/DocsignIn" class="btn btn-success">Continuar</a>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>
+</div>
 
-<div class="wrapper">     
+<div *ngIf="verif" class="wrapper">     
     <div *ngIf="!loading" class="body">
       <img class="icon" src="../../assets/img/hospital.png" alt="img login">
       <h1>Registrar usuario</h1>

@@ -21,6 +21,7 @@ export class SignInComponent{
   registerForm: FormGroup;
   loading: boolean = false;
   userArray: User[] = [];
+  verif: boolean = false; 
 
   constructor(
     private form: FormBuilder,
@@ -40,6 +41,11 @@ export class SignInComponent{
     {
       validators: matchpass
     })
+  }
+
+  gotoUserSignin(){
+    this.verif = true;
+    console.log(this.verif)
   }
 
   addUser(){
