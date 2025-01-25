@@ -29,15 +29,15 @@ export class UserService {
   }
   
   //Createuser
-  signIn(user: User): Observable<any>{
+  signIn(user: User, captcha: string): Observable<any>{
     const url = `${this.myAppUrl}${this.myApiUrl}`
     console.log(url)
-    return this.http.post(url, user);
+    return this.http.post(url, {user, captcha});
   }
 
   //Getuser
-  login(user: User) {
+  login(user: User, captcha: string) {
     const url = `${this.myAppUrl}${this.myApiUrl}/login`;
-    return this.http.post<{token: string}>(url, user);
+    return this.http.post<{token: string}>(url, {user, captcha});
   }
 }

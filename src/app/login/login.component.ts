@@ -1,25 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../interfaces/user';
 import { UserService } from '../servicies/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Doctor } from '../interfaces/doctor';
+import { DoctorService } from '../servicies/doctor.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   dni: string = '';
   password: string = '';
   loading: boolean = false;
+  captcha: string = '';
 
   constructor(
     private toastr: ToastrService,
-    private loginService: UserService,
-    private router: Router
+    private userService: UserService,
+    private doctorService: DoctorService,
+    private router: Router,
   ) {}
+
+  ngOnInit(): void {
+  }
+
+  captchaResuelto(resCaptcha: any){
+    this.captcha = resCaptcha;
+  }
 
   login() {
     //Validate data entry
@@ -28,28 +41,54 @@ export class LoginComponent {
       return;
     }
     //Create user
-    const user: User = {
-      dni: this.dni.trim(),
-      password: this.password,
+    if(this.dni.trim().length == 6 || this.dni.trim().length == 8){
+      const user: User = {
+        dni: this.dni.trim(),
+        password: this.password,
+      };
+      this.loading = true;
+      this.userService.login(user, this.captcha).subscribe({
+        next: ({ token }) => {
+          sessionStorage.setItem('token', token);
+          this.router.navigate(['/home']);
+        },
+        error: (e: HttpErrorResponse) => {
+          if (e.error.message) {
+            this.toastr.error(e.error.message, 'Error');
+          } else {
+            this.toastr.error(
+              'Paso algo inesperado, contacta un admin!',
+              'Error'
+            );
+          }
+          this.loading = false;
+        },
+      });
+    }else if(this.dni.trim().length == 5){
+      //Login Doctor
+      const doctor: Doctor ={
+        tuition_number: Number.parseInt(this.dni.trim()),
+        password: this.password,
+      };
+      this.loading = true;
+      this.doctorService.logInDoc(doctor, this.captcha).subscribe({
+        next: ({token}) => {
+          sessionStorage.setItem('token', token);
+          this.router.navigate(['/home']);
+        },
+        error: (e:HttpErrorResponse) =>{
+          if(e.error.message) {
+            this.toastr.error(e.error.message, 'Error');
+          } else {
+            this.toastr.error(
+              'Paso algo inesperado, contacta un admin!',
+              'Error'
+            );
+          }
+          this.loading = false;
+        },
+      });
     };
-    this.loading = true;
-    this.loginService.login(user).subscribe({
-      next: ({ token }) => {
-        sessionStorage.setItem('token', token);
-        this.router.navigate(['/home']);
-      },
-      error: (e: HttpErrorResponse) => {
-        if (e.error.message) {
-          this.toastr.error(e.error.message, 'Error');
-        } else {
-          this.toastr.error(
-            'Paso algo inesperado, contacta un admin!',
-            'Error'
-          );
-        }
-        this.loading = false;
-      },
-    });
   }
 
   showLoading(){

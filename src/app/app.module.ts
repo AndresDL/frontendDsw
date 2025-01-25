@@ -1,6 +1,5 @@
 import { AppComponent } from './app.component';
 import {provideHttpClient, withInterceptors } from '@angular/common/http';
-import { Reactive } from '@angular/core/primitives/signals/index.js';
 
 //Components
 import { LoginComponent } from './login/login.component';
@@ -12,10 +11,8 @@ import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consu
 import { FollowUpComponent } from './follow-up/follow-up.component';
 import { SpecialtyComponent } from './specialty-list/specialty.component';
 import { FollowupTreatmentComponent } from './followup-treatment/followup-treatment.component';
-import { TreatmentComponent } from './treatment-list/treatment-list.component';
 import { SpecialtyAddoreditComponent } from './specialty-addoredit/specialty-addoredit.component';
 import { ConsultingAddoreditComponent } from './consulting-addoredit/consulting-addoredit.component';
-import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
 import { AppointmentComponent } from './appointment-list/appointment.component';
 import { AppointmentAddComponent } from './appointment-add/appointment-add.component';
 
@@ -32,7 +29,8 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { addTokenInterceptor } from './utilities/add-token.interceptor';
 import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredit/doctor-consulting-addoredit.component';
 import localeEs from '@angular/common/locales/es'
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 registerLocaleData(localeEs);
@@ -52,14 +50,10 @@ registerLocaleData(localeEs);
     FollowUpComponent,
     SpecialtyComponent,
     FollowupTreatmentComponent,
-    TreatmentComponent,
     LoginComponent,
     SpecialtyAddoreditComponent,
     NavbarComponent,
-    TreatmentAddoreditComponent,
     SignInComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
@@ -68,12 +62,13 @@ registerLocaleData(localeEs);
     AppRoutingModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    
+    RecaptchaModule, //RecaptchaModule added
   ],
   providers: [
+    DatePipe,
     provideClientHydration(),
     provideHttpClient(withInterceptors([addTokenInterceptor])),
-    provideToastr(),
+    provideToastr()
   ],
   bootstrap: [AppComponent]
 })

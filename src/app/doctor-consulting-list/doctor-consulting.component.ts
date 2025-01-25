@@ -4,6 +4,10 @@ import { DoctorConsultingService } from '../servicies/doctor-consulting.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { DecodingService } from '../servicies/decoding.service';
 import { SpecialtyService } from '../servicies/specialty.service';
+import { subscribe } from 'diagnostics_channel';
+import { ToastrService } from 'ngx-toastr';
+import { AppointmentService } from '../servicies/appointment.service';
+import { Appointment } from '../interfaces/appointment';
 
 @Component({
   selector: 'app-doctor-consulting',
@@ -12,6 +16,8 @@ import { SpecialtyService } from '../servicies/specialty.service';
 })
 export class DoctorConsultingComponent {
   doconsArray: DoctorConsulting[] = [];
+  appointmentArray: Appointment[] = [];
+  doctor_consulting: any;
   item: any;
   user: any;
   name!: string
@@ -20,6 +26,8 @@ export class DoctorConsultingComponent {
     private doconsService: DoctorConsultingService,
     private decodingService: DecodingService,
     private aRouter: ActivatedRoute,
+    private toastr: ToastrService,
+    private appointmentService: AppointmentService,
   ) {
     this.name = String(aRouter.snapshot.paramMap.get('name'))
   }
@@ -40,12 +48,37 @@ export class DoctorConsultingComponent {
     });
   }
 
-  deleteDoctor_consulting(id: number){
-    this.doconsService.deleteSpecialty(id).subscribe((response)=>{
-      this.getAllDoctor_consulting();
-    }, 
-  (error) => console.error ("Error deleting", error));
+  getDoctor_consulting(id: number){
+    this.doconsService.getDoctor_consulting(id).subscribe((doctor_consulting) => {
+      this.doctor_consulting = doctor_consulting;
+      console.log(this.doctor_consulting);
+    })
   }
+
+  getAppointments(){
+    this.appointmentService.getAppointments().subscribe((appointment) => {
+      for(var i in appointment){
+        if(appointment[i].doctor_consulting.id === this.doctor_consulting.id){
+          console.log('hay turnos registrados para aca')
+          return;
+        };
+      };
+    });
+  }
+
+  vigencyDoctor_consulting(){
+    this.getAppointments
+    console.log('continuo')
+  }
+
+  reactivateDoctor_consulting(){
+
+  }
+
+
+  vigencyDoctor(){
+  }
+  
 
   filterDoctor_consultings(){
     this.doconsService.getfilteredDoctor_consultings(this.name).subscribe((doctor_consulting) => {

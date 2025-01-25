@@ -13,7 +13,7 @@
    <!-- Contenedor de las cards con simetría respecto al cartel -->
  <div class="container mt-4">
    <div class="row justify-content-center">
-     <!-- Card 1: Solicitar Turno -->
+     <!-- Card 1: Ir a sing in de usuario  -->
      <div class="col-12 col-md-6 mb-3">
        <div class="card shadow-sm">
          <div class="card-body">
@@ -27,7 +27,7 @@
        </div>
      </div>
  
-     <!-- Card 2: Ver Todos los Turnos -->
+     <!-- Card 2: Ir a sign in de doctor -->
      <div class="col-12 col-md-6 mb-3">
        <div class="card shadow-sm">
          <div class="card-body">
@@ -57,6 +57,8 @@
         <input formControlName="password" type="password" class="form-control mb-1" placeholder="Ingrese su contraseña">
         <input formControlName="repassword" type="password" class="form-control mb-1" placeholder="Repita su contraseña">
         <span *ngIf="registerForm.errors?.['passwordmatcherror']" class="">Las contraseñas no son iguales</span>
+        <re-captcha (resolved)="captchaResuelto($event)" siteKey="6Lclx78qAAAAAC95CZEKViCTN8z0WtxdxWKglfKT"></re-captcha>
+        <div class="g-recaptcha" data-sitekey=""></div>
         <div class="d-grid gap-2 mt-2">
             <button [disabled]="registerForm.invalid" (click)="addUser()" type="button" class="btn btn-primary btn-lg">Aceptar</button>
         </div>

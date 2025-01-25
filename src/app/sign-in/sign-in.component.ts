@@ -22,6 +22,7 @@ export class SignInComponent{
   loading: boolean = false;
   userArray: User[] = [];
   verif: boolean = false; 
+  captcha: string = '';
 
   constructor(
     private form: FormBuilder,
@@ -45,7 +46,10 @@ export class SignInComponent{
 
   gotoUserSignin(){
     this.verif = true;
-    console.log(this.verif)
+  }
+
+  captchaResuelto(resCaptcha: any){
+    this.captcha = resCaptcha;
   }
 
   addUser(){
@@ -59,7 +63,7 @@ export class SignInComponent{
       codUser: 1,
     }
     this.loading = true;
-    this.registerService.signIn(user).subscribe({
+    this.registerService.signIn(user, this.captcha).subscribe({
       next: (v) => {
         this.loading = false;
         this.toastr.success(`Usuario ${this.registerForm.value.firstName} ${this.registerForm.value.lastName}

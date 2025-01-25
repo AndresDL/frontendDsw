@@ -22,6 +22,7 @@
       <img src="assets\img\user.png" class="mb-2" style="max-height: 55px; object-fit: cover;" alt="Avatar">
       <p class="mb-0 fs-5 text-dark"><strong>{{user.firstName}} {{user.lastName}}</strong></p>
       <small *ngIf="user.codUser === 1" class="text-dark fst-italic">Tipo de Usuario: Paciente</small>
+      <small *ngIf="user.codUser === 2" class="text-dark fst-italic">Tipo de Usuario: Doctor</small>
       <small *ngIf="user.codUser === 0" class="text-dark fst-italic">Tipo de Usuario: Administrador</small>
     </div>
     

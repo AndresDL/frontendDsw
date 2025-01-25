@@ -11,8 +11,6 @@ import { SignInComponent } from './sign-in/sign-in.component.js';
 import { DashboardComponent } from './dashboard/dashboard.component.js';
 import { authGuard } from './utilities/auth.guard.js';
 import { DoctorSignInComponent } from './doctor-sign-in/doctor-sign-in.component.js';
-import { TreatmentComponent } from './treatment-list/treatment-list.component.js';
-import { TreatmentAddoreditComponent } from './treatment-addoredit/treatment-addoredit.component.js';
 import { adminguardGuard } from './utilities/adminguard.guard.js';
 import { DoctorListComponent } from './doctor-list/doctor-list.component.js';
 import { DoctorConsultingComponent } from './doctor-consulting-list/doctor-consulting.component.js';
@@ -34,9 +32,6 @@ const routes: Routes = [
     {path: 'consultingList', component: ConsultingComponent},//Admin
     {path: 'addConsulting', component: ConsultingAddoreditComponent},//Admin
     {path: 'editConsulting/:id', component: ConsultingAddoreditComponent},//Admin
-    {path: 'treatmentList', component: TreatmentComponent},//Admin
-    {path: 'addTreatment', component: TreatmentAddoreditComponent},//Admin
-    {path: 'editTreatment/:id', component: TreatmentAddoreditComponent},//Admin
     {path: 'doctorList', component: DoctorListComponent},//Admin
     {path: 'addDocons', component: DoctorConsultingAddoreditComponent},//Admin
     {path: 'editDocons/:id', component: DoctorConsultingAddoreditComponent},//Admin

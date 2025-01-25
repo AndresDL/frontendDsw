@@ -7,7 +7,8 @@ import { DecodingService } from '../servicies/decoding.service';
 import { Appointment } from '../interfaces/appointment';
 import { AppointmentService } from '../servicies/appointment.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { DatePipe } from '@angular/common';
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Component({
   selector: 'app-appointment-add',
@@ -17,13 +18,14 @@ import { ToastrService } from 'ngx-toastr';
 export class AppointmentAddComponent implements OnInit {
 
   timefilteredArray = [''];
-  appointmentArray: Appointment[] = []
+  appointmentArray: Appointment[] = [];
   appointmentForm!: FormGroup;
   doconsId: number;
   operation: string = 'Add ';
   item!: DoctorConsulting;
   user: any;
-
+  currentDate: any;
+  text?:string;
 
   constructor(
     private doconsService: DoctorConsultingService,
@@ -33,7 +35,11 @@ export class AppointmentAddComponent implements OnInit {
     private aRouter: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
+    private datePipe: DatePipe,
   ){
+    //this.todayDate = this.datePipe.transform(this.todayDate, 'shortDate')
+    this.currentDate = this.datePipe.transform(new Date, 'yyyy-MM-dd')
+    console.log(this.currentDate)
     this.appointmentForm = this.form.group({
       appoDate: [null, [Validators.required]],
       appoTime: [{ value: '', disabled: true }],
@@ -45,84 +51,93 @@ export class AppointmentAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.appointmentForm.get('appoDate')?.valueChanges.subscribe(value => {
-      this.appointmentForm.get('appoTime')?.setValue(''); //Limpiar appoTime si cambia appoDate
-      if (value) {
-        this.appointmentForm.get('appoTime')?.enable(); //Habilitado si appoDate tiene valor
+      console.log(value)
+      if(value < this.currentDate){
+        this.toastr.error('Ingrese una fecha valida','Error');
+        this.appointmentForm.get('appoTime')?.disable(); 
+      } else if (value === this.currentDate) {
+        this.toastr.error('Los turnos deben ser programados con un dia de anticipación','Error')
+        this.appointmentForm.get('appoTime')?.disable(); 
       } else {
-        this.appointmentForm.get('appoTime')?.disable(); //Deshabilitado si appoDate esta vacio
-      }
+        this.appointmentForm.get('appoTime')?.setValue(''); //Limpiar appoTime si cambia appoDate
+        if (value) {
+          this.appointmentForm.get('appoTime')?.enable(); //Habilitado si appoDate tiene valor
+        } else {
+          this.appointmentForm.get('appoTime')?.disable(); //Deshabilitado si appoDate esta vacio o es invalido
+        };
+      };
     });
     this.getAppointments();
     this.getDoctor_consulting(this.doconsId);
     this.user = this.decodeService.decodeToken();
   }
-
   getDoctor_consulting(id: number){
     this.doconsService.getDoctor_consulting(id).subscribe((doctor_consulting: DoctorConsulting) => {
       this.item = doctor_consulting;
     })
   }
 
-  showtext(): void{
+  onDateChange(){
     let timeArray = ['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00',
       '17:00','18:00','19:00','20:00'
     ];
-    console.log(timeArray)
     let datefilteredArray: Appointment[] = [];
-    let formattedDate = this.appointmentForm.value.appoDate + 'T00:00:00.000Z'
+    let formattedDate = this.appointmentForm.value.appoDate + 'T00:00:00.000Z';
+    for(var j in timeArray) {
+      let formattedTime = timeArray[j] + ':00';
+      this.timefilteredArray[j] = formattedTime;
+    }
     for(var i in this.appointmentArray){
       if(this.appointmentArray[i].appoDate === formattedDate){
-        datefilteredArray.push(this.appointmentArray[i])
-      }
-    }
-    console.log(datefilteredArray)
-    console.log(datefilteredArray[0].appoDate)
-    for(var j in timeArray) {
-      let formattedTime = timeArray[j] + ':00'
-      this.timefilteredArray[j] = formattedTime
-    }
-    for(var j in timeArray) {
-      for(var i in datefilteredArray){
-        let formattedTime = timeArray[j] + ':00'
-        if(datefilteredArray[i].appoTime === formattedTime){
-          console.log(datefilteredArray[i].appoTime, formattedTime)
-          this.timefilteredArray[j] = formattedTime + ' No disponible'
-        }
-      }
-    }
-  }
+        datefilteredArray.push(this.appointmentArray[i]);
+      };
+    };
+    if(datefilteredArray){
+      for(var j in timeArray) {
+        for(var i in datefilteredArray){
+          let formattedTime = timeArray[j] + ':00';
+          if(datefilteredArray[i].appoTime === formattedTime){
+            this.timefilteredArray[j] = formattedTime + ' No disponible';
+          };
+        };
+      };
+    };
+  };
 
   getAppointments(){
     this.appointmentService.getAppointments().subscribe((appointment) => {
       for(var i in appointment){
         if(appointment[i].doctor_consulting.id === this.doconsId){
-          this.appointmentArray.push(appointment[i])
-        }
-      }
-    })
+          this.appointmentArray.push(appointment[i]);
+        };
+      };
+    });
   }
 
   createAppointment(){
+    if(this.appointmentForm.value.appoDate === null){
+      this.toastr.error('Debe ingresar una fecha valida para continuar','Error');
+      return;
+    };
     if(this.appointmentForm.value.appoTime === ''){
-      this.toastr.error('Debe ingresar un horario valido para continuar','Error')
+      this.toastr.error('Debe ingresar un horario valido para continuar','Error');
       return;
-    }
-    if(this.appointmentForm.value.appoTime === 'No disponible'){
-      this.toastr.error('El horario se encuentra ocupado','Error')
+    };
+    if(this.appointmentForm.value.appoTime === this.appointmentForm.value.appotime + 'No disponible'){
+      this.toastr.error('El horario se encuentra ocupado','Error');
       return;
-    }
+    };
     const appointment: Appointment = {
       appoDate: this.appointmentForm.value.appoDate,
       appoTime: this.appointmentForm.value.appoTime,
       assisted: false,
       doctor_consulting: Number(this.item.id),
       patient: Number(this.user.id),
-    }
+    };
     console.log(appointment);
     this.appointmentService.crearAppointment(appointment).subscribe(() => {
-      this.toastr.success('Su turno a sido registrado','Exito')
+      this.toastr.success('Su turno a sido registrado','Exito');
       this.router.navigate(['/home']);
     });
-  }
-  
+  };  
 }

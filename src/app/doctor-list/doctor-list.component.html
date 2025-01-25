@@ -24,13 +24,52 @@
                     <td>{{item.lastName}}</td>
                     <td>{{item.specialty.name}}</td>
                     <td>
-                        <i type="button" class="bi bi-trash text-danger cursor-pointer" style="font-size: 1.2rem;" (click)="deleteDoctor(item.id!)"></i>  
-                        <i type="button" class="bi bi-pencil text-dark cursor-pointer ms-3" style="font-size: 1.2rem;"  routerLink="/home/editDoctor/{{item.id}}"></i>
+                        <i *ngIf="item.vigency" type="button" class="bi bi-trash text-danger cursor-pointer" style="font-size: 1.2rem;" (click)="getDoctor(item.id!)"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>  
+                        <i *ngIf="item.vigency" type="button" class="bi bi-pencil text-dark cursor-pointer ms-3" style="font-size: 1.2rem;"  routerLink="/home/editDoctor/{{item.id}}"></i>
+                        <i *ngIf="!item.vigency" type="button" class="bi bi-arrow-clockwise text-success cursor-pointer ms-3" style="font-size: 1.2rem;"  (click)="getDoctor(item.id!)"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop2"></i>
                     </td>
                 </tr>
             </tbody>
         </table>
         <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div aria-required="true" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere dar de baja a este doctor?
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="vigencyDoctor()"  class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div aria-required="true" class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere dar de alta a este doctor?
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="reactivateDoctor()"  class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
     </div>
 </div>
 

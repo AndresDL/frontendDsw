@@ -27,6 +27,7 @@ export class DoctorSignInComponent implements OnInit{
   specialtyArray: Specialty[] = []
   item: any;
   doctor!: Doctor;
+  captcha: string = '';
   
 
   constructor(
@@ -57,8 +58,16 @@ export class DoctorSignInComponent implements OnInit{
 
   getSpecialties(){
     this.specialtyService.getSpecialties().subscribe((specialty) => {
-      this.specialtyArray = specialty;
+      for(var i in specialty){
+        if(specialty[i].vigency === true){
+          this.specialtyArray.push(specialty[i]);
+        };
+      };
     });
+  }
+
+  captchaResuelto(resCaptcha: any){
+    this.captcha = resCaptcha;
   }
 
   addDoctor(){
@@ -74,7 +83,7 @@ export class DoctorSignInComponent implements OnInit{
     codUser: 2
   }
   this.loading = true;
-  this.registerService.signIn(doctor).subscribe({
+  this.registerService.signIn(doctor, this.captcha).subscribe({
     next: (v) => {
       this.loading = false;
       this.toastr.success(`El doctor ${this.registerForm.value.firstName} ${this.registerForm.value.lastName}
