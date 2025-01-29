@@ -1,48 +1,34 @@
-<div *ngIf="!verif"> <!--User-->
-    <!-- Cartel de bienvenida centrado -->
-    <div class="container mt-5 pt-4">
-     <div class="alert alert-light d-flex align-items-center" role="alert">
-       <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
-       <div class="ms-3">
-         <h5 class="mb-0"> Hola!</h5>
-         <p class="mb-0">Que tipo de usuario sos?</p>
-       </div>
-     </div>
-   </div>
- 
-   <!-- Contenedor de las cards con simetría respecto al cartel -->
- <div class="container mt-4">
-   <div class="row justify-content-center">
-     <!-- Card 1: Ir a sing in de usuario  -->
-     <div class="col-12 col-md-6 mb-3">
-       <div class="card shadow-sm">
-         <div class="card-body">
-           <h5 class="card-title">Soy Paciente</h5>
-           <p class="card-text">Registrate como usuario Paciente</p>
-           <div class="text-center">
-             <img src="assets\img\images.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Solicitar Turno">
-           </div>
-           <button class="btn btn btn-success" (click)="gotoUserSignin()">Continuar</button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Card 2: Ir a sign in de doctor -->
-     <div class="col-12 col-md-6 mb-3">
-       <div class="card shadow-sm">
-         <div class="card-body">
-           <h5 class="card-title">Soy Doctor</h5>
-           <p class="card-text">Registrate como usuario Doctor</p>
-           <div class="text-center">
-             <img src="assets\img\calendario.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Ver Todos los Turnos">
-           </div>
-           <a href="/DocsignIn" class="btn btn-success">Continuar</a>
-         </div>
-       </div>
-     </div>
-   </div>
+
+<div *ngIf="!verif" class="container mt-5">
+  <div class="text-center mb-4">
+      <h2>¿Qué tipo de usuario sos?</h2>
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="col-md-5">
+          <div class="card card-option text-center p-4">
+              <i class="icon-large text-primary bi bi-calendar-plus"></i>
+              <h4 class="fw-bold">Soy Paciente</h4>
+              <p>Regístrate como usuario Paciente</p>
+              <a class="btn btn-primary" (click)="gotoUserSignin()">Continuar</a>
+          </div>
+      </div>
+
+     
+      <div class="col-md-5">
+        <div class="card card-option text-center p-4">
+            <i class="icon-large text-success bi bi-calendar-check"></i> 
+            <h4 class="fw-bold">Soy Doctor</h4>
+            <p>Regístrate como usuario Doctor</p>
+            <a href="/DocsignIn" class="btn btn-success">Continuar</a>
+        </div>
+    </div>
+  </div>
+  <a href="/login" class="btn btn-secondary d-block mx-auto text-center mt-5" style="width: fit-content;" >Volver a la pagina anterior</a>
 </div>
-</div>
+
+
+
 
 <div *ngIf="verif" class="wrapper">     
     <div *ngIf="!loading" class="body">
@@ -57,8 +43,8 @@
         <input formControlName="password" type="password" class="form-control mb-1" placeholder="Ingrese su contraseña">
         <input formControlName="repassword" type="password" class="form-control mb-1" placeholder="Repita su contraseña">
         <span *ngIf="registerForm.errors?.['passwordmatcherror']" class="">Las contraseñas no son iguales</span>
-        <re-captcha (resolved)="captchaResuelto($event)" siteKey=""></re-captcha>
-        <div class="g-recaptcha" data-sitekey=""></div>
+        <re-captcha (resolved)="captchaResuelto($event)" siteKey="6Ldn3MYqAAAAAH1UUbSNqlO5DcnDtRPblcptwRV_"></re-captcha>
+        <div class="g-recaptcha" data-sitekey="6Ldn3MYqAAAAAH1UUbSNqlO5DcnDtRPblcptwRV_"></div>
         <div class="d-grid gap-2 mt-2">
             <button [disabled]="registerForm.invalid" (click)="addUser()" type="button" class="btn btn-primary btn-lg">Aceptar</button>
         </div>

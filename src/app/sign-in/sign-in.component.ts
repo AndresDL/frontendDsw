@@ -52,6 +52,8 @@ export class SignInComponent{
     this.captcha = resCaptcha;
   }
 
+  registroPaciente: boolean = false;
+
   addUser(){
     const user: User = {
       dni: this.registerForm.value.dni,

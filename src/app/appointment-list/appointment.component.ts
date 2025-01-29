@@ -14,6 +14,7 @@ export class AppointmentComponent implements OnInit{
   appointmentArray: Appointment[] = [];
   user: any;
   item: any;
+  verif: any;
   id!: number; 
   selectedAppointment: Appointment | null = null; 
   
@@ -26,6 +27,12 @@ export class AppointmentComponent implements OnInit{
   ngOnInit(): void {
     this.user = this.decodingService.decodeToken();
     this.getUserAppointments();
+    if (this.appointmentArray === undefined) {
+      this.verif =  false
+    }
+    else {
+      this.verif =  true
+    }
   }
 
   openDetailModal(item: Appointment) {

@@ -12,12 +12,10 @@
     </div>
   </div>
 
-  <!-- Contenedor de las cards con simetría respecto al cartel -->
-<div class="container mt-4">
+  <div class="container mt-4">
   <div class="row justify-content-center">
-    <!-- Card 1: Solicitar Turno -->
     <div class="col-12 col-md-6 mb-3">
-      <div class="card shadow-sm">
+      <div class="card-option text-align-start p-4">
         <div class="card-body">
           <h5 class="card-title">Solicitar Turno</h5>
           <p class="card-text">Agendá tu próximo turno de manera fácil y rápida.</p>
@@ -29,9 +27,8 @@
       </div>
     </div>
 
-    <!-- Card 2: Ver Todos los Turnos -->
     <div class="col-12 col-md-6 mb-3">
-      <div class="card shadow-sm">
+      <div class="card-option text-align-start p-4">
         <div class="card-body">
           <h5 class="card-title">Ver Todos los Turnos</h5>
           <p class="card-text">Revisa todos tus turnos agendados en el portal.</p>
@@ -62,15 +59,20 @@
 
 <div *ngIf="user.codUser === 2"> <!--User-->
   <!-- Cartel de bienvenida centrado -->
-   <div class="container mt-5 pt-4">
-   <div class="alert alert-light d-flex align-items-center" role="alert">
-     <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
-     <div class="ms-3">
-       <h5 class="mb-0"> Hola {{user.firstName}} {{user.lastName}}!</h5>
-       <p class="mb-0">Que tengas un gran día. Administra tus proximos turnos con tu portal doctor.</p>
-     </div>
-   </div>
- </div>
+  <div class="container mt-5 pt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+        <div class="alert alert-light d-flex align-items-center" role="alert">
+          <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
+          <div class="ms-3">
+            <h5 class="mb-0"> Hola {{user.firstName}} {{user.lastName}}!</h5>
+            <p class="mb-0">Que tengas un gran día. Administra tus proximos turnos con tu portal doctor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
 
  <!-- Contenedor de las cards con simetría respecto al cartel -->
 <div class="container mt-4">
@@ -78,13 +80,13 @@
 
    <!-- Card 2: Ver Todos los Turnos -->
    <div class="col-12 col-md-6 mb-3">
-     <div class="card shadow-sm">
+     <div class="card-option text-center p-4">
        <div class="card-body">
          <h5 class="card-title">Ver Todos los Turnos</h5>
          <p class="card-text">Revisa todos tus turnos agendados en el portal.</p>
          <div class="text-center">
-           <img src="assets\img\calendario.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Ver Todos los Turnos">
-         </div>
+            <img src="assets\img\agenda.png" class="rounded img-fluid mb-3" style="max-height: 135px; object-fit: cover;" alt="Imagen Ver Todos los Turnos">
+          </div>
          <a href="#" class="btn btn-success" routerLink="/appointmentList">Ver Turnos</a>
        </div>
      </div>
@@ -114,7 +116,7 @@
     <div class="row justify-content-center">
       <!-- Card 1: Administrar especialidades -->
       <div class="col-12 col-md-6 mb-3">
-        <div class="card shadow-sm">
+        <div class="card-option text-align-start p-4">
           <div class="card-body">
             <h5 class="card-title">Administrar especialidades</h5>
             <p class="card-text">Gestiona las especialidades disponibles en el sistema.</p>
@@ -125,7 +127,7 @@
   
       <!-- Card 2: Administrar consultorios -->
       <div class="col-12 col-md-6 mb-3">
-        <div class="card shadow-sm">
+        <div class="card-option text-align-start p-4">
           <div class="card-body">
             <h5 class="card-title">Administrar consultorios</h5>
             <p class="card-text">Administra los consultorios disponibles para los turnos.</p>
@@ -136,7 +138,7 @@
   
       <!-- Card 4: Administrar doctores -->
       <div class="col-12 col-md-6 mb-3">
-        <div class="card shadow-sm">
+        <div class="card-option text-align-start p-4">
           <div class="card-body">
             <h5 class="card-title">Administrar doctores</h5>
             <p class="card-text">Agrega, edita o elimina doctores del sistema.</p>
@@ -148,7 +150,7 @@
   
       <!-- Card 5: Administrar doctores en consultorios -->
       <div class="col-12 col-md-6 mb-3">
-        <div class="card shadow-sm">
+        <div class="card-option text-align-start p-4">
           <div class="card-body">
             <h5 class="card-title">Administrar doctores en consultorios</h5>
             <p class="card-text">Asocia doctores con los consultorios correspondientes.</p>
