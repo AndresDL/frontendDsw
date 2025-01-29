@@ -16,7 +16,7 @@ import { Appointment } from '../interfaces/appointment';
 })
 export class DoctorConsultingComponent {
   doconsArray: DoctorConsulting[] = [];
-  appointmentArray: Appointment[] = [];
+  appoVerif?: boolean;
   doctor_consulting: any;
   item: any;
   user: any;
@@ -32,12 +32,14 @@ export class DoctorConsultingComponent {
     this.name = String(aRouter.snapshot.paramMap.get('name'))
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.user = this.decodingService.decodeToken();
     if(this.user.codUser === 0){
+      console.log('admin')
       this.getAllDoctor_consulting();
     }
     else {
+      console.log('user')
       this.filterDoctor_consultings();
     }
   }
@@ -51,24 +53,34 @@ export class DoctorConsultingComponent {
   getDoctor_consulting(id: number){
     this.doconsService.getDoctor_consulting(id).subscribe((doctor_consulting) => {
       this.doctor_consulting = doctor_consulting;
-      console.log(this.doctor_consulting);
     })
   }
 
   getAppointments(){
+    this.appoVerif = false;
     this.appointmentService.getAppointments().subscribe((appointment) => {
       for(var i in appointment){
         if(appointment[i].doctor_consulting.id === this.doctor_consulting.id){
           console.log('hay turnos registrados para aca')
-          return;
         };
       };
     });
   }
 
   vigencyDoctor_consulting(){
-    this.getAppointments
-    console.log('continuo')
+    this.getAppointments()
+    if(this.appoVerif === true){
+      this.toastr.error('Todavia hay turnos programados con este doctor en este consultorio',
+        'Error al dar de baja'
+      );
+      return;
+    }
+    this.doctor_consulting.vigency = false;
+    console.log(this.doctor_consulting)
+    this.doconsService.updateDoctor_consulting(this.doctor_consulting).subscribe(() => {
+      this.toastr.success('La instancia laboral a sido dada de baja','Exito al dar de baja');
+    });
+    this.getAllDoctor_consulting();
   }
 
   reactivateDoctor_consulting(){

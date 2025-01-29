@@ -72,9 +72,15 @@ export class SignInComponent{
       },
       error: (e: HttpErrorResponse) => {
         this.loading = false;
-        this.toastr.error('Alguien con ese DNI ya esta registrado', 'Error');
-      }
-    })
+        if(e.error.message && this.captcha === ''){
+          this.toastr.error(e.error.message,'Error');   
+        } else if(e.error.message){
+          this.toastr.error('Ya hay alguien registrado con ese DNI','Error');
+        } else {
+          this.toastr.error('Paso algo inesperado, contacte a un admin','Error');
+        };
+      },
+    });
   }
 
   showLoading(){

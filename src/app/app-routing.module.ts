@@ -18,6 +18,7 @@ import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredi
 import { AppointmentAddComponent } from './appointment-add/appointment-add.component.js';
 import { AppointmentComponent } from './appointment-list/appointment.component.js';
 import { logAuthGuard } from './utilities/log-auth.guard.js';
+import { ProfileComponent } from './profile/profile.component.js';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path: 'doconsList', component: DoctorConsultingComponent},//Admin&User
   {path: 'doconsList/:name', component: DoctorConsultingComponent},//User
   {path: 'addAppointment/:id', component:AppointmentAddComponent},//User
+  {path: 'profilePage',component: ProfileComponent},//All
   //wildcard (dejar siempre a lo ultimo esta ruta)
   {path: '**', redirectTo: 'login', pathMatch: 'full'},
 ];

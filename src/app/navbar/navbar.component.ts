@@ -35,8 +35,4 @@ export class NavbarComponent implements OnInit{
     sessionStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
-  
-  workInProgress(){
-    this.toastr.error('Trabajo en proceso', 'No se puede acceder')
-  }
 }

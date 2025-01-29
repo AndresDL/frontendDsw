@@ -31,6 +31,7 @@ import { DoctorConsultingAddoreditComponent } from './doctor-consulting-addoredi
 import localeEs from '@angular/common/locales/es'
 import { DatePipe, registerLocaleData } from '@angular/common';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { ProfileComponent } from './profile/profile.component';
 
 
 registerLocaleData(localeEs);
@@ -54,6 +55,7 @@ registerLocaleData(localeEs);
     SpecialtyAddoreditComponent,
     NavbarComponent,
     SignInComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

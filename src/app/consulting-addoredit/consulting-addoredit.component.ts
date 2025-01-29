@@ -10,6 +10,7 @@ import { ConsultingService } from '../servicies/consulting.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-consulting-addoredit',
@@ -40,7 +41,7 @@ export class ConsultingAddoreditComponent {
       //edit
       this.operation = 'Editar ';
       this.getConsulting(this.id);
-    }
+    };
   }
 
   getConsulting(id:number){
@@ -61,17 +62,43 @@ export class ConsultingAddoreditComponent {
     if(this.id!==0){
       //edit
       consulting.id = this.id
-      this.consultingService.updateConsulting(consulting).subscribe(()=>{
-        this.router.navigate(['/home/consultingList']);
-      })
-    } else{
+      this.consultingService.updateConsulting(consulting).subscribe({
+        next: () => {
+          this.toastr.success('Consultorio modificado exitosamente','Exito');
+          this.router.navigate(['/home/consultingList']);
+        },
+        error: (e: HttpErrorResponse) => {
+          if(e.error.message){
+            this.toastr.error('Ya existe un consultorio registrado en esa ubicación','Error');
+          } else {
+            this.toastr.error(
+              'Paso algo inesperado, contacta un admin!',
+              'Error'
+            );
+          };
+        },
+      });
+    } else {
       //add
-      this.consultingService.addConsulting(consulting).subscribe(()=>{
-        this.router.navigate(['/home/consultingList']);
-        this.toastr.success(`El conusltorio en ${this.consultingForm.value.street} 
-          ${this.consultingForm.value.street_number} ha sido agregado`,'Consultorio agregado' )
-      })
-    }
+      this.consultingService.addConsulting(consulting).subscribe({
+        next: () => {
+          this.toastr.success('El consultorio en ' + consulting.street + ' ' + consulting.street_number 
+            + ' a sido registrado exitosamente','Exito'
+          );
+          this.router.navigate(['/home/consultingList']);
+        },
+        error: (e:HttpErrorResponse) => {
+          if(e.error.message){
+            this.toastr.error('Ya existe un consultorio registrado en esa ubicación','Error');
+          } else {
+            this.toastr.error(
+              'Paso algo inesperado, contacta un admin!',
+              'Error'
+            );
+          };
+        },
+      });
+    };
   }
 }
 
