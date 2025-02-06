@@ -1,3 +1,4 @@
+
 <div class="wrapper">     
     <div *ngIf="!loading" class="body">
       <img class="icon" src="../../assets/img/hospital.png" alt="img login">
@@ -17,7 +18,7 @@
           </select>
       </div>
         <span *ngIf="registerForm.errors?.['passwordmatcherror']" class="">Las contraseñas no son iguales</span>
-        <re-captcha (resolved)="captchaResuelto($event)" siteKey="6Ldn3MYqAAAAAH1UUbSNqlO5DcnDtRPblcptwRV_"></re-captcha>
+        <re-captcha (resolved)="captchaResuelto($event)" siteKey="6Lclx78qAAAAAC95CZEKViCTN8z0WtxdxWKglfKT"></re-captcha>
         <div class="d-grid gap-2 mt-2">
             <button [disabled]="registerForm.invalid" (click)="addDoctor()" type="button" class="btn btn-primary btn-lg">Aceptar</button>
         </div>

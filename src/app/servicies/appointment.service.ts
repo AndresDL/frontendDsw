@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../enviroments/environment';
 import { Appointment } from '../interfaces/appointment';
 import { map, Observable} from 'rxjs';
+import { response } from 'express';
 
 
 @Injectable({
@@ -34,6 +35,15 @@ export class AppointmentService {
   //GetFilteredbyUserDNI
   getfilteredAppointments(dni: string): Observable<Appointment[]>{
     const url = `${this.myAppUrl}${this.myApiUrl}search/${dni}`;
+    return this.http.get<any>(url).pipe(map(response => {
+      return response.data;
+    }));
+  }
+
+  //getFilteredbyDoctorTuition_Number
+  getDocfilteredAppointments(tuition: number): Observable<Appointment[]>{
+    const url = `${this.myAppUrl}${this.myApiUrl}searchDoc/${tuition}`
+    console.log(url)
     return this.http.get<any>(url).pipe(map(response => {
       return response.data;
     }));

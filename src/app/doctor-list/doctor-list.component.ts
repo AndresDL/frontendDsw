@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http/index.js';
 })
 export class DoctorListComponent implements OnInit{
   @ViewChild('staticBackdrop') modal?:ElementRef
-  doctorArray: Doctor[] = [];
+  doctorArray: any[] = [];
   doctor: any;
   item: any;
   window: any;
@@ -35,32 +35,30 @@ export class DoctorListComponent implements OnInit{
   getDoctor(id: number){
     this.doctorService.getDoctor(id).subscribe((doctor) => {
       this.doctor = doctor;
-      console.log(this.doctor);
     });
   }
 
   vigencyDoctor(){
     if(this.doctor.consultings[0] != undefined){
-      this.toastr.error(this.doctor.firstName + '' + this.doctor.lastName 
-        + ' esta registrado en un consultorio','Error al dar de baja!'
+      this.toastr.error(this.doctor.firstName + ' ' + this.doctor.lastName 
+        + ' esta registrado/a en un consultorio','Error al dar de baja!'
       );
       return;
     };
     this.doctor.vigency = false;
     this.doctorService.updateDoctor(this.doctor).subscribe(() => {
       this.toastr.success(this.doctor.firstName + ' ' + this.doctor.lastName 
-         + ' a sido dado de baja exitosamente','Exito al dar de baja!'
+         + ' a sido dado/a de baja exitosamente','Exito al dar de baja!'
       );
       this.getDoctors();
     });
   }
   
   reactivateDoctor(){
-    console.log('hola');
     this.doctor.vigency = true;
     this.doctorService.updateDoctor(this.doctor).subscribe(() => {
       this.toastr.success(this.doctor.firstName + ' ' + this.doctor.lastName 
-        + ' a sido dado de alta exitosamente','Exito al dar de alta!'
+        + ' a sido dado/a de alta exitosamente','Exito al dar de alta!'
      );
      this.getDoctors();
     });

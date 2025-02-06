@@ -1,1 +1,28 @@
 hola manola 
+<div *ngIf="this.user.codUser === 0">
+    <h1>Admin</h1>
+    <td>DNI: {{this.user.dni}} </td>
+    <td>Nombre: {{this.user.firstName}}</td>
+    <td>Apellido: {{this.user.lastName}} </td>
+    <td>Edad: {{this.user.age}}</td>
+    <td>Email: {{this.user.email}}</td>
+</div>
+
+<div *ngIf="this.user.codUser === 1">
+    <h1>User</h1>
+    <td>DNI: {{this.user.dni}} </td>
+    <td>Nombre: {{this.user.firstName}}</td>
+    <td>Apellido: {{this.user.lastName}} </td>
+    <td>Edad: {{this.user.age}}</td>
+    <td>Email: {{this.user.email}}</td> 
+</div>
+
+<div *ngIf="this.user.codUser === 2">
+    <h1>Doctor</h1>
+    <td>Matricula: {{this.user.tuition_number}}</td>
+    <td>Nombre: {{this.user.firstName}}</td>
+    <td>Apellido: {{this.user.lastName}} </td>
+    <td>Especialidad: {{this.user.specialty.id}}<td>
+    <td>Edad: {{this.user.age}}</td>
+    <td>Email: {{this.user.email}}</td>
+</div>

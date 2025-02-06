@@ -1,5 +1,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<div *ngIf="user.codUser === 1" class = "container mt-2 text-center">
+
+<div *ngIf="this.appointmentArray.length === 0">
+    <h1>No tiene turnos registrados todavia</h1>
+    <button routerLink="/home">Volver</button>
+</div>
+
+<div *ngIf="user.codUser === 1 && this.appointmentArray.length !== 0 && !loading" class = "container mt-2 text-center">
 
     <div class="alert alert-primary d-flex justify-content-center align-items-center w-75 mx-auto" role="alert">
         <i class="bi bi-info-circle-fill flex-shrink-0 me-2" style="font-size: 1.2rem;" aria-label="Info"></i>
@@ -19,7 +25,7 @@
             </thead>
             <tbody>
                 <tr *ngFor= "let item of appointmentArray">
-                    <td>{{item.appoDate | slice:0:10}}</td> 
+                    <td>{{item.appoDate}}</td> 
                     <td>{{item.appoTime}}</td>
                     <td>
                     <i type="button" class="bi bi-trash text-danger cursor-pointer" (click)="assingId(item.id!)" data-bs-toggle="modal"
@@ -36,8 +42,12 @@
     </div>  
 </div>
 
- <!-- Modal -->
- <div *ngIf="this.selectedAppointment != null" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngIf="loading" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+
+ <!-- Modal 1 User -->
+ <div *ngIf="this.selectedAppointment != null && this.user.codUser === 1" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -45,7 +55,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-            <p><strong>Fecha:</strong> {{this.selectedAppointment.appoDate | slice:0:10}}</p>
+            <p><strong>Fecha:</strong> {{this.selectedAppointment.appoDate}}</p>
             <p><strong>Hora:</strong> {{this.selectedAppointment.appoTime}}</p>
             <p><strong>Doctor:</strong> {{this.selectedAppointment.doctor_consulting.doctor.firstName}}
                     {{this.selectedAppointment.doctor_consulting.doctor.lastName}}
@@ -59,8 +69,8 @@
 </div>  
 
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal 2 User -->
+<div *ngIf="this.user.codUser === 1" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -68,7 +78,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Esta seguro que quiere cancelar este turno? Esta acccion es irreversible
+            Esta seguro que quiere cancelar este turno? Esta acción es irreversible
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="deleteAppointment(this.id)" data-bs-dismiss="modal">Aceptar</button>
@@ -78,7 +88,7 @@
 </div>
   
 
-<div *ngIf="user.codUser === 2" class = "container mt-2 text-center">
+<div *ngIf="user.codUser === 2 && this.appointmentArray.length !== 0" class = "container mt-2 text-center">
     <div class="alert alert-primary d-flex justify-content-center align-items-center w-75 mx-auto" role="alert">
         <i class="bi bi-info-circle-fill flex-shrink-0 me-2" style="font-size: 1.2rem;" aria-label="Info"></i>
         <div>
@@ -97,13 +107,13 @@
             </thead>
             <tbody>
                 <tr *ngFor= "let item of appointmentArray">
-                    <td>{{item.appoDate | slice:0:10}}</td> 
+                    <td>{{item.appoDate}}</td> 
                     <td>{{item.appoTime}}</td>
                     <td>
                     <i type="button" class="bi bi-trash text-danger cursor-pointer" (click)="assingId(item.id!)" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop" style="font-size: 1.4rem;">
+                        data-bs-target="#doctorModal1" style="font-size: 1.4rem;">
                     </i>
-                    <i type="button" class="bi bi-info-circle text-dark cursor-pointer ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <i type="button" class="bi bi-info-circle text-dark cursor-pointer ms-3" data-bs-toggle="modal" data-bs-target="#doctorModal2"
                         (click)="openDetailModal(item)" style="font-size: 1.4rem;">
                     </i>
                     </td>                                       
@@ -114,8 +124,8 @@
     </div>  
 </div>
 
- <!-- Modal -->
- <div *ngIf="this.selectedAppointment != null" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- Modal 1 Doctor -->
+ <div *ngIf="this.selectedAppointment != null && this.user.codUser === 2" class="modal fade" id="doctorModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -123,12 +133,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-            <p><strong>Fecha:</strong> {{this.selectedAppointment.appoDate | slice:0:10}}</p>
+            <p><strong>Fecha:</strong> {{this.selectedAppointment.appoDate}}</p>
             <p><strong>Hora:</strong> {{this.selectedAppointment.appoTime}}</p>
-            <p><strong>Doctor:</strong> {{this.selectedAppointment.doctor_consulting.doctor.firstName}}
-                    {{this.selectedAppointment.doctor_consulting.doctor.lastName}}
+            <p><strong>Paciente:</strong> {{this.selectedAppointment.patient.firstName}}
+                    {{this.selectedAppointment.patient.lastName}}
             </p>
-            <p><strong>Especialidad:</strong> {{this.selectedAppointment.doctor_consulting.doctor.specialty.name}}</p>
+            <p><strong>DNI:</strong> {{this.selectedAppointment.patient.dni}}</p>
             <p><strong>Direccion: </strong> {{this.selectedAppointment.doctor_consulting.consulting.street}}
                 {{this.selectedAppointment.doctor_consulting.consulting.street_number}}</p>
         </div>
@@ -137,8 +147,8 @@
 </div>  
 
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal 2 Doctor -->
+<div *ngIf="this.user.codUser === 2" class="modal fade" id="doctorModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -146,7 +156,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Esta seguro que quiere cancelar este turno? Esta acccion es irreversible
+            Esta seguro que quiere cancelar este turno? Esta acción es irreversible
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="deleteAppointment(this.id)" data-bs-dismiss="modal">Aceptar</button>

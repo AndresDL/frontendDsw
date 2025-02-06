@@ -3,6 +3,8 @@ import { Appointment } from '../interfaces/appointment';
 import { AppointmentService } from '../servicies/appointment.service';
 import { DecodingService } from '../servicies/decoding.service';
 import { ToastrService } from 'ngx-toastr';
+import { ConnectableObservable } from 'rxjs';
+import { computeStyles } from '@popperjs/core';
 
 @Component({
   selector: 'app-appointment',
@@ -11,11 +13,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppointmentComponent implements OnInit{
 
-  appointmentArray: Appointment[] = [];
+  appointmentArray: any[] = [];
   user: any;
   item: any;
   verif: any;
   id!: number; 
+  loading: boolean = false;
   selectedAppointment: Appointment | null = null; 
   
   constructor(
@@ -24,31 +27,53 @@ export class AppointmentComponent implements OnInit{
      private toastr: ToastrService,
   ){}
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.user = this.decodingService.decodeToken();
-    this.getUserAppointments();
-    if (this.appointmentArray === undefined) {
-      this.verif =  false
+    if(this.user.codUser === 1){
+      this.getUserAppointments();
+    } else {
+      this.getDoctorAppointments();
     }
-    else {
-      this.verif =  true
-    }
+    
   }
 
   openDetailModal(item: Appointment) {
-    this.selectedAppointment = item
+    this.selectedAppointment = item;
   }
 
   getUserAppointments(){
-    this.appointmentService.getfilteredAppointments(this.user.dni).subscribe(appointment => {
-      this.appointmentArray = appointment;
-    })
+    this.appointmentService.getfilteredAppointments(this.user.dni).subscribe((appointments) => {
+      this.appointmentArray = this.formatDateTime(appointments);
+    });
+  }
+
+  getDoctorAppointments(){
+   this.appointmentService.getDocfilteredAppointments(this.user.tuition_number).subscribe((appointments) => {
+    this.appointmentArray = this.formatDateTime(appointments);
+   });
+  }
+
+  formatDateTime(appointments: any){
+    for( var i in appointments){
+      let aux = "";
+      aux = appointments[i].appoDate.replace("T00:00:00.000Z","");
+      let [year,month,day] = aux.split('-');
+      appointments[i].appoDate = `${day}/${month}/${year}`
+      appointments[i].appoTime = appointments[i].appoTime.replace(':00:00',':00')
+    };
+    return appointments;
   }
 
   deleteAppointment(id: number){
     this.appointmentService.deleteAppointment(id).subscribe((response)=>{
-      this.getUserAppointments();
-      this.toastr.success('Su turno ha sido elminado exitosamente','Turno eliminado');
+      if(this.user.codUser === 1){
+        this.getUserAppointments();
+        this.toastr.success('Su turno ha sido cancelado exitosamente','Turno cancelado');
+      } else {
+        this.getDoctorAppointments();
+        this.toastr.success('El turno ha sido cancelado exitosamente','Turno cancelado');
+      }
+      
     },
   (error)=> console.error ("Error deleting", error));
   }
@@ -56,5 +81,4 @@ export class AppointmentComponent implements OnInit{
   assingId(id: number){
     this.id = id;
   }
-
 }

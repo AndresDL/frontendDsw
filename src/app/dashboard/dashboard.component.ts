@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   earliestTime!: string;
   earliestDate!: string
   user: any;
+  loading: boolean = false;
   appointmentArray: Appointment[] = [];
 
 
@@ -40,13 +41,15 @@ export class DashboardComponent implements OnInit {
     this.earliestDate = this.appointmentArray[0].appoDate
     this.earliestTime = this.appointmentArray[0].appoTime
     for (var element of this.appointmentArray) {
-      if ( this.earliestDate > element.appoDate) {
-       this.earliestDate = element.appoDate
-       this.earliestTime = element.appoTime
-      } 
-    }
-    this.getFormattedTime()
-    }
+      if(this.earliestDate > element.appoDate){
+        this.earliestDate = element.appoDate
+      }; 
+      if(this.earliestTime > element.appoTime){
+        this.earliestTime = element.appoTime
+      };
+    };
+    this.getFormattedTime();
+    };
   }
 
   getFormattedTime(){
@@ -58,5 +61,9 @@ export class DashboardComponent implements OnInit {
       modifier = 'AM' 
     }
     this.earliestTime = `${hours}:${minutes} ${modifier}`
+  }
+
+  showLoading(){
+    this.loading = true;
   }
 }

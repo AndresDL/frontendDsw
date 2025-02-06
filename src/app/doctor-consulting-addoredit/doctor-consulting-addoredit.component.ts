@@ -56,19 +56,26 @@ export class DoctorConsultingAddoreditComponent {
   getAllDocons(){
     this.doconsService.getDoctor_consultings().subscribe((docons) => {
       this.doconsArray = docons;
-      console.log(this.doconsArray)
     });
   }
 
   getAllDoctors(){
-    this.doctorService.getDoctors().subscribe((doctor) => {
-      this.doctorArray = doctor;
+    this.doctorService.getDoctors().subscribe((doctors) => {
+      for(var i in doctors){
+        if(doctors[i].vigency === true){
+          this.doctorArray.push(doctors[i])
+        };
+      };
     });
   }
 
   getAllConsultings(){
-    this.consultingService.getConsultings().subscribe((consulting) => {
-      this.consultingArray = consulting;
+    this.consultingService.getConsultings().subscribe((consultings) => {
+      for (var i in consultings){
+        if(consultings[i].vigency === true){
+          this.consultingArray.push(consultings[i])
+        };
+      };
     });
   }
 
@@ -87,28 +94,18 @@ export class DoctorConsultingAddoreditComponent {
       doctor: Number.parseInt(this.doconsForm.value.doctor),
       consulting: Number.parseInt(this.doconsForm.value.consulting),
     }
+    console.log(doctor_consulting)
     for(var i in this.doconsArray){
       if(doctor_consulting.doctor === this.doconsArray[i].doctor.id 
         && doctor_consulting.consulting === this.doconsArray[i].consulting.id
       ){
         this.toastr.error('El doctor elegido ya a sido registrado en el consultorio elegido','Error');
-        this.router.navigate(['/doconsList']);
         return;
-      } else if(
-        doctor_consulting.doctor === this.doconsArray[i].doctor.id 
-        && doctor_consulting.consulting === this.doconsArray[i].consulting.id 
-        && this.doconsArray[i].vigency === false
-      ){
-        this.toastr.error('El doctor elegido ya a sido registrado en el consultorio elegido','Error');
-        this.toastr.warning('Podria optar por dar de alta dicha instancia','Atencion')
-        this.router.navigate(['/doconsList']);
-        return;
-      }
+      };
       if(doctor_consulting.doctor === this.doconsArray[i].doctor.id
         && this.doconsArray[i].vigency === true
       ){
         this.toastr.error('El doctor elegido ya se encuentra trabajando en otro consultorio','Error');
-        this.router.navigate(['/doconsList']);
         return;
       };
     };
@@ -121,10 +118,10 @@ export class DoctorConsultingAddoreditComponent {
      });
     } else {
       //add
+      console.log(doctor_consulting)
       this.doconsService.addDoctor_consulting(doctor_consulting).subscribe(() => {
-        this.toastr.success('La instancia ha sido agregada exitosamente','Instancia agregada')
-        this.router.navigate(['/doconsList']);
-        return;
+        this.toastr.success('La instancia ha sido agregada exitosamente','Instancia agregada');
+        this.router.navigate(['/home']);
       })
     }
   }

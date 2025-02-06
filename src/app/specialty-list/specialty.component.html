@@ -1,7 +1,18 @@
-<div *ngIf="user.codUser === 0" class = "container mt-2 text-center">
+
+<div *ngIf="specialtyArray.length === 0"> <!--Array vacio-->
     <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
         <h4 class="alert-heading">Lista de especialidades</h4>
-        <p>Usted puede agregar, editar o eliminar especialidades.</p>
+        <p>Usted puede agregar, editar o dar de baja especialidades.</p>
+    </div>
+    <h1>No se registraron especialidades aun</h1>
+    <button routerLink="/home">pagina anterior</button>
+    <button type="button" class="btn btn-success ms-2" routerLink="/home/addSpecialty">Agregar especialidad</button>
+</div>
+
+<div *ngIf="user.codUser === 0 && specialtyArray.length != 0" class = "container mt-2 text-center">
+    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
+        <h4 class="alert-heading">Lista de especialidades</h4>
+        <p>Usted puede agregar, editar o dar de baja especialidades.</p>
     </div>
     <div class="table-responsive mt-3 mb-5">
         <table class="table table-striped table-hover">
@@ -32,7 +43,8 @@
         <button type="button" class="btn btn-success ms-2" routerLink="/home/addSpecialty">Agregar especialidad</button>
     </div>
 </div>
-<div *ngIf="user.codUser === 1" class = "container mt-2 text-center">    
+
+<div *ngIf="user.codUser === 1 && specialtyArray.length != 0" class = "container mt-2 text-center">    
     <div class="container mt-4">
         <!-- Cartel informativo -->
         <div class="alert alert-info text-center w-75 mx-auto" role="alert">

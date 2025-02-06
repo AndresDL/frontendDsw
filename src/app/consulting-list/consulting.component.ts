@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ConsultingComponent implements OnInit {
   
-  consultingArray: Consulting[] = [];
+  consultingArray: any[] = [];
   consulting: any;
   item:any;
   

@@ -8,7 +8,6 @@ import { Appointment } from '../interfaces/appointment';
 import { AppointmentService } from '../servicies/appointment.service';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
-import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Component({
   selector: 'app-appointment-add',
@@ -78,14 +77,13 @@ export class AppointmentAddComponent implements OnInit {
   }
 
   onDateChange(){
-    let timeArray = ['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00',
-      '17:00','18:00','19:00','20:00'
+    let timeArray = ['8:00:00','9:00:00','10:00:00','11:00:00','12:00:00','13:00:00','14:00:00','15:00:00','16:00:00',
+      '17:00:00','18:00:00','19:00:00','20:00:00'
     ];
     let datefilteredArray: Appointment[] = [];
     let formattedDate = this.appointmentForm.value.appoDate + 'T00:00:00.000Z';
-    for(var j in timeArray) {
-      let formattedTime = timeArray[j] + ':00';
-      this.timefilteredArray[j] = formattedTime;
+    for(var i in timeArray){
+      this.timefilteredArray[i] = timeArray[i].replace(':00:00',':00');
     }
     for(var i in this.appointmentArray){
       if(this.appointmentArray[i].appoDate === formattedDate){
@@ -95,9 +93,8 @@ export class AppointmentAddComponent implements OnInit {
     if(datefilteredArray){
       for(var j in timeArray) {
         for(var i in datefilteredArray){
-          let formattedTime = timeArray[j] + ':00';
-          if(datefilteredArray[i].appoTime === formattedTime){
-            this.timefilteredArray[j] = formattedTime + ' No disponible';
+          if(datefilteredArray[i].appoTime === timeArray[j]){
+            this.timefilteredArray[j] = this.timefilteredArray[j] + ' No disponible';
           };
         };
       };

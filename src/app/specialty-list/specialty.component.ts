@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './specialty.component.scss'
 })
 export class SpecialtyComponent implements OnInit{
-  specialtyArray: Specialty[] = [];
+  specialtyArray: any[] = [];
   specialty: any
   item: any;
   user: any;
