@@ -1,12 +1,14 @@
 
-<div *ngIf="specialtyArray.length === 0"> <!--Array vacio-->
-    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
-        <h4 class="alert-heading">Lista de especialidades</h4>
-        <p>Usted puede agregar, editar o dar de baja especialidades.</p>
+<div *ngIf="user.codUser === 0 && specialtyArray.length === 0"> <!--Array vacio-->
+    <div class="container mt-4">
+        <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+            <strong>¡Atención!</strong> No se registraron especialidades todavía. 
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+            <button type="button" class="btn btn-success ms-2" routerLink="/home/addSpecialty">Agregar especialidad</button>
+        </div>
     </div>
-    <h1>No se registraron especialidades aun</h1>
-    <button routerLink="/home">pagina anterior</button>
-    <button type="button" class="btn btn-success ms-2" routerLink="/home/addSpecialty">Agregar especialidad</button>
 </div>
 
 <div *ngIf="user.codUser === 0 && specialtyArray.length != 0" class = "container mt-2 text-center">
@@ -41,6 +43,17 @@
         </table>
         <button type="button" class="btn btn-secondary"  routerLink="/home">Pagina anterior</button>
         <button type="button" class="btn btn-success ms-2" routerLink="/home/addSpecialty">Agregar especialidad</button>
+    </div>
+</div>
+
+<div *ngIf="user.codUser === 1 && specialtyArray.length === 0"> <!--Array vacio-->
+    <div class="container mt-4">
+        <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+            <strong>¡Atención!</strong> No se registraron especialidades todavía, no puede solicitar un turno
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+        </div>
     </div>
 </div>
 

@@ -1,28 +1,66 @@
-hola manola 
+
 <div *ngIf="this.user.codUser === 0">
-    <h1>Admin</h1>
-    <td>DNI: {{this.user.dni}} </td>
-    <td>Nombre: {{this.user.firstName}}</td>
-    <td>Apellido: {{this.user.lastName}} </td>
-    <td>Edad: {{this.user.age}}</td>
-    <td>Email: {{this.user.email}}</td>
+    <div class="container mt-5">
+        <div class="card shadow-lg mx-auto" style="max-width: 500px; border: none;">
+            <div class="card-header text-white text-center py-4 rounded-top" style="background-color: #7fe7f5;">
+                <h4 class="mb-0 text-black">👤 Perfil del Administrador</h4>
+            </div>
+            <div class="card-body text-center">
+                <ul class="list-group list-group-flush text-start">
+                    <li class="list-group-item"><strong>ID:</strong> {{this.user.dni}}</li>
+                    <li class="list-group-item"><strong>Nombre:</strong> {{this.user.firstName}}</li>
+                    <li class="list-group-item"><strong>Apellido:</strong> {{this.user.lastName}}</li>
+                    <li class="list-group-item"><strong>Edad:</strong> {{this.user.age}}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{this.user.email}}</li>
+                </ul>
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="/home" class="btn btn-secondary">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="this.user.codUser === 1">
-    <h1>User</h1>
-    <td>DNI: {{this.user.dni}} </td>
-    <td>Nombre: {{this.user.firstName}}</td>
-    <td>Apellido: {{this.user.lastName}} </td>
-    <td>Edad: {{this.user.age}}</td>
-    <td>Email: {{this.user.email}}</td> 
+    <div class="container mt-5">
+        <div class="card shadow-lg mx-auto" style="max-width: 500px; border: none;">
+            <div class="card-header text-white text-center py-4 rounded-top" style="background-color: #7fe7f5;">
+                <h4 class="mb-0 text-black">👤 Perfil del Paciente</h4>
+            </div>
+            <div class="card-body text-center">
+                <ul class="list-group list-group-flush text-start">
+                    <li class="list-group-item"><strong>DNI:</strong> {{this.user.dni}}</li>
+                    <li class="list-group-item"><strong>Nombre:</strong> {{this.user.firstName}}</li>
+                    <li class="list-group-item"><strong>Apellido:</strong> {{this.user.lastName}}</li>
+                    <li class="list-group-item"><strong>Edad:</strong> {{this.user.age}}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{this.user.email}}</li>
+                </ul>
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="/home" class="btn btn-secondary">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="this.user.codUser === 2">
-    <h1>Doctor</h1>
-    <td>Matricula: {{this.user.tuition_number}}</td>
-    <td>Nombre: {{this.user.firstName}}</td>
-    <td>Apellido: {{this.user.lastName}} </td>
-    <td>Especialidad: {{this.user.specialty.id}}<td>
-    <td>Edad: {{this.user.age}}</td>
-    <td>Email: {{this.user.email}}</td>
+    <div class="container mt-5">
+        <div class="card shadow-lg mx-auto" style="max-width: 500px; border: none;">
+            <div class="card-header text-white text-center py-4 rounded-top" style="background-color: #7fe7f5;">
+                <h4 class="mb-0 text-black">👤 Perfil del Doctor</h4>
+            </div>
+            <div class="card-body text-center">
+                <ul class="list-group list-group-flush text-start">
+                    <li class="list-group-item"><strong>DNI:</strong> {{this.user.dni}}</li>
+                    <li class="list-group-item"><strong>Nombre:</strong> {{this.user.firstName}}</li>
+                    <li class="list-group-item"><strong>Apellido:</strong> {{this.user.lastName}}</li>
+                    <li class="list-group-item"><strong>Edad:</strong> {{this.user.age}}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{this.user.email}}</li>
+                </ul>
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="/home" class="btn btn-secondary">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

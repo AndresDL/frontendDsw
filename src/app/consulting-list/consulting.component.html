@@ -1,13 +1,16 @@
 
 <div *ngIf="consultingArray.length === 0"> <!--Array vacio-->
-    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
-        <h4 class="alert-heading">Lista de consultorios</h4>
-        <p>Usted puede agregar, editar o dar de baja consultorios.</p>
+        <div class="container mt-4">
+            <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+                <strong>¡Atención!</strong> No se registraron consultorios todavía.
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+                <button type="button" class="btn btn-success ms-2" routerLink="/home/addConsulting">Agregar consultorio</button>
+            </div>
+        </div>
     </div>
-    <h1>No se registraron consultorios aun</h1>
-    <button routerLink="/home">pagina anterior</button>
-    <button type="button" class="btn btn-success ms-2" routerLink="/home/addConsulting">Agregar consultorio</button>
-</div>
+    
 
 <div *ngIf="consultingArray.length != 0" class = "container mt-2 text-center">
     <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
