@@ -1,0 +1,127 @@
+
+<div *ngIf="user.codUser === 0 && specialtyArray.length === 0"> <!--Array vacio-->
+    <div class="container mt-4">
+        <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+            <strong>¡Atención!</strong> No se registraron especialidades todavía. 
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+            <button type="button" class="btn btn-success ms-2" routerLink="/home/addSpecialty">Agregar especialidad</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="user.codUser === 0 && specialtyArray.length != 0" class = "container mt-2 text-center">
+    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
+        <h4 class="alert-heading">Lista de especialidades</h4>
+        <p>Usted puede agregar, editar o dar de baja especialidades.</p>
+    </div>
+    <div class="table-responsive mt-3 mb-5">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">Vigencia</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of specialtyArray">
+                <td>{{item.vigency}}</td>
+                <td>{{item.id}}</td> 
+                <td>{{item.name}}</td> 
+                <td>
+                    <i *ngIf="item.vigency" type="button" class="bi bi-trash text-danger cursor-pointer" style="font-size: 1.2rem;" (click)="getSpecialty(item.id!)"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+                    <i *ngIf="item.vigency" type="button" class="bi bi-pencil text-dark cursor-pointer ms-3" style="font-size: 1.2rem;" routerLink="/home/editSpecialty/{{item.id}}"></i>
+                    <i *ngIf="!item.vigency" type="button" class="bi bi-arrow-clockwise text-success cursor-pointer ms-3" style="font-size: 1.2rem;"  (click)="getSpecialty(item.id!)"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop2"></i>
+                </td>  
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary"  routerLink="/home">Pagina anterior</button>
+        <button type="button" class="btn btn-success ms-2" routerLink="/home/addSpecialty">Agregar especialidad</button>
+    </div>
+</div>
+
+<div *ngIf="user.codUser === 1 && specialtyArray.length === 0"> <!--Array vacio-->
+    <div class="container mt-4">
+        <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+            <strong>¡Atención!</strong> No se registraron especialidades todavía, no puede solicitar un turno
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="user.codUser === 1 && specialtyArray.length != 0" class = "container mt-2 text-center">    
+    <div class="container mt-4">
+        <!-- Cartel informativo -->
+        <div class="alert alert-info text-center w-75 mx-auto" role="alert">
+            <h4 class="alert-heading">Seleccione una especialidad</h4>
+            <p>Para sacar un turno, elija una especialidad de la lista a continuación.</p>
+        </div>
+    
+        <!-- Tabla -->
+        <div class="table-responsive mt-3 mb-5">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">Nombre</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of specialtyArray">
+                        <td>{{item.name}}</td> 
+                        <td>
+                            <button type="button" class="btn btn-success ms-2" routerLink="/doconsList/{{item.name}}">
+                                <i class="bi bi-search"></i> Buscar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere dar de baja esta especialidad?
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="vigencySpecialty()" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere dar de alta esta especialidad?
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="reactivateSpecialty()" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>

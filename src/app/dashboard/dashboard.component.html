@@ -1,0 +1,163 @@
+
+
+<div *ngIf="user.codUser === 1"> <!--User-->
+   <!-- Cartel de bienvenida centrado -->
+    <div class="container mt-5 pt-4">
+    <div class="alert alert-light d-flex align-items-center" role="alert">
+      <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
+      <div class="ms-3">
+        <h5 class="mb-0"> Hola {{user.firstName}} {{user.lastName}}!</h5>
+        <p class="mb-0">Que tengas un gran día. Seguí cuidando tu salud con tu Portal Paciente.</p>
+      </div>
+    </div>
+    </div>
+
+  <div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 mb-3">
+      <div class="card-option text-align-start p-4">
+        <div class="card-body">
+          <h5 class="card-title">Solicitar Turno</h5>
+          <p class="card-text">Agendá tu próximo turno de manera fácil y rápida.</p>
+          <div class="text-center">
+            <img src="assets\img\images.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Solicitar Turno">
+          </div>
+          <a href="" class="btn btn btn-success" routerLink="/specialtyList">Solicitar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 mb-3">
+      <div class="card-option text-align-start p-4">
+        <div class="card-body">
+          <h5 class="card-title">Ver Todos los Turnos</h5>
+          <p class="card-text">Revisa todos tus turnos agendados en el portal.</p>
+          <div class="text-center">
+            <img src="assets\img\calendario.png" class="rounded img-fluid" style="max-height: 200px; object-fit: cover;" alt="Imagen Ver Todos los Turnos">
+          </div>
+          <a href="#" class="btn btn-success" routerLink="/appointmentList">Ver Turnos</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="this.earliestDate && this.earliestTime" class="row justify-content-center mt-3">
+      <div class="col-12 col-md-12">
+        <div class="card shadow-sm text-right">
+          <div class="card-body">
+            <h5 class="card-title">Próximo Turno</h5>
+            <p class="card-text">Tu próximo turno es el 
+              <strong>{{this.earliestDate| date: 'dd' : 'UTC' }}</strong> de 
+              <strong>{{this.earliestDate| date: 'MMMM' : 'UTC' : 'es' }}</strong> a las
+              <strong>{{this.earliestTime}}</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div *ngIf="user.codUser === 2"> <!--Doctor-->
+  <!-- Cartel de bienvenida centrado -->
+  <div class="container mt-5 pt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+        <div class="alert alert-light d-flex align-items-center" role="alert">
+          <i class="bi bi-emoji-smile-fill" style="font-size: 30px; color: #4be253;"></i>
+          <div class="ms-3">
+            <h5 class="mb-0"> Hola {{user.firstName}} {{user.lastName}}!</h5>
+            <p class="mb-0">Que tengas un gran día. Administra tus proximos turnos con tu portal doctor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+ <!-- Contenedor de las cards con simetría respecto al cartel -->
+  <div class="container mt-4">
+  <div class="row justify-content-center">
+
+   <!-- Card 2: Ver Todos los Turnos -->
+   <div class="col-12 col-md-6 mb-3">
+     <div class="card-option text-center p-4">
+       <div class="card-body">
+         <h5 class="card-title">Ver Todos los Turnos</h5>
+         <p class="card-text">Revisa todos tus turnos agendados en el portal.</p>
+         <div class="text-center">
+            <img src="assets\img\agenda.png" class="rounded img-fluid mb-3" style="max-height: 135px; object-fit: cover;" alt="Imagen Ver Todos los Turnos">
+          </div>
+         <a href="#" class="btn btn-success" routerLink="/appointmentList">Ver Turnos</a>
+       </div>
+     </div>
+   </div>
+
+   <div *ngIf="this.earliestDate && this.earliestTime" class="row justify-content-center mt-3">
+     <div class="col-12 col-md-12">
+       <div class="card shadow-sm text-right">
+         <div class="card-body">
+           <h5 class="card-title">Próximo Turno</h5>
+           <p class="card-text">Tu próximo turno es el 
+             <strong>{{this.earliestDate| date: 'dd' : 'UTC' }}</strong> de 
+             <strong>{{this.earliestDate| date: 'MMMM' : 'UTC' : 'es' }}</strong> a las
+             <strong>{{this.earliestTime}}</strong>.</p>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+
+
+
+<div *ngIf="user.codUser === 0"> <!--Admin-->
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <!-- Card 1: Administrar especialidades -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card-option text-align-start p-4">
+          <div class="card-body">
+            <h5 class="card-title">Administrar especialidades</h5>
+            <p class="card-text">Gestiona las especialidades disponibles en el sistema.</p>
+            <a href="#" class="btn btn-success" routerLink="/specialtyList">Ver especialidades</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 2: Administrar consultorios -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card-option text-align-start p-4">
+          <div class="card-body">
+            <h5 class="card-title">Administrar consultorios</h5>
+            <p class="card-text">Administra los consultorios disponibles para los turnos.</p>
+            <a href="#" class="btn btn-success" routerLink="/home/consultingList">Ver consultorios</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 4: Administrar doctores -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card-option text-align-start p-4">
+          <div class="card-body">
+            <h5 class="card-title">Administrar doctores</h5>
+            <p class="card-text">Agrega, edita o elimina doctores del sistema.</p>
+            <a href="#" class="btn btn-success" routerLink="/home/doctorList">Ver doctores</a>
+          </div>
+        </div>
+      </div>
+
+  
+      <!-- Card 5: Administrar doctores en consultorios -->
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card-option text-align-start p-4">
+          <div class="card-body">
+            <h5 class="card-title">Administrar doctores en consultorios</h5>
+            <p class="card-text">Asocia doctores con los consultorios correspondientes.</p>
+            <a href="#" class="btn btn-success" routerLink="/doconsList">Ver doctores en consultorios</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

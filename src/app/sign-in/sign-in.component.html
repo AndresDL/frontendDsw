@@ -1,0 +1,57 @@
+
+<div *ngIf="!verif" class="container mt-5">
+  <div class="text-center mb-4">
+      <h2>¿Qué tipo de usuario sos?</h2>
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="col-md-5">
+          <div class="card card-option text-center p-4">
+              <i class="icon-large text-primary bi bi-calendar-plus"></i>
+              <h4 class="fw-bold">Soy Paciente</h4>
+              <p>Regístrate como usuario Paciente</p>
+              <a class="btn btn-primary" (click)="gotoUserSignin()">Continuar</a>
+          </div>
+      </div>
+
+     
+      <div class="col-md-5">
+        <div class="card card-option text-center p-4">
+            <i class="icon-large text-success bi bi-calendar-check"></i> 
+            <h4 class="fw-bold">Soy Doctor</h4>
+            <p>Regístrate como usuario Doctor</p>
+            <a href="/DocsignIn" class="btn btn-success">Continuar</a>
+        </div>
+    </div>
+  </div>
+  <a href="/login" class="btn btn-secondary d-block mx-auto text-center mt-5" style="width: fit-content;" >Volver a la pagina anterior</a>
+</div>
+
+
+
+
+<div *ngIf="verif" class="wrapper">     
+    <div *ngIf="!loading" class="body">
+      <img class="icon" src="../../assets/img/hospital.png" alt="img login">
+      <h1>Registrar usuario</h1>
+      <form [formGroup]="registerForm" novalidate>
+        <input formControlName="dni" type="text" class="form-control mb-1" placeholder="Ingrese su  DNI">
+        <input formControlName="age" type="text" class="form-control mb-1" placeholder="Ingrese su edad">
+        <input formControlName="firstName" type="text" class="form-control mb-1" placeholder="Ingrese su nombre">
+        <input formControlName="lastName" type="text" class="form-control mb-1" placeholder="Ingrese su apellido">
+        <input formControlName="email" type="email" class="form-control mb-1" placeholder="Ingrese su email">
+        <input formControlName="password" type="password" class="form-control mb-1" placeholder="Ingrese su contraseña">
+        <input formControlName="repassword" type="password" class="form-control mb-1" placeholder="Repita su contraseña">
+        <span *ngIf="registerForm.errors?.['passwordmatcherror']" class="">Las contraseñas no son iguales</span>
+        <re-captcha (resolved)="captchaResuelto($event)" siteKey=""></re-captcha><!--Ingresar clave publica recaptcha-->
+        <div class="g-recaptcha" data-sitekey=""></div><!--Ingresar clave publica recaptcha-->
+        <div class="d-grid gap-2 mt-2">
+            <button [disabled]="registerForm.invalid" (click)="addUser()" type="button" class="btn btn-primary btn-lg">Aceptar</button>
+        </div>
+        </form>
+        <a href="/login" (click)="showLoading()">Pagina anterior</a>
+    </div>   
+    <div *ngIf="loading" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

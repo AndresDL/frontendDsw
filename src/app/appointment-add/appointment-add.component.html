@@ -1,0 +1,106 @@
+<div class="wrapper d-flex flex-column justify-content-start align-items-center p-4" style="background-color: hsl(217, 76%, 97%);">
+    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
+        <h4 class="alert-heading">Finalizar reserva</h4>
+        <p>Para registrar el turno, seleccione una fecha y horario.</p>
+    </div>
+
+    <div 
+        *ngIf="item" 
+        class="border rounded shadow-sm p-4" 
+        style="background-color: var(--bs-light-bg-subtle); width: 100%; max-width: 800px;">
+        <form [formGroup]="appointmentForm" class="row g-4">
+            <div class="col-md-6">
+                <label for="doctorName" class="form-label fw-bold">Nombre del Doctor</label>
+                <input 
+                    id="doctorName" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{item.doctor.firstName}} {{item.doctor.lastName}}" 
+                    aria-label="readonly input example" 
+                    readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="specialty" class="form-label fw-bold">Especialidad</label>
+                <input 
+                    id="specialty" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{item.doctor.specialty.name}}" 
+                    aria-label="readonly input example" 
+                    readonly>
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label fw-bold">Dirección</label>
+                <input 
+                    id="address" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{item.consulting.street}} {{item.consulting.street_number}}" 
+                    aria-label="readonly input example" 
+                    readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="dni" class="form-label fw-bold">DNI del Paciente</label>
+                <input 
+                    id="dni" 
+                    class="form-control" 
+                    type="text" 
+                    value="{{user.dni}}" 
+                    aria-label="readonly input example" 
+                    readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="appoDate" class="form-label fw-bold">Fecha</label>
+                <input (change)="onDateChange()"
+                    id="appoDate" 
+                    formControlName="appoDate" 
+                    class="form-control" 
+                    type="date">
+            </div>
+            <div class="col-md-6">
+                <label for="appoTime" class="form-label fw-bold">Horario</label>
+                <select formControlName="appoTime" class="form-select" id="customSelect">
+                    <option value="" disabled selected>Seleccione un horario</option>
+                    <option *ngFor="let item of timefilteredArray" [value]="item">{{item}}</option>
+                </select>    
+            </div>
+            <div class="col-12 text-end mt-3">
+                <button 
+                    type="button"  
+                    class="btn btn-secondary me-2" 
+                    routerLink="/specialtyList">
+                    Página Anterior
+                </button>
+                <button 
+
+                    type="button"  
+                    class="btn btn-success me-2" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#staticBackdrop">
+                    Reservar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+  
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere crear este turno?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-success" (click)="createAppointment()" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+  
+
+

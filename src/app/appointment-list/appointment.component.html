@@ -1,0 +1,209 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<div *ngIf="user.codUser === 2 && this.appointmentArray.length === 0">
+    <div class="container mt-4">
+        <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+            <strong>¡Atención!</strong> No se te asignaron turnos todavía.
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="user.codUser === 1 && this.appointmentArray.length === 0">
+    <div class="container mt-4">
+        <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+            <strong>¡Atención!</strong> No se han solicitado turnos todavía.
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+            <button type="button" class="btn btn-success ms-2" routerLink="/specialtyList">Solicitar turno</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="user.codUser === 1 && this.appointmentArray.length !== 0 && !loading" class = "container mt-2 text-center">
+
+    <div class="alert alert-primary d-flex justify-content-center align-items-center w-75 mx-auto" role="alert">
+        <i class="bi bi-info-circle-fill flex-shrink-0 me-2" style="font-size: 1.2rem;" aria-label="Info"></i>
+        <div>
+            <strong>Turnos Reservados</strong>
+        </div>
+    </div>
+    
+    <div class="table-responsive mt-3 mb-5">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>                    
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor= "let item of appointmentArray">
+                    <td>{{item.assisted}}</td>
+                    <td>{{item.appoDate}}</td> 
+                    <td>{{item.appoTime}}</td>
+                    <td>
+                    <i *ngIf="item.assisted === 'Vigente'" type="button" class="bi bi-trash text-danger cursor-pointer" (click)="getAppointment(item.id)" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop" style="font-size: 1.4rem;">
+                    </i>
+                    <i type="button" class="bi bi-info-circle text-dark cursor-pointer ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="openDetailModal(item)" style="font-size: 1.4rem;">
+                    </i>
+                    </td>                                       
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+    </div>  
+</div>
+
+<div *ngIf="loading" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+
+ <!-- Modal 1 User -->
+ <div *ngIf="this.selectedAppointment != null && this.user.codUser === 1" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles del turno</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+            <p><strong>Fecha:</strong> {{this.selectedAppointment.appoDate}}</p>
+            <p><strong>Hora:</strong> {{this.selectedAppointment.appoTime}}</p>
+            <p><strong>Doctor:</strong> {{this.selectedAppointment.doctor_consulting.doctor.firstName}}
+                    {{this.selectedAppointment.doctor_consulting.doctor.lastName}}
+            </p>
+            <p><strong>Especialidad:</strong> {{this.selectedAppointment.doctor_consulting.doctor.specialty.name}}</p>
+            <p><strong>Direccion: </strong> {{this.selectedAppointment.doctor_consulting.consulting.street}}
+                {{this.selectedAppointment.doctor_consulting.consulting.street_number}}</p>
+        </div>
+    </div>
+    </div>
+</div>  
+
+
+<!-- Modal 2 User -->
+<div *ngIf="this.user.codUser === 1" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere cancelar este turno? Esta acción es irreversible
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="cancelAppointment(opflag = 'cancelar')" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+  
+
+<div *ngIf="user.codUser === 2 && this.appointmentArray.length !== 0" class = "container mt-2 text-center">
+    <div class="alert alert-primary d-flex justify-content-center align-items-center w-75 mx-auto" role="alert">
+        <i class="bi bi-info-circle-fill flex-shrink-0 me-2" style="font-size: 1.2rem;" aria-label="Info"></i>
+        <div>
+            <strong>Turnos Asignados</strong>
+        </div>
+    </div>
+    
+    <div class="table-responsive mt-3 mb-5">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>                    
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor= "let item of appointmentArray">
+                    <td>{{item.assisted}}</td> 
+                    <td>{{item.appoDate}}</td> 
+                    <td>{{item.appoTime}}</td>
+                    <td>
+                    <i *ngIf="item.assisted === 'Vigente'" type="button" class="bi bi-check2 text-success cursor-pointer ms-1" (click)="getAppointment(item.id)" data-bs-toggle="modal"
+                        data-bs-target="#doctorModal" style="font-size: 1.4rem;">
+                    </i>
+                    <i *ngIf="item.assisted === 'Vigente'" type="button" class="bi bi-trash text-danger cursor-pointer ms-1" (click)="getAppointment(item.id)" data-bs-toggle="modal"
+                        data-bs-target="#doctorModal1" style="font-size: 1.4rem;">
+                    </i>
+                    <i type="button" class="bi bi-info-circle text-dark cursor-pointer ms-1" data-bs-toggle="modal" data-bs-target="#doctorModal2"
+                        (click)="openDetailModal(item)" style="font-size: 1.4rem;">
+                    </i>
+                    </td>                                       
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+    </div>  
+</div>
+
+ <!-- Modal 1 Doctor -->
+ <div *ngIf="this.selectedAppointment != null && this.user.codUser === 2" class="modal fade" id="doctorModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles del turno</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+            <p><strong>Fecha:</strong> {{this.selectedAppointment.appoDate}}</p>
+            <p><strong>Hora:</strong> {{this.selectedAppointment.appoTime}}</p>
+            <p><strong>Paciente:</strong> {{this.selectedAppointment.patient.firstName}}
+                    {{this.selectedAppointment.patient.lastName}}
+            </p>
+            <p><strong>DNI:</strong> {{this.selectedAppointment.patient.dni}}</p>
+            <p><strong>Direccion: </strong> {{this.selectedAppointment.doctor_consulting.consulting.street}}
+                {{this.selectedAppointment.doctor_consulting.consulting.street_number}}</p>
+        </div>
+    </div>
+    </div>
+</div>  
+
+<!-- Modal 2 Doctor Cancelar -->
+<div *ngIf="this.user.codUser === 2" class="modal fade" id="doctorModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere cancelar este turno? Esta acción es irreversible
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="cancelAppointment(opflag = 'cancelar')" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3 Doctor Completar -->
+<div *ngIf="this.user.codUser === 2" class="modal fade" id="doctorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere completar este turno? Esta acción es irreversible
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="cancelAppointment(opflag = 'completar')" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+

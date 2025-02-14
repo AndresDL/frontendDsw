@@ -1,0 +1,85 @@
+
+<div *ngIf="doctorArray.length === 0"> <!--Array vacio-->
+    <div class="container mt-4">
+        <div class="alert alert-info text-center w-50 mx-auto" role="alert">
+            <strong>¡Atención!</strong> No se registraron doctores todavía.
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-secondary ms-2" routerLink="/home">Volver a inicio</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="doctorArray.length != 0" class = "container mt-2 text-center">
+    <div class="alert alert-info text-center mx-auto" style="width: 100%; max-width: 800px;" role="alert">
+        <h4 class="alert-heading">Lista de doctores</h4>
+        <p>Usted visualizar todos los doctores registrados y darlos de baja</p>
+    </div>
+    <div class="table-responsive mt-3 mb-5">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Vigencia</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Epecialidad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of doctorArray">
+                    <td>{{item.vigency}} </td>
+                    <td>{{item.id}} </td>
+                    <td>{{item.firstName}}</td> 
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.specialty.name}}</td>
+                    <td>
+                        <i *ngIf="item.vigency" type="button" class="bi bi-trash text-danger cursor-pointer" style="font-size: 1.2rem;" (click)="getDoctor(item.id!)"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>  
+                        <i *ngIf="!item.vigency" type="button" class="bi bi-arrow-clockwise text-success cursor-pointer" style="font-size: 1.2rem;"  (click)="getDoctor(item.id!)"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop2"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary" routerLink="/home">Pagina anterior</button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div aria-required="true" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere dar de baja a este doctor?
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="vigencyDoctor()"  class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div aria-required="true" class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de continuar....</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Esta seguro que quiere dar de alta a este doctor?
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="reactivateDoctor()"  class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+        </div>
+    </div>
+</div>
+

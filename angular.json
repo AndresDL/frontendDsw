@@ -27,6 +27,7 @@
             "outputPath": "dist/frontend-dsw",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "sourceMap": true,
             "polyfills": [
               "zone.js"
             ],
@@ -37,14 +38,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/@popperjs/core/dist/umd/popper-base.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"],
             "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "prerender": false,
+            "ssr": false
           },
           "configurations": {
             "production": {
@@ -109,5 +112,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e147094e-5dda-4e8c-8150-f454409f4f96"
   }
 }
