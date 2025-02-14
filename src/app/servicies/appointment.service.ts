@@ -19,6 +19,14 @@ export class AppointmentService {
     this.myApiUrl = environment.endpointappo
   }
 
+  //Getone
+  getAppointment(id: number): Observable<Appointment>{
+    const url = `${this.myAppUrl}${this.myApiUrl}/${id}`;
+    return this.http.get<any>(url).pipe(map(response => {
+      return response.data[0];
+    }));
+  }
+
   //Getall
   getAppointments(){
     const url = `${this.myAppUrl}${this.myApiUrl}`
@@ -43,10 +51,15 @@ export class AppointmentService {
   //getFilteredbyDoctorTuition_Number
   getDocfilteredAppointments(tuition: number): Observable<Appointment[]>{
     const url = `${this.myAppUrl}${this.myApiUrl}searchDoc/${tuition}`
-    console.log(url)
     return this.http.get<any>(url).pipe(map(response => {
       return response.data;
     }));
+  }
+
+  //Update - estado
+  updateAppointment(appointment: Appointment): Observable<void>{
+    const url = `${this.myAppUrl}${this.myApiUrl}${appointment.id}`;
+    return this.http.put<void>(url, appointment);
   }
 
   //Delete

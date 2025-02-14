@@ -1,6 +1,6 @@
 
 
-<div *ngIf="user.codUser === 1 && !loading"> <!--User-->
+<div *ngIf="user.codUser === 1"> <!--User-->
    <!-- Cartel de bienvenida centrado -->
     <div class="container mt-5 pt-4">
     <div class="alert alert-light d-flex align-items-center" role="alert">
@@ -10,7 +10,7 @@
         <p class="mb-0">Que tengas un gran día. Seguí cuidando tu salud con tu Portal Paciente.</p>
       </div>
     </div>
-  </div>
+    </div>
 
   <div class="container mt-4">
   <div class="row justify-content-center">
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div *ngIf="this.earliestDate != null" class="row justify-content-center mt-3">
+    <div *ngIf="this.earliestDate && this.earliestTime" class="row justify-content-center mt-3">
       <div class="col-12 col-md-12">
         <div class="card shadow-sm text-right">
           <div class="card-body">
@@ -57,7 +57,7 @@
 </div>
 </div>
 
-<div *ngIf="user.codUser === 2 && !loading"> <!--Doctor-->
+<div *ngIf="user.codUser === 2"> <!--Doctor-->
   <!-- Cartel de bienvenida centrado -->
   <div class="container mt-5 pt-4">
     <div class="row justify-content-center">
@@ -75,8 +75,8 @@
  
 
  <!-- Contenedor de las cards con simetría respecto al cartel -->
-<div class="container mt-4">
- <div class="row justify-content-center">
+  <div class="container mt-4">
+  <div class="row justify-content-center">
 
    <!-- Card 2: Ver Todos los Turnos -->
    <div class="col-12 col-md-6 mb-3">
@@ -92,7 +92,7 @@
      </div>
    </div>
 
-   <div *ngIf="this.earliestDate != null" class="row justify-content-center mt-3">
+   <div *ngIf="this.earliestDate && this.earliestTime" class="row justify-content-center mt-3">
      <div class="col-12 col-md-12">
        <div class="card shadow-sm text-right">
          <div class="card-body">
@@ -111,7 +111,7 @@
 
 
 
-<div *ngIf="user.codUser === 0 && !loading"> <!--Admin-->
+<div *ngIf="user.codUser === 0"> <!--Admin-->
   <div class="container mt-4">
     <div class="row justify-content-center">
       <!-- Card 1: Administrar especialidades -->
@@ -160,8 +160,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div *ngIf="loading" class="spinner-border text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
 </div>

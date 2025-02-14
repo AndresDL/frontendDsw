@@ -12,12 +12,10 @@ export class ProfileComponent implements OnInit {
   
   constructor(
      private decodingService: DecodingService,
-
   ){}
 
   ngOnInit(): void {
     this.user = this.decodingService.decodeToken();
-    console.log(this.user)
   }
 
 

@@ -86,8 +86,8 @@ export class DoctorSignInComponent implements OnInit{
   this.registerService.signIn(doctor, this.captcha).subscribe({
     next: () => {
       this.loading = false;
-      this.toastr.success(`El doctor ${this.registerForm.value.firstName} ${this.registerForm.value.lastName}
-        ha sido registrado`,'Doctor registrado');
+      this.toastr.success(`El/la doctor/a ${this.registerForm.value.firstName} ${this.registerForm.value.lastName}
+        a sido registrado/a`,'Doctor/a registrado/a');
       this.router.navigate(['/login']); 
     },
     error: (e: HttpErrorResponse) => {
@@ -95,7 +95,7 @@ export class DoctorSignInComponent implements OnInit{
       if(e.error.message && this.captcha === ''){
         this.toastr.error(e.error.message,'Error');
       } else if(e.error.message){
-        this.toastr.error('Ya hay un doctor registrado con esa matricula','Error')
+        this.toastr.error('Ya hay un doctor/a registrado/a con esa matricula','Error')
       } else {
         this.toastr.error('Paso algo inesperado, contacte a un admin','Error')
       };

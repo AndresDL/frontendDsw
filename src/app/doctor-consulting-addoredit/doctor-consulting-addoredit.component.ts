@@ -8,6 +8,7 @@ import { DoctorService } from '../servicies/doctor.service';
 import { ConsultingService } from '../servicies/consulting.service';
 import { Doctor } from '../interfaces/doctor';
 import { Consulting } from '../interfaces/consulting';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -94,14 +95,7 @@ export class DoctorConsultingAddoreditComponent {
       doctor: Number.parseInt(this.doconsForm.value.doctor),
       consulting: Number.parseInt(this.doconsForm.value.consulting),
     }
-    console.log(doctor_consulting)
     for(var i in this.doconsArray){
-      if(doctor_consulting.doctor === this.doconsArray[i].doctor.id 
-        && doctor_consulting.consulting === this.doconsArray[i].consulting.id
-      ){
-        this.toastr.error('El doctor elegido ya a sido registrado en el consultorio elegido','Error');
-        return;
-      };
       if(doctor_consulting.doctor === this.doconsArray[i].doctor.id
         && this.doconsArray[i].vigency === true
       ){
@@ -109,20 +103,22 @@ export class DoctorConsultingAddoreditComponent {
         return;
       };
     };
-    if(this.id !== 0){
-      //edit
-     doctor_consulting.id = this.id
-     this.doconsService.updateDoctor_consulting(doctor_consulting).subscribe(() =>{
-      this.toastr.success('La instancia ha sido editada exitosamente','Instancia editada');
-      this.router.navigate(['/doconsList']);
-     });
-    } else {
-      //add
-      console.log(doctor_consulting)
-      this.doconsService.addDoctor_consulting(doctor_consulting).subscribe(() => {
+    //add, elminado del edit para conservar integridad de datos 
+    this.doconsService.addDoctor_consulting(doctor_consulting).subscribe({
+      next: () => {
         this.toastr.success('La instancia ha sido agregada exitosamente','Instancia agregada');
         this.router.navigate(['/home']);
-      })
-    }
+      },
+      error: (e:HttpErrorResponse) => {
+        if(e.error.message){
+          this.toastr.error('Ya existe una instancia laboral con el/la doctor/a elegido/a en el consultorio elegido','Error');
+        } else {
+          this.toastr.error('Paso algo inesperado, contacta un admin!',
+              'Error')
+        };
+      },
+    });
   }
 }
+
+

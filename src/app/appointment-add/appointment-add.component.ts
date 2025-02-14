@@ -36,9 +36,7 @@ export class AppointmentAddComponent implements OnInit {
     private toastr: ToastrService,
     private datePipe: DatePipe,
   ){
-    //this.todayDate = this.datePipe.transform(this.todayDate, 'shortDate')
     this.currentDate = this.datePipe.transform(new Date, 'yyyy-MM-dd')
-    console.log(this.currentDate)
     this.appointmentForm = this.form.group({
       appoDate: [null, [Validators.required]],
       appoTime: [{ value: '', disabled: true }],
@@ -50,7 +48,6 @@ export class AppointmentAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.appointmentForm.get('appoDate')?.valueChanges.subscribe(value => {
-      console.log(value)
       if(value < this.currentDate){
         this.toastr.error('Ingrese una fecha valida','Error');
         this.appointmentForm.get('appoTime')?.disable(); 
@@ -77,7 +74,7 @@ export class AppointmentAddComponent implements OnInit {
   }
 
   onDateChange(){
-    let timeArray = ['8:00:00','9:00:00','10:00:00','11:00:00','12:00:00','13:00:00','14:00:00','15:00:00','16:00:00',
+    let timeArray = ['08:00:00','09:00:00','10:00:00','11:00:00','12:00:00','13:00:00','14:00:00','15:00:00','16:00:00',
       '17:00:00','18:00:00','19:00:00','20:00:00'
     ];
     let datefilteredArray: Appointment[] = [];
@@ -93,13 +90,15 @@ export class AppointmentAddComponent implements OnInit {
     if(datefilteredArray){
       for(var j in timeArray) {
         for(var i in datefilteredArray){
-          if(datefilteredArray[i].appoTime === timeArray[j]){
+          if(datefilteredArray[i].appoTime === timeArray[j] && 
+            datefilteredArray[i].assisted === 'Vigente'
+          ){
             this.timefilteredArray[j] = this.timefilteredArray[j] + ' No disponible';
           };
         };
       };
     };
-  };
+  }
 
   getAppointments(){
     this.appointmentService.getAppointments().subscribe((appointment) => {
@@ -120,18 +119,17 @@ export class AppointmentAddComponent implements OnInit {
       this.toastr.error('Debe ingresar un horario valido para continuar','Error');
       return;
     };
-    if(this.appointmentForm.value.appoTime === this.appointmentForm.value.appotime + 'No disponible'){
+    if(this.appointmentForm.value.appoTime.includes('No disponible')){
       this.toastr.error('El horario se encuentra ocupado','Error');
       return;
     };
     const appointment: Appointment = {
       appoDate: this.appointmentForm.value.appoDate,
       appoTime: this.appointmentForm.value.appoTime,
-      assisted: false,
+      assisted: 'Vigente',
       doctor_consulting: Number(this.item.id),
       patient: Number(this.user.id),
     };
-    console.log(appointment);
     this.appointmentService.crearAppointment(appointment).subscribe(() => {
       this.toastr.success('Su turno a sido registrado','Exito');
       this.router.navigate(['/home']);

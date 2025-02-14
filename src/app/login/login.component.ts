@@ -88,7 +88,9 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         },
       });
-    };
+    } else {
+      this.toastr.error('El usuario ingresado no es valido, ingrese su DNI o matricula','Error')
+    }
   }
 
   showLoading(){

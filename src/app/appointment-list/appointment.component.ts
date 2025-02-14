@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, numberAttribute, OnInit } from '@angular/core';
 import { Appointment } from '../interfaces/appointment';
 import { AppointmentService } from '../servicies/appointment.service';
 import { DecodingService } from '../servicies/decoding.service';
 import { ToastrService } from 'ngx-toastr';
-import { ConnectableObservable } from 'rxjs';
-import { computeStyles } from '@popperjs/core';
+
 
 @Component({
   selector: 'app-appointment',
@@ -14,12 +13,14 @@ import { computeStyles } from '@popperjs/core';
 export class AppointmentComponent implements OnInit{
 
   appointmentArray: any[] = [];
+  appointmentCancel: any;
   user: any;
   item: any;
   verif: any;
+  opflag: any;
   id!: number; 
   loading: boolean = false;
-  selectedAppointment: Appointment | null = null; 
+  selectedAppointment: any; 
   
   constructor(
      private appointmentService: AppointmentService,
@@ -41,15 +42,23 @@ export class AppointmentComponent implements OnInit{
     this.selectedAppointment = item;
   }
 
+  getAppointment(id: number){
+    this.appointmentService.getAppointment(id).subscribe((appointment) => {
+      this.appointmentCancel = appointment;
+    });
+  }
+
   getUserAppointments(){
     this.appointmentService.getfilteredAppointments(this.user.dni).subscribe((appointments) => {
       this.appointmentArray = this.formatDateTime(appointments);
+      this.appointmentArray = this.orderAppointmentArray(this.appointmentArray);
     });
   }
 
   getDoctorAppointments(){
    this.appointmentService.getDocfilteredAppointments(this.user.tuition_number).subscribe((appointments) => {
     this.appointmentArray = this.formatDateTime(appointments);
+    this.appointmentArray = this.orderAppointmentArray(this.appointmentArray);
    });
   }
 
@@ -64,18 +73,50 @@ export class AppointmentComponent implements OnInit{
     return appointments;
   }
 
-  deleteAppointment(id: number){
-    this.appointmentService.deleteAppointment(id).subscribe((response)=>{
+  orderAppointmentArray(appoArray: any[]){
+    for(var i in appoArray){
+      let [day,month,year] = appoArray[i].appoDate.split('/')
+      appoArray[i].appoDate = `${month}/${day}/${year}`
+    }
+    appoArray.sort((a,b) =>{
+      if(a.appoDate === b.appoDate){
+        if(a.appoTime > b.appoTime){
+          return Number.parseInt(a.appoTime) - Number.parseInt(b.appoTime)
+        };
+      } else {
+        return +new Date(a.appoDate) - +new Date(b.appoDate);
+      };
+      return 0;
+    });
+    for(var i in appoArray){
+      let [month,day,year] = appoArray[i].appoDate.split('/')
+      appoArray[i].appoDate = `${day}/${month}/${year}`
+    }
+    return appoArray;
+  }
+
+  cancelAppointment(flag: string){
+    if(flag === 'cancelar'){
+      if(this.user.codUser === 1){
+        this.appointmentCancel.assisted = 'Cancelado por paciente';
+      } else if (this.user.codUser === 2){
+        this.appointmentCancel.assisted = 'Cancelado por doctor';
+      };
+    } else if (flag === 'completar'){
+      this.appointmentCancel.assisted = 'Completado'
+    }
+    this.appointmentService.updateAppointment(this.appointmentCancel).subscribe(() => {
+      if(flag = 'cancelar'){
+        this.toastr.success('El turno a sido cancelado exitosamente','Exito al cancelar');
+      } else if(flag = 'completar') {
+        this.toastr.success('El turno a sido completado exitosamente','Exito al completar');
+      };
       if(this.user.codUser === 1){
         this.getUserAppointments();
-        this.toastr.success('Su turno ha sido cancelado exitosamente','Turno cancelado');
-      } else {
+      } else if (this.user.codUser === 2){
         this.getDoctorAppointments();
-        this.toastr.success('El turno ha sido cancelado exitosamente','Turno cancelado');
-      }
-      
-    },
-  (error)=> console.error ("Error deleting", error));
+      };
+    });
   }
 
   assingId(id: number){

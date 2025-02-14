@@ -30,7 +30,15 @@ export class SpecialtyComponent implements OnInit{
 
   getAllSpecialties() {
     this.specialtyService.getSpecialties().subscribe((specialty) => {
-      this.specialtyArray = specialty;
+      if(this.user.codUser === 1){
+        for(var i in specialty){
+          if(specialty[i].vigency === true){
+            this.specialtyArray.push(specialty[i]);
+          };
+        };
+      } else {
+        this.specialtyArray = specialty;
+       };
     });
   }
 

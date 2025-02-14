@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DecodingService } from '../servicies/decoding.service';
 import { Appointment } from '../interfaces/appointment';
 import { AppointmentService } from '../servicies/appointment.service';
+import { DoctorService } from '../servicies/doctor.service';
 
 
 @Component({
@@ -11,11 +12,10 @@ import { AppointmentService } from '../servicies/appointment.service';
 })
 export class DashboardComponent implements OnInit {
 
-  earliestTime!: string;
-  earliestDate!: string
+  earliestTime: any;
+  earliestDate: any;
   user: any;
-  loading: boolean = false;
-  appointmentArray: Appointment[] = [];
+  appointmentArray: any[] = [];
 
 
   constructor(
@@ -25,8 +25,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.decodeService.decodeToken();
-    this.getUserAppointments();
-    this.nextAppointment();
+    if(this.user.codUser === 1){
+      this.getUserAppointments();
+    } else if (this.user.codUser === 2) {
+      this.getDoctorAppointments();
+    }
   }
 
   getUserAppointments(){
@@ -36,19 +39,42 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  nextAppointment() {
-    if(this.appointmentArray[0]){ //Validar que no este vacio 
-    this.earliestDate = this.appointmentArray[0].appoDate
-    this.earliestTime = this.appointmentArray[0].appoTime
-    for (var element of this.appointmentArray) {
-      if(this.earliestDate > element.appoDate){
-        this.earliestDate = element.appoDate
-      }; 
-      if(this.earliestTime > element.appoTime){
-        this.earliestTime = element.appoTime
+  getDoctorAppointments(){
+    this.appointmentService.getDocfilteredAppointments(this.user.tuition_number).subscribe((appointments) => {
+      this.appointmentArray = appointments;
+      this.nextAppointment();
+    })
+  }
+
+  nextAppointment(){
+    if(this.appointmentArray.length > 1){ //Validar que no este vacio y no sea un unico turno  
+      for(var i in this.appointmentArray){
+        if(this.appointmentArray[i].assisted === 'Vigente'){
+          this.earliestDate = this.appointmentArray[i].appoDate;
+          this.earliestTime = this.appointmentArray[i].appoTime;
+          break;
+        };
+      };
+      if(this.earliestDate != undefined && this.earliestTime != undefined){
+        for(var element of this.appointmentArray){
+          if(element.assisted === 'Vigente'){
+            if(this.earliestDate > element.appoDate || this.earliestDate === element.appoDate  // >= no estaba funcionando bien
+              && this.earliestTime > element.appoTime){
+              this.earliestDate = element.appoDate;
+              this.earliestTime = element.appoTime;
+            }; 
+          };
+        };
+      };
+    } else if (this.appointmentArray[0]){
+      console.log(this.appointmentArray[0].assisted)
+      if(this.appointmentArray[0].assisted === 'Vigente'){
+        this.earliestDate = this.appointmentArray[0].appoDate;
+        this.earliestTime = this.appointmentArray[0].appoTime;
       };
     };
-    this.getFormattedTime();
+    if(this.earliestDate && this.earliestTime){
+      this.getFormattedTime();
     };
   }
 
@@ -56,14 +82,10 @@ export class DashboardComponent implements OnInit {
     let modifier = '';
     let [hours, minutes] = this.earliestTime.split(':');
     if (hours >= '12') {
-      modifier = 'PM'
+      modifier = 'PM';
     } else if ( hours < '12') {
-      modifier = 'AM' 
-    }
-    this.earliestTime = `${hours}:${minutes} ${modifier}`
-  }
-
-  showLoading(){
-    this.loading = true;
-  }
+      modifier = 'AM';
+    };
+    this.earliestTime = `${hours}:${minutes} ${modifier}`;
+  };
 }

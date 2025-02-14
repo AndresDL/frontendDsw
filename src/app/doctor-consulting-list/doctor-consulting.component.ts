@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AppointmentService } from '../servicies/appointment.service';
 import { Appointment } from '../interfaces/appointment';
 import { app } from '../../../server';
+import { DoctorService } from '../servicies/doctor.service';
+import { ConsultingService } from '../servicies/consulting.service';
 
 @Component({
   selector: 'app-doctor-consulting',
@@ -26,6 +28,8 @@ export class DoctorConsultingComponent {
   constructor(
     private doconsService: DoctorConsultingService,
     private decodingService: DecodingService,
+    private doctorService: DoctorService,
+    private consultingService: ConsultingService,
     private aRouter: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router,
@@ -61,7 +65,9 @@ export class DoctorConsultingComponent {
   getAppointments(){
     this.appointmentService.getAppointments().subscribe((appointment) => {
       for(var i in appointment){
-        if(appointment[i].doctor_consulting.id === this.doctor_consulting.id){
+        if(appointment[i].doctor_consulting.id === this.doctor_consulting.id
+          && appointment[i].assisted === 'Vigente'
+        ){
           this.appo = appointment;
           return;
         };
@@ -83,30 +89,48 @@ export class DoctorConsultingComponent {
       this.toastr.success('La instancia laboral a sido dada de baja','Exito al dar de baja');
       this.getAllDoctor_consulting();
     });
-    
   }
 
   reactivateDoctor_consulting(){
-    for(var i in this.doconsArray){
-      if(this.doctor_consulting.doctor.id === this.doconsArray[i].doctor.id
-        && this.doconsArray[i].vigency === true
-      ){
-        this.toastr.error('El/la doctor/a ya se encuntra trabajando en otro consultorio actualmente','Error al dar de alta');
+    this.doctorService.getDoctor(this.doctor_consulting.doctor.id).subscribe((doctor) => {
+      if(doctor.vigency === false){
+        this.toastr.error('El/la doctor/a perteneciente a esta instancia se encuntra dado/a de baja, reactivelo/a para continuar',
+          'Error al dar de baja');
         return;
+      } else {
+        this.consultingService.getConsulting(this.doctor_consulting.consulting.id).subscribe((consulting) => {
+          if(consulting.vigency === false){
+            this.toastr.error('El consultorio perteneciente a esta instancia se encuentra dado de baja, reactivelo para continuar','Error al dar de alta')
+            return;
+          } else {
+            for(var i in this.doconsArray){
+              if(this.doctor_consulting.doctor.id === this.doconsArray[i].doctor.id
+                && this.doconsArray[i].vigency === true
+              ){
+                this.toastr.error('El/la doctor/a ya se encuntra trabajando en otro consultorio actualmente','Error al dar de alta');
+                return;
+              };
+            };
+            this.doctor_consulting.doctor = this.doctor_consulting.doctor.id;
+            this.doctor_consulting.consulting = this.doctor_consulting.consulting.id;
+            this.doctor_consulting.vigency = true;
+            this.doconsService.updateDoctor_consulting(this.doctor_consulting).subscribe(() => {
+              this.toastr.success('La instancia laboral a sido dada de alta','Exito al dar de alta');
+              this.getAllDoctor_consulting();
+            });
+          };
+        });
       };
-    };
-    this.doctor_consulting.doctor = this.doctor_consulting.doctor.id;
-    this.doctor_consulting.consulting = this.doctor_consulting.consulting.id;
-    this.doctor_consulting.vigency = true;
-    this.doconsService.updateDoctor_consulting(this.doctor_consulting).subscribe(() => {
-      this.toastr.success('La instancia laboral a sido dada de alta','Exito al dar de alta');
-      this.getAllDoctor_consulting();
     });
   }
 
   filterDoctor_consultings(){
     this.doconsService.getfilteredDoctor_consultings(this.name).subscribe((doctor_consulting) => {
-      this.doconsArray = doctor_consulting
+      for(var i in doctor_consulting){
+        if(doctor_consulting[i].vigency === true){
+         this.doconsArray.push(doctor_consulting[i])
+        };
+      };
     });
   }
 }

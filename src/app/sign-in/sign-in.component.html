@@ -43,8 +43,8 @@
         <input formControlName="password" type="password" class="form-control mb-1" placeholder="Ingrese su contraseña">
         <input formControlName="repassword" type="password" class="form-control mb-1" placeholder="Repita su contraseña">
         <span *ngIf="registerForm.errors?.['passwordmatcherror']" class="">Las contraseñas no son iguales</span>
-        <re-captcha (resolved)="captchaResuelto($event)" siteKey="6LeUbM8qAAAAAC-ipu8ASdjTW44EQkpkJu8LnMt2"></re-captcha>
-        <div class="g-recaptcha" data-sitekey="6LeUbM8qAAAAAC-ipu8ASdjTW44EQkpkJu8LnMt2"></div>
+        <re-captcha (resolved)="captchaResuelto($event)" siteKey=""></re-captcha><!--Ingresar clave publica recaptcha-->
+        <div class="g-recaptcha" data-sitekey=""></div><!--Ingresar clave publica recaptcha-->
         <div class="d-grid gap-2 mt-2">
             <button [disabled]="registerForm.invalid" (click)="addUser()" type="button" class="btn btn-primary btn-lg">Aceptar</button>
         </div>
