@@ -23,6 +23,9 @@
       "dom"
     ]
   },
+  "include": [
+   "cypress/support/cypress.d.ts"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

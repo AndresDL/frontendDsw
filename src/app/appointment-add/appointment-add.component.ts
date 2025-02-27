@@ -130,6 +130,7 @@ export class AppointmentAddComponent implements OnInit {
       doctor_consulting: Number(this.item.id),
       patient: Number(this.user.id),
     };
+    console.log(appointment)
     this.appointmentService.crearAppointment(appointment).subscribe(() => {
       this.toastr.success('Su turno a sido registrado','Exito');
       this.router.navigate(['/home']);

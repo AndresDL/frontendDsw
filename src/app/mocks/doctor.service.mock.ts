@@ -9,7 +9,7 @@ import { response } from 'express';
 @Injectable({
   providedIn: 'root'
 })
-export class DoctorService {
+export class DoctorServiceMock{
   private myAppUrl: string;
   private myApiUrl: string;
 

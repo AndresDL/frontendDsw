@@ -18,7 +18,7 @@ import { AppointmentAddComponent } from './appointment-add/appointment-add.compo
 
 
 //Modules
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +37,7 @@ import { ProfileComponent } from './profile/profile.component';
 registerLocaleData(localeEs);
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     AppointmentComponent,

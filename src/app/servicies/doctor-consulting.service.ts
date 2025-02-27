@@ -35,6 +35,7 @@ export class DoctorConsultingService {
   //GetFiltered
   getfilteredDoctor_consultings(name: string): Observable<DoctorConsulting[]>{
     const url = `${this.myAppUrl}${this.myApiUrl}/search/${name}`;
+    console.log(url)
     return this.http.get<any>(url).pipe(map(response => {
       return response.data;
     }));

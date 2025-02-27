@@ -6,7 +6,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Doctor } from '../interfaces/doctor';
 import { DoctorService } from '../servicies/doctor.service';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 
 @Component({
@@ -49,6 +48,7 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.userService.login(user, this.captcha).subscribe({
         next: ({ token }) => {
+          console.log(token)
           sessionStorage.setItem('token', token);
           this.router.navigate(['/home']);
         },

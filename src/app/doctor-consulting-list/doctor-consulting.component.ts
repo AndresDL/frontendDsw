@@ -131,6 +131,7 @@ export class DoctorConsultingComponent {
          this.doconsArray.push(doctor_consulting[i])
         };
       };
+      console.log(this.doconsArray)
     });
   }
 }
